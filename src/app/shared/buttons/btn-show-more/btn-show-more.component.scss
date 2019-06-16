@@ -1,0 +1,19 @@
+@import '../buttons.component.scss';
+
+.btn--more {
+  @media (max-width: 767px) {
+    grid-column: -1 / span 10;
+  }
+  @media (min-width: 768px) {
+    grid-column: 10 / span 2;
+  }
+}
+
+svg {
+  transition: fill 150ms linear;
+  fill: var(--secondary);
+}
+.svg--more {
+  transform: translate(-5px, 2px);
+  fill: var(--white);
+}

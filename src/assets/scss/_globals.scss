@@ -1,0 +1,74 @@
+.container {
+  position: relative;
+  z-index: map-get($z-index, layer1);
+  margin: 0 auto;
+  max-width: 950px;
+  @media (max-width: 767px) {
+    padding: 1rem;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 1.5rem;
+    padding: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 1rem 1rem 3rem 1rem;
+  }
+
+  &--flex {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.bgc--grey {
+  background-color: var(--gray-100);
+
+  @media (max-width: 1023px) {
+    padding: 1rem 0;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 2rem 0 1rem;
+  }
+}
+
+/* @keyframes decorationBar {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+    top: 3rem;
+  }
+  to {
+    transform: translateX(0%);
+    opacity: 1;
+    top: 0;
+  }
+}
+
+.general::before {
+  @media (min-width: 1023px) {
+    content: "";
+    display: block;
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: map-get($z-index, "layer2");
+    height: 100vh;
+    width: 10%;
+    background-image: linear-gradient(to bottom, var(--aux), var(--gray-100));
+    animation: decorationBar 1.2s ease backwards 1;
+    opacity: 0.98;
+  }
+} */
+
+/*-------------------
+Animacion para los inputs
+-----------------*/
+
+@keyframes inputsAnimation{
+  0%{ transform: scale(1)};
+  50%{transform: scale(1.08)};
+  100%{transform: scale(1)};
+}

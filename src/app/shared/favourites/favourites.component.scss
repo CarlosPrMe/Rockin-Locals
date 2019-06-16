@@ -1,0 +1,97 @@
+@import "../buttons/buttons.component.scss";
+
+:host {
+  grid-row: 1 / span 6;
+  @media (max-width: 767px) {
+    grid-column-start: 1;
+    order: -1;
+    margin-bottom: 1rem;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    grid-column-start: -1;
+    //order: -1;
+  }
+  @media (min-width: 1024px) {
+    grid-column-start: -1;
+  }
+}
+
+.aside {
+  &__heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--gray-200);
+    color: var(--gray-600);
+    font-size: var(--font-size-md);
+    text-align: center;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    @media (min-width: 768px) {
+      justify-content: center;
+    }
+  }
+
+  &__link {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--gray-500);
+    padding: 0.5rem 0rem 0.5rem 1rem;
+    text-decoration: none;
+    border: 3px solid transparent;
+    border-radius: 5px;
+    transition: all 150ms linear;
+
+    &:hover {
+      border: 3px solid var(--white);
+      background-color: var(--secondary);
+      color: var(--white);
+      box-shadow: inset 0 -0.5rem 0.5rem rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.list {
+ // border: 1px solid var(--gray-200);
+  border-radius: 4px;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.05);
+  @media (min-width: 768px) {
+    //overflow-y: scroll;
+    max-height: 30rem;
+  }
+  @media (max-width: 767px) {
+    display: none;
+  }
+}
+
+//Boton para desplegar favoritos collapsados en movil
+
+.btn--show-more {
+  border: 1px solid var(--gray-400);
+  background-color: var(--white);
+  color: var(--gray-600);
+  @media (min-width: 768px) {
+    display: none;
+  }
+  svg {
+    fill: var(--aux);
+  }
+  .svg--more {
+    transform: translate(-5px, 2px);
+    fill: var(--gray-600);
+  }
+}
+
+.show {
+  @media (max-width: 767px) {
+    display: block;
+  }
+}
+.hide {
+  @media (max-width: 767px) {
+    display: none;
+  }
+}

@@ -1,0 +1,51 @@
+<main class="grid">
+  <div class="main-block">
+    <form action="#" class="form" [formGroup]="myForm">
+      <div class="form__group">
+        <label for="paypal" class="form__label">
+          <input formControlName="method" type="radio" id="paypal" class="form__radio--standar" name="method" value="paypal">
+          Paypal</label>
+        <p class="form__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse vero culpa
+          quam, necessitatibus
+          ab, sapiente magnam placeat, corporis nesciunt quos modi excepturi explicabo pariatur
+          consequuntur expedita aliquam quia eaque beatae.</p>
+      </div>
+      <div class="form__group">
+        <label for="credit-card" class="form__label">
+          <input formControlName="method" type="radio" id="credit-card" class="form__radio--standar" name="method" value="card">
+          Tajeta de crédito
+        </label>
+      </div>
+      <fieldset class="form__fieldset susy">
+        <div class="row">
+          <div class="form__group col">
+            <label for="card-number" class="form__label form__label--sm">Numero de
+              tarjeta</label>
+            <input formControlName="creditNumber" type="text" id="card-number" class="form__input" placeholder="0000 0000 0000 0000">
+          </div>
+        </div>
+        <div class="row">
+          <div class="form__group col-sm-12 col-md-8 col-lg-8">
+            <label for="card-end" class="form__label form__label--sm">Fecha de caducidad</label>
+            <input formControlName="expireDate"  type="date" id="card-end" class="form__input form__input--date" placeholder="MM/AA">
+          </div>
+          <div class="form__group col-sm-12 col-md-4 col-lg-4">
+            <label for="cvv-code" class="form__label form__label--sm">Código CVV</label>
+            <input formControlName="cvvCode" type="text" id="cvv-code" class="form__input" maxlength="3">
+          </div>
+        </div>
+      </fieldset>
+      <div class="form__group">
+        <label for="save-method-payment" class="form__label form__label--sm">
+          <input type="checkbox" name="" id="save-method-payment" class="form__check">
+          Guardar
+          datos de pago para próximas reservas</label>
+      </div>
+      <div class="container--flex">
+        <a href="#" class="btn--link" routerLink="/reservation-summary">Volver a datos de reserva</a>
+        <button type="button" class="btn" (click)="submit($event,myForm)">Aceptar</button>
+      </div>
+    </form>
+  </div>
+  <app-cart></app-cart>
+</main>

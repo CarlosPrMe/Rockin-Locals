@@ -1,0 +1,74 @@
+@import '../../../assets/scss/partials/variables';
+
+.container {
+  position: relative;
+  z-index: map-get($z-index, layer1);
+  margin: 0 auto;
+  max-width: 1150px;
+  @media (max-width: 767px) {
+    padding: 1rem;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 1.5rem;
+    padding: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 1rem 1rem 3rem 1rem;
+  }
+}
+
+.grid {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: grid;
+  grid-gap: 1rem; //2rem
+  grid-template-columns: 1fr;
+  grid-template-rows: repeat(auto-fit, auto);
+
+  @media (max-width: 1023px) {
+    padding: 2rem 1rem 3rem;
+    grid-gap: 1rem;
+  }
+
+  @media (min-width: 1024px) {
+    padding: 0 2rem 1rem 2rem;
+  }
+}
+
+.container-btns {
+  @media (max-width: 767px) {
+    grid-column: -1 / 1;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    grid-column: 5 / span 8;
+  }
+  @media (min-width: 1024px) {
+    grid-column: 9 / span 4;
+  }
+}
+.flex--end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.heading {
+  text-align: center;
+  font-weight: 700;
+  @media (max-width: 767px) {
+    grid-column: 1 / -1;
+    padding: 0.2rem 0rem;
+    font-size: var(--font-size-base);
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    //grid-column: 5 / -1;
+    padding: 0.5rem 1.5rem;
+    font-size: var(--font-size-base);
+  }
+  @media (min-width: 1024px) {
+    //grid-column: 3 / span 10;
+    padding: 1rem 3rem;
+    font-size: calc(var(--font-size-base) * 1.3);
+  }
+}

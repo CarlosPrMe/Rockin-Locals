@@ -1,0 +1,21 @@
+@import '../../buttons/buttons.component.scss';
+
+.info__item {
+  padding: 1.5rem 0 0.5rem;
+  border-top: 1px solid var(--gray-500);
+
+  @media (max-width: 767px) {
+    padding: 1.5rem 0;
+    border-top: 1px solid var(--gray-500);
+  }
+}
+.info__item + .info__item {
+  @media (min-width: 767px) and (max-width: 1023px) {
+    padding: 1rem 0;
+  }
+}
+
+.flex--end {
+  display: flex;
+  justify-content: flex-end;
+}

@@ -1,0 +1,11 @@
+<div class="container searcher">
+  <div class="results">
+    <h2 *ngIf="showInfo" class="content__heading">Hemos encontrado estos locales</h2>
+    <p *ngIf="!showInfo" class="content__text">
+      Introduce una ubicación en el buscador y te mostraremos las instalaciones disponibles
+    </p>
+    <app-searcher-list [localsFound]="localsFound" *ngIf="showInfo" (showInfo)="showInfo"></app-searcher-list>
+  </div>
+
+  <app-map [localsFound]="localsFound"></app-map>
+</div>
