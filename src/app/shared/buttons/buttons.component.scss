@@ -1,0 +1,12 @@
+@import '../../../assets/scss/partials/variables';
+@import '../../../assets/scss/partials/mixin';
+
+.btn {
+  @include button;
+  @include transition(all 150ms linear);
+  align-self: flex-start;
+  & + & {
+    margin-left: 0.5rem;
+  }
+
+}

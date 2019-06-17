@@ -1,0 +1,72 @@
+@import '../../../assets/scss/partials/variables';
+@import '../../../assets/scss/partials/reset';
+@import '../../../assets/scss/partials/fonts';
+@import '../../../assets/scss/partials/mixin';
+
+
+@keyframes logo {
+  0% {
+    transform: translateY(-400%);
+    box-shadow: 0 0 1rem rgba(255, 255, 255, $alpha: 0);
+  }
+  45% {
+    transform: translateY(50%);
+  }
+  75% {
+    transform: translateY(-15%);
+  }
+  100% {
+    transform: translateY(0%);
+    box-shadow: 0 0 1rem rgba(255, 255, 255, 0.5);
+  }
+}
+
+@keyframes logoText {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.logo {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.9rem 0;
+  text-decoration: none;
+  color: var(--white);
+}
+
+.logo__media {
+  width: 7rem;
+  height: auto;
+  padding: 0.2rem;
+  border-radius: 0.5rem;
+  align-self: center;
+  display: inline-block;
+  z-index: map-get($z-index, "layer1");
+  @media (min-width: 1024px) {
+    animation: logoText 1.5s linear forwards;
+  }
+}
+
+.logo__txt {
+  font-weight: 100;
+  align-self: center;
+  @media (max-width: 767px) {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    display: inline-block;
+    font-size: var(--font-size-base);
+    padding: 0 0.5rem;
+  }
+  @media (min-width: 1024px) {
+    color: var(--white);
+    padding: 0 1.5rem;
+    font-size: calc(var(--font-size-base) * 2);
+    animation: logoText 1.5s linear backwards;
+  }
+}

@@ -1,0 +1,16 @@
+<header *ngIf="user" class="header--local">
+  <div class="container">
+      <h1 class="header__heading">{{user.companyName}}</h1>
+      <p class="header__text">
+          {{user.description}}
+      </p>
+  </div>
+</header>
+<header *ngIf="localSelected" class="header--local">
+  <div class="container">
+      <h1 class="header__heading">{{localSelected.companyName}}</h1>
+      <p class="header__text">
+          {{localSelected.description}}
+      </p>
+  </div>
+</header>

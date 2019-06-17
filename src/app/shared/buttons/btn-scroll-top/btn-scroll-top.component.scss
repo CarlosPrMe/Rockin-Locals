@@ -1,0 +1,25 @@
+//@import '../buttons.component.scss';
+@import '../../../../assets/scss/partials/variables';
+.no-background{
+  background-color: transparent;
+  border: 0;
+}
+
+.btn--scroll-top {
+  //display: none;
+  position: fixed;
+  z-index: map-get($z-index , 'top' );
+  bottom: 4.5rem;
+  right: 2.5rem;
+  cursor: pointer;
+  border-radius: 100%;
+  transition: all 150ms linear;
+  &:hover {
+    fill: var(--primary);
+  }
+}
+
+svg {
+  transition: fill 150ms linear;
+  fill: var(--secondary);
+}

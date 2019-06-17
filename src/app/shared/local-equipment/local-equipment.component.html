@@ -1,0 +1,9 @@
+<h4 class="list__heading">Equipamiento del local</h4>
+<ul>
+  <li class="list__item list__item--standar">{{localSelected.drum}}</li>
+  <li class="list__item list__item--standar">{{localSelected.ampGuit1}}</li>
+  <li class="list__item list__item--standar">{{localSelected.ampGuit2}}</li>
+  <li class="list__item list__item--standar">{{localSelected.ampBass}}</li>
+  <li class="list__item list__item--standar">{{localSelected.speakers}}</li>
+  <li *ngIf="localSelected.others" class="list__item list__item--standar">{{localSelected.others}}</li>
+</ul>

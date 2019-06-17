@@ -1,0 +1,113 @@
+@import '../../../assets/scss/partials/variables';
+
+.container {
+  position: relative;
+  z-index: map-get($z-index, layer1);
+  margin: 0 auto;
+  max-width: 950px;
+  @media (max-width: 767px) {
+    padding: 1rem;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 1.5rem;
+    padding: 1.5rem;
+  }
+  @media (min-width: 1024px) {
+    padding: 1rem 1rem 3rem 1rem;
+  }
+
+  &--flex {
+    display: flex;
+    justify-content: space-between;
+    align-content: flex-start;
+    align-items: flex-start;
+  }
+}
+
+.table {
+  margin-bottom: 1rem;
+  @media (max-width: 767px) {
+    grid-column: 1 / span 12;
+  }
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    grid-column: 5 / span 8;
+  }
+  @media (min-width: 1024px) {
+    grid-column: 3 / span 10;
+  }
+
+  &__title {
+    font-size: var(--font-size-md);
+    padding: 0.5rem;
+    @media (max-width: 767px) {
+      font-size: var(--font-size-base);
+    }
+  }
+
+  &__heading {
+    font-weight: 700;
+    border-bottom: 1px solid var(--primary);
+    background-color: var(--gray-200);
+    @media (max-width: 767px) {
+      padding: 0.2rem 0rem;
+      font-size: var(--font-size-sm);
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      padding: 0.5rem 1.5rem;
+      font-size: var(--font-size-base);
+    }
+    @media (min-width: 1024px) {
+      padding: 1rem 3rem;
+    }
+    &:first-child {
+      border-top-left-radius: 5px;
+    }
+    &:last-child {
+      border-top-right-radius: 5px;
+    }
+  }
+
+  &__row:nth-child(even) {
+    background-color: rgb(229, 243, 247);
+    @media (min-width: 1023px) {
+      &:hover {
+        background-color: darken(rgb(229, 243, 247), 10%);
+      }
+    }
+  }
+  @media (min-width: 1023px) {
+    &__row:hover {
+      background-color: rgb(202, 255, 193);
+    }
+  }
+  &__data {
+    padding: 1.35rem 0;
+    text-align: center;
+    border-bottom: 1px solid var(--primary);
+
+    @media (max-width: 767px) {
+      font-size: var(--font-size-sm);
+      padding: 0.5rem 0;
+    }
+
+    @media (min-width: 768px) and (max-width: 1023px) {
+      padding: 0.8rem 0;
+      font-size: var(--font-size-sm);
+    }
+  }
+  &__link {
+    color: var(--primary);
+    @media (max-width: 767px) {
+      padding: 0.2rem 0rem;
+      font-size: var(--font-size-sm);
+    }
+
+    @media (min-width: 1023px) {
+      &:hover {
+        color: var(--third);
+      }
+    }
+  }
+}

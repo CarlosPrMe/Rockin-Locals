@@ -1,0 +1,23 @@
+:host{
+  flex: 1 0 auto;
+  max-width: 600px;
+  height: 336px;
+}
+
+.map-main {
+  flex: 1 0 auto;
+  max-width: 600px;
+  height: 336px;
+  //background-image: url("../../../../assets/img/mapa.jpg");
+  //background-size: cover;
+
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin: 0 auto;
+    font-size: var(--font-size-base);
+    text-align: center;
+  }
+}
+
+agm-marker{
+  transition: all 250ms linear;
+}

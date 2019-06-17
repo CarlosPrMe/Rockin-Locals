@@ -1,0 +1,14 @@
+<!-- <app-header-user></app-header-user> -->
+<app-header-user [user]="user"></app-header-user>
+<div class="container">
+<div class="grid">
+  <h2 class="heading">Reserva/s futura/s</h2>
+  <app-table-grid [reservations]="reservationsNext"></app-table-grid>
+  <app-favourites></app-favourites>
+  <h2 class="heading">Reservas pasadas</h2>
+  <app-table-grid-past [reservations]="reservationsPast"></app-table-grid-past>
+<!--   <div class="container-btns flex--end">
+    <app-btn-show-more></app-btn-show-more>
+  </div> -->
+</div>
+</div>

@@ -1,0 +1,89 @@
+@import "../../../assets/scss/partials/variables";
+
+.footer {
+  position: relative;
+  z-index: map-get($z-index, "top");
+  width: 100%;
+  height: 4rem;
+  background-color: var(--gray-600);
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.4);
+
+  @media (max-width: 767px) {
+    display: none;
+  }
+
+  @media (min-width: 768px) {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0 2rem;
+  }
+}
+
+.footer__link {
+  text-decoration: none;
+  color: var(--white);
+  font-weight: 100;
+  padding: 1rem;
+  transition: all 150ms linear;
+  &:hover {
+    color: var(--aux);
+  }
+}
+
+.social {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.social__block {
+  flex: 1 0 auto;
+  width: 100px;
+  height: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.copy {
+  display: inline-block;
+  padding: 0.2rem;
+  font-size: var(--font-size-sm);
+  color: var(--white);
+}
+
+.svg {
+  transition: all 200ms linear;
+}
+
+.svg--twiter {
+  fill: #1da1f2;
+  &:hover {
+    fill: darken(#1da1f2, 10%);
+  }
+}
+
+.svg--facebook {
+  fill: #3b5998;
+  &:hover {
+    fill: darken(#3b5998, 10%);
+  }
+}
+
+.svg--instagram {
+  fill: #e4405f;
+  &:hover {
+    fill: darken(#e4405f, 10%);
+  }
+}
+
+.social__link {
+  flex: 1 0 auto;
+  display: inline-block;
+  & + & {
+    margin-left: 1rem;
+  }
+}

@@ -1,0 +1,185 @@
+<div class="modal" [ngClass]="{'show':showModal}">
+  <div class="modal__body">
+    <app-btn-close (closeModal)="close($event)"></app-btn-close>
+    <h2 class="modal__heading">Registro de usuario</h2>
+    <form class="form flex--between" [formGroup]="myForm">
+      <div class="modal__block">
+        <div class="form__group">
+          <label class="form__label">Elige tu perfil</label>
+          <div class="form__group form__group--radio">
+            <label for="local" class="form__label form__label--radio">Local
+              <input formControlName="type" type="radio" name="type" id="local" class="form__radio" value="local"
+                required>
+              <svg class="icon-label" height="38pt" width="38pt" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 486.196 486.196" xml:space="preserve">
+
+                <path
+                  d="M481.708,220.456l-228.8-204.6c-0.4-0.4-0.8-0.7-1.3-1c-5-4.8-13-5-18.3-0.3l-228.8,204.6c-5.6,5-6,13.5-1.1,19.1
+                             c2.7,3,6.4,4.5,10.1,4.5c3.2,0,6.4-1.1,9-3.4l41.2-36.9v7.2v106.8v124.6c0,18.7,15.2,34,34,34c0.3,0,0.5,0,0.8,0s0.5,0,0.8,0h70.6
+                             c17.6,0,31.9-14.3,31.9-31.9v-121.3c0-2.7,2.2-4.9,4.9-4.9h72.9c2.7,0,4.9,2.2,4.9,4.9v121.3c0,17.6,14.3,31.9,31.9,31.9h72.2
+                             c19,0,34-18.7,34-42.6v-111.2v-34v-83.5l41.2,36.9c2.6,2.3,5.8,3.4,9,3.4c3.7,0,7.4-1.5,10.1-4.5
+                             C487.708,233.956,487.208,225.456,481.708,220.456z M395.508,287.156v34v111.1c0,9.7-4.8,15.6-7,15.6h-72.2c-2.7,0-4.9-2.2-4.9-4.9
+                             v-121.1c0-17.6-14.3-31.9-31.9-31.9h-72.9c-17.6,0-31.9,14.3-31.9,31.9v121.3c0,2.7-2.2,4.9-4.9,4.9h-70.6c-0.3,0-0.5,0-0.8,0
+                             s-0.5,0-0.8,0c-3.8,0-7-3.1-7-7v-124.7v-106.8v-31.3l151.8-135.6l153.1,136.9L395.508,287.156L395.508,287.156z" />
+              </svg>
+            </label>
+            <label for="band" class="form__label form__label--radio">Banda
+              <input formControlName="type" type="radio" name="type" id="band" class="form__radio" value="band">
+              <svg class="icon-label" height="40pt" viewBox="-62 0 512 512.001" width="40pt"
+                xmlns="http://www.w3.org/2000/svg">
+                <path
+                  d="m366.101562 234.640625h-192.984374c-12.40625 0-22.5 10.09375-22.5 22.5v11.683594c0 4.140625 3.359374 7.5 7.5 7.5 4.140624 0 7.5-3.359375 7.5-7.5v-11.683594c0-4.136719 3.363281-7.5 7.5-7.5h192.984374c4.136719 0 7.5 3.363281 7.5 7.5v232.359375c0 4.136719-3.363281 7.5-7.5 7.5h-161.800781c-4.144531 0-7.5 3.359375-7.5 7.5s3.355469 7.5 7.5 7.5h161.800781c12.40625 0 22.5-10.09375 22.5-22.5v-232.359375c0-12.40625-10.09375-22.5-22.5-22.5zm0 0" />
+                <path
+                  d="m362.917969 468.820312v-93.261718c0-4.140625-3.355469-7.5-7.5-7.5-4.140625 0-7.5 3.359375-7.5 7.5v93.261718c0 1.378907-1.121094 2.5-2.5 2.5h-138.761719c7.074219-11.75 10.714844-25.925781 10.714844-42.371093 0-17.238281-3.949219-33.75-11.734375-49.085938-.066407-.160156-.144531-.316406-.222657-.472656-7.910156-15.4375-11.496093-25.289063-11.628906-31.945313-.101562-5.191406 1.902344-8.585937 6.078125-15.167968.054688-.085938.105469-.167969.152344-.253906.992187-1.578126 1.886719-3.207032 2.683594-4.875h145.21875v18.410156c0 4.140625 3.359375 7.5 7.5 7.5 4.144531 0 7.5-3.359375 7.5-7.5v-67.738282c0-9.648437-7.847657-17.5-17.5-17.5h-151.617188c-9.648437 0-17.5 7.851563-17.5 17.5v7.398438c-5.328125 1.792969-10.949219 4.359375-16.695312 6.980469-5.890625 2.6875-12.300781 5.613281-17.789063 7.28125v-184.558594l16.523438-27.480469c3.625-6.03125 4.214844-13.523437 1.574218-20.042968l-5.527343-13.644532c-1.554688-3.839844-5.925781-5.691406-9.765625-4.140625-3.839844 1.554688-5.691406 5.929688-4.136719 9.769531l5.527344 13.644532c.878906 2.175781.683593 4.671875-.523438 6.679687l-15.414062 25.628907h-42.785157l-15.414062-25.628907c-1.207031-2.007812-1.40625-4.507812-.523438-6.679687l23.496094-58.027344h27.667969l6.710937 16.574219c1.554688 3.839843 5.925782 5.691406 9.765626 4.136719 3.839843-1.554688 5.691406-5.925782 4.136718-9.765626l-7.34375-18.136718c-1.917968-4.742188-6.464844-7.808594-11.585937-7.808594h-31.035157c-5.121093 0-9.667968 3.066406-11.585937 7.808594l-24.128906 59.589844c-2.644531 6.523437-2.054688 14.011718 1.570312 20.042968l16.527344 27.480469v142.257813h-16.757813c-7.851562 0-15.652343 1.90625-22.5625 5.511718-3.671874 1.917969-5.09375 6.449219-3.175781 10.121094 1.335938 2.5625 3.949219 4.03125 6.652344 4.03125 1.171875 0 2.355469-.277344 3.464844-.855469 4.84375-2.527343 10.097656-3.808593 15.621093-3.808593h16.757813v51.910156c0 12.40625 10.09375 22.5 22.5 22.5h21.265625c12.40625 0 22.5-10.09375 22.5-22.5v-9.113282c7.667969-1.667968 15.945312-5.445312 24.019531-9.128906 16.703125-7.621094 18.679688-7.320312 20.25-7.824218 2.113281-.4375 3.78125-.488282 4.671875.085937.59375.378906 1.714844 2.539063 1.714844 7.96875 0 3.71875-.605469 7.375-1.78125 10.851563-.066406.167968-.128906.34375-.183594.519531-.839844 2.363281-1.949218 4.636719-3.308594 6.78125-.050781.078125-.101562.160156-.148437.242187-9.898437 15.632813-13.769531 24.960938 4.777344 61.289063.066406.160156.140625.320312.222656.476562 6.847656 13.332031 10.320313 27.703125 10.320313 42.710938 0 18.511719-5.183594 32.996093-15.773438 43.914062-.300781.257813-.582031.542969-.84375.851563-2.832031 2.796875-6.035156 5.351562-9.609375 7.675781-15.933594 10.359375-38.628906 15.609375-67.460937 15.609375-28.828126 0-51.523438-5.25-67.457032-15.609375-17.644531-11.46875-26.222656-28.625-26.222656-52.441406 0-15.023438 3.46875-29.394531 10.308594-42.710938.058594-.113281.113281-.226562.164062-.335937 18.558594-36.332032 14.777344-45.722656 4.933594-61.273438-.074219-.136718-.15625-.273437-.238281-.40625-3.453125-5.421875-5.277344-11.699218-5.277344-18.144531 0-4.097656.722656-8.109375 2.152344-11.914063 1.453125-3.878906-.511719-8.199218-4.386719-9.65625-3.875-1.453124-8.203125.507813-9.660156 4.386719-2.0625 5.496094-3.105469 11.277344-3.105469 17.1875 0 9.136719 2.542969 18.039063 7.359375 25.777344.078125.144531.160156.285156.25.421875 4.175781 6.578125 6.179688 9.972656 6.078125 15.164062-.128906 6.65625-3.714844 16.507813-11.625 31.945313-.054687.109375-.105469.21875-.15625.332031-7.828125 15.363282-11.796875 31.925782-11.796875 49.226563 0 53.558593 38.597656 83.050781 108.679688 83.050781 38.410156 0 67.363281-8.855469 85.691406-25.679688h151.046875c9.652343 0 17.5-7.851562 17.5-17.5zm-236.101563-144.730468c0 4.136718-3.367187 7.5-7.5 7.5h-21.269531c-4.136719 0-7.5-3.363282-7.5-7.5v-34.0625h36.269531zm0-49.0625h-36.269531v-10.230469c0-.039063 0-.078125 0-.117187 0-.039063 0-.078126 0-.117188v-31.097656h36.269531zm0-56.5625h-36.269531v-41.5625h36.269531zm0-56.5625h-36.269531v-41.5625h36.269531zm64.484375 120.980468v-5.0625c0-1.378906 1.121094-2.5 2.5-2.5h151.617188c1.378906 0 2.5 1.121094 2.5 2.5v34.328126h-140.824219c.25-2.003907.375-4.03125.375-6.070313 0-9.988281-2.894531-16.917969-8.601562-20.585937-2.328126-1.5-4.863282-2.316407-7.566407-2.609376zm0 0" />
+                <path
+                  d="m320.484375 301.234375h1c4.144531 0 7.5-3.359375 7.5-7.5s-3.355469-7.5-7.5-7.5h-1c-4.144531 0-7.5 3.359375-7.5 7.5s3.359375 7.5 7.5 7.5zm0 0" />
+                <path
+                  d="m286.550781 308.015625c4.144531 0 7.5-3.359375 7.5-7.5v-13.5625c0-4.140625-3.355469-7.5-7.5-7.5s-7.5 3.359375-7.5 7.5v13.5625c0 4.140625 3.355469 7.5 7.5 7.5zm0 0" />
+                <path
+                  d="m253.425781 308.015625c4.144531 0 7.5-3.359375 7.5-7.5v-13.5625c0-4.140625-3.355469-7.5-7.5-7.5s-7.5 3.359375-7.5 7.5v13.5625c0 4.140625 3.355469 7.5 7.5 7.5zm0 0" />
+                <path
+                  d="m220.300781 308.015625c4.144531 0 7.5-3.359375 7.5-7.5v-13.5625c0-4.140625-3.355469-7.5-7.5-7.5s-7.5 3.359375-7.5 7.5v13.5625c0 4.140625 3.355469 7.5 7.5 7.5zm0 0" />
+                <path
+                  d="m104.515625 41.667969c0-4.144531-3.359375-7.5-7.5-7.5s-7.5 3.355469-7.5 7.5v1c0 4.140625 3.359375 7.5 7.5 7.5s7.5-3.359375 7.5-7.5zm0 0" />
+                <path
+                  d="m127.847656 41.667969c0-4.144531-3.355468-7.5-7.5-7.5-4.140625 0-7.5 3.355469-7.5 7.5v1c0 4.140625 3.359375 7.5 7.5 7.5 4.144532 0 7.5-3.359375 7.5-7.5zm0 0" />
+                <path
+                  d="m104.515625 65c0-4.140625-3.359375-7.5-7.5-7.5s-7.5 3.359375-7.5 7.5v1c0 4.140625 3.359375 7.5 7.5 7.5s7.5-3.359375 7.5-7.5zm0 0" />
+                <path
+                  d="m127.847656 65c0-4.140625-3.355468-7.5-7.5-7.5-4.140625 0-7.5 3.359375-7.5 7.5v1c0 4.140625 3.359375 7.5 7.5 7.5 4.144532 0 7.5-3.359375 7.5-7.5zm0 0" />
+                <path
+                  d="m97.015625 80.832031c-4.140625 0-7.5 3.359375-7.5 7.5v1c0 4.144531 3.359375 7.5 7.5 7.5s7.5-3.355469 7.5-7.5v-1c0-4.140625-3.359375-7.5-7.5-7.5zm0 0" />
+                <path
+                  d="m120.347656 80.832031c-4.140625 0-7.5 3.359375-7.5 7.5v1c0 4.144531 3.359375 7.5 7.5 7.5 4.144532 0 7.5-3.355469 7.5-7.5v-1c0-4.140625-3.355468-7.5-7.5-7.5zm0 0" />
+                <path
+                  d="m134.523438 367.402344h-51.683594c-6.890625 0-12.5 5.605468-12.5 12.5v22.097656c0 6.894531 5.609375 12.5 12.5 12.5h51.683594c6.890624 0 12.5-5.605469 12.5-12.5v-22.097656c0-6.894532-5.609376-12.5-12.5-12.5zm-2.5 32.097656h-46.683594v-17.097656h46.683594zm0 0" />
+                <path
+                  d="m177.148438 446.945312c10.386718 0 18.835937-8.449218 18.835937-18.832031 0-10.382812-8.449219-18.832031-18.835937-18.832031-10.386719 0-18.832032 8.449219-18.832032 18.832031 0 10.382813 8.449219 18.832031 18.832032 18.832031zm0-22.667968c2.113281 0 3.832031 1.722656 3.832031 3.835937s-1.71875 3.832031-3.832031 3.832031c-2.113282 0-3.832032-1.71875-3.832032-3.832031s1.71875-3.835937 3.832032-3.835937zm0 0" />
+                <path
+                  d="m127.953125 467.484375c0 10.382813 8.449219 18.832031 18.832031 18.832031 10.382813 0 18.832032-8.449218 18.832032-18.832031s-8.449219-18.832031-18.832032-18.832031c-10.386718 0-18.832031 8.445312-18.832031 18.832031zm22.664063 0c0 2.113281-1.71875 3.832031-3.832032 3.832031-2.113281 0-3.832031-1.71875-3.832031-3.832031s1.71875-3.832031 3.832031-3.832031c2.113282 0 3.832032 1.71875 3.832032 3.832031zm0 0" />
+                <path
+                  d="m227.289062 204.472656c15.140626 0 27.457032-12.320312 27.457032-27.457031v-71.578125l69.644531-10.675781v44.8125c-3.738281-1.914063-7.976563-2.992188-12.457031-2.992188-15.140625 0-27.460938 12.316407-27.460938 27.457031 0 15.144532 12.320313 27.460938 27.460938 27.460938s27.457031-12.320312 27.457031-27.460938v-72.1875c0-3.652343-1.585937-7.109374-4.355469-9.484374-2.769531-2.378907-6.425781-3.421876-10.035156-2.871094l-74.648438 11.4375c-6.144531.945312-10.605468 6.140625-10.605468 12.355468v49.257813c-3.738282-1.910156-7.972656-2.992187-12.457032-2.992187-15.140624 0-27.457031 12.316406-27.457031 27.457031s12.316407 27.460937 27.457031 27.460937zm84.644532-27.972656c-6.871094 0-12.460938-5.589844-12.460938-12.460938 0-6.867187 5.589844-12.457031 12.460938-12.457031 6.867187 0 12.457031 5.589844 12.457031 12.457031 0 6.871094-5.589844 12.460938-12.457031 12.460938zm-84.644532-11.945312c6.867188 0 12.457032 5.589843 12.457032 12.457031 0 6.871093-5.589844 12.460937-12.457032 12.460937-6.871093 0-12.460937-5.589844-12.460937-12.460937 0-6.867188 5.589844-12.457031 12.460937-12.457031zm0 0" />
+              </svg> </label>
+          </div>
+          <div class="error" *ngIf="myForm.controls.type.errors?.required">Campo Obligatorio</div>
+        </div>
+        <div class="form__group">
+          <label for="email-register" class="form__label">Email</label>
+          <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
+            formControlName="email" type="email" class="form__control" id="email-register" required>
+        </div>
+        <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value"> Email incorrecto</span>
+        <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
+            Obligatorio </span>
+        <div class="form__group">
+          <label for="password-register" class="form__label">Contraseña</label>
+          <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
+            myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
+            type="password" class="form__control" id="password-register" required minlength="8">
+        </div>
+        <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo 8
+          caracteres</div>
+        <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
+          Obligatorio</div>
+        <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
+          <label for="address" class="form__label">Dirección</label>
+          <input [ngClass]="{invalid: myForm.controls.address.dirty && myForm.controls.errors?.required ||
+            myForm.controls.address.dirty && myForm.controls.address.errors?.minlength}"
+            formControlName="address" type="text" class="form__control" id="address" [required]="myForm.controls.type.value === 'local'">
+        </div>
+        <div class="error" *ngIf="myForm.controls.address.dirty && myForm.controls.address.errors?.required">Campo
+          Obligatorio</div>
+      </div>
+      <div class="modal__block">
+        <div class="form__group">
+          <label class="form__label">Imagen de usuario</label>
+          <input formControlName="avatar" type="text" class="form__control" placeholder="Introduce URL">
+        </div>
+<!--         <div class="form__group form__group--file">
+          <input formControlName="avatar" type="file" class="form__label form__file" id="avatar">
+          <label for="avatar" class="form__label form__label--sm form__label--file">Elige imagen
+            <svg class="icon-label upload" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 294.156 294.156" width="22" height="22">
+              <g>
+                <path
+                  d="M227.002,108.256c-2.755-41.751-37.6-74.878-80.036-74.878c-42.447,0-77.298,33.141-80.038,74.907
+                                     C28.978,113.059,0,145.39,0,184.184c0,42.234,34.36,76.595,76.595,76.595h116.483c3.313,0,6-2.687,6-6s-2.687-6-6-6H76.595
+                                     C40.977,248.778,12,219.801,12,184.184c0-34.275,26.833-62.568,61.087-64.411c3.184-0.171,5.678-2.803,5.678-5.991
+                                     c0-0.119-0.003-0.236-0.01-0.355c0.09-37.536,30.654-68.049,68.211-68.049c37.563,0,68.132,30.518,68.211,68.063
+                                     c-0.005,0.116-0.009,0.238-0.009,0.329c0,3.196,2.505,5.831,5.696,5.992c34.37,1.741,61.292,30.038,61.292,64.421
+                                     c0,19.526-8.698,37.801-23.864,50.138c-2.571,2.091-2.959,5.87-0.868,8.44c2.091,2.571,5.87,2.959,8.44,0.868
+                                     c17.98-14.626,28.292-36.293,28.292-59.447C294.156,145.269,265.08,112.926,227.002,108.256z" />
+                <path
+                  d="M140.966,141.078v76.511c0,3.313,2.687,6,6,6s6-2.687,6-6v-76.511c0-3.313-2.687-6-6-6S140.966,137.765,140.966,141.078z" />
+                <path d="M181.283,152.204c1.536,0,3.071-0.586,4.243-1.757c2.343-2.343,2.343-6.142,0-8.485l-34.317-34.317
+                                     c-2.343-2.343-6.143-2.343-8.485,0l-34.317,34.317c-2.343,2.343-2.343,6.142,0,8.485c2.343,2.343,6.143,2.343,8.485,0
+                                     l30.074-30.074l30.074,30.074C178.212,151.618,179.748,152.204,181.283,152.204z" />
+              </g>
+            </svg>
+          </label>
+        </div> -->
+        <div class="form__group">
+          <label for="userName" class="form__label">Nombre</label>
+          <input [ngClass]="{invalid:myForm.controls.userName.dirty && myForm.controls.userName.errors?.required ||
+            myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName" type="text"
+            class="form__control" id="userName" minlength="5" required>
+        </div>
+        <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">Mínimo 5
+          caracteres</div>
+        <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo Obligatorio
+        </div>
+        <div class="form__group" *ngIf="myForm.controls.type.value === 'band'">
+          <label for="bandName" class="form__label">Nombre del grupo</label>
+          <input [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
+            myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}" formControlName="bandName"
+            type="text" class="form__control" id="bandName" minlength="2"
+            [required]="myForm.controls.type.value === 'band'">
+        </div>
+        <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">Mínimo 2
+          caracteres</div>
+        <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">Campo
+          Obligatorio
+        </div>
+        <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
+          <label for="companyName" class="form__label">Nombre de la empresa</label>
+          <input [ngClass]="{invalid:myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.required ||
+            myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.minlength}"
+            formControlName="companyName" type="text" class="form__control" id="companyName" minlength="2"
+            >
+        </div>
+        <div class="error" *ngIf="myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.required">Campo
+          Obligatorio
+        </div>
+        <div class="error" *ngIf="myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.minlength">Mínimo
+          2
+          caracteres</div>
+        <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
+          <label for="city" class="form__label">Ciudad</label>
+          <input [ngClass]="{invalid:myForm.controls.city.dirty && myForm.controls.city.errors?.required}"
+            formControlName="city" type="text" class="form__control" id="city"
+            [required]="myForm.controls.type.value === 'local'">
+        </div>
+        <div class="error" *ngIf="myForm.controls.city.dirty && myForm.controls.city.errors?.required">Campo
+          Obligatorio</div>
+        <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
+          <label for="postal-code" class="form__label">Código Postal</label>
+          <input formControlName="postalCode" type="text" class="form__control" id="postal-code"
+            [required]="myForm.controls.type.value === 'local'">
+        </div>
+        <div class="error" *ngIf="myForm.controls.postalCode.dirty && myForm.controls.postalCode.errors?.required">Campo
+          Obligatorio</div>
+      </div>
+      <div class="modal__block--lg">
+        <div class="form__group form__group--sm">
+          <input formControlName="terms" type="checkbox" id="terms" class="form__check" value="true" required>
+          <label for="terms" class="form__label form__label--sm">Aceptar terminos</label>
+          <span class="error" *ngIf="myForm.controls.terms.errors?.required">Campo Obligatorio</span>
+          <!-- <span  class="error" *ngIf="myForm.controls.terms.errors?.required">Acepta los términos para continuar</span> -->
+        </div>
+        <a href="#" class="modal__link">Terminos y condiciones</a>
+        <button  id="submit-register" type="button" class="btn m-a"
+          (click)="submit($event,myForm)" [disabled]="myForm.invalid">Registrarse</button> <!-- (click)="close($event) Para cerrar Modal--> <!-- [ngClass]="{disable:!myForm.valid}" -->
+      </div>
+    </form>
+  </div>
+</div>

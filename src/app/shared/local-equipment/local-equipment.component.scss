@@ -1,0 +1,20 @@
+
+.list__heading {
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--gray-500);
+  font-size: var(--font-size-md);
+}
+
+.list__item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--gray-500);
+  padding: 0.5rem;
+  border-radius: 4px;
+}
+
+.list__item--standar {
+  display: block;
+  position: relative;
+}

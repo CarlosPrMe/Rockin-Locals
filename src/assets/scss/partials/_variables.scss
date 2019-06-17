@@ -1,0 +1,76 @@
+/* FUENTES - TAMAÑOS DE FUENTES
+---------------------------------------*/
+
+@import url('https://fonts.googleapis.com/css?family=Domine:400,700');//Encabezados
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,300,400,700'); //Texto
+
+
+/* COLORES (SASS)
+---------------------------------------*/
+
+$third:     #00bdaa;
+
+/* COLORES
+---------------------------------------*/
+
+:root{
+  --white:     #fff;
+  --black:     #000;
+  --primary:   #25a6af;
+  --secondary: #621e81;
+  --third:     #00bdaa;
+  --aux:       #25a6af;
+  --success:   #119e32;
+  --danger:    #be1e1e;
+  --warning:   #fd7e14;
+  --yellow:    #ffc107;
+  --yellow-med:#c0930c;
+}
+
+
+/* ESCALA DE GRISES
+---------------------------------------*/
+
+:root{
+--gray-100: #f8f9fa ;
+--gray-200: #e9ecef ;
+--gray-300: #dee2e6 ;
+--gray-400: #ced4da ;
+--gray-500: #adb5bd ;
+--gray-600: #6c757d ;
+--gray-700: #495057 ;
+--gray-800: #343a40 ;
+--gray-900: #212529 ;
+--black:    #000;
+--font-family: 'Roboto', sans-serif;
+--font-family-head: 'Lora', serif;
+--font-size-sm: 0.8125rem; // 13px
+--font-size-base: 1rem; // 16px
+--font-size-md: 1.25rem; // 20px
+--font-size-lg: 3rem; // 30px
+--font-size-xl: 5.4rem; // 50px
+}
+
+
+
+/* MAPAS
+---------------------------------------*/
+
+/*Z-index*/
+
+$z-index: (
+  'off': -100,
+  'layer1': 50,
+  'layer2': 100,
+  'layer3': 200,
+  'top': 500,
+  'overtop': 9999,
+);
+
+/*Breakpoints*/
+
+$breakpoints: (
+  'md': '768px',
+  'lg': '1024px',
+  'xl': '1200px',
+);
