@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { TableGridComponent } from '../table-grid/table-grid.component';
 
 @Component({
@@ -7,15 +7,9 @@ import { TableGridComponent } from '../table-grid/table-grid.component';
   styleUrls: ['../table-grid/table-grid.component.scss']
 })
 
-export class TableGridPastComponent extends TableGridComponent implements OnChanges {
+export class TableGridPastComponent extends TableGridComponent {
 
   @Input() reservations;
-
-
-  ngOnChanges(){
-   // console.log(this.reservations);
-
-  }
 
 
 }

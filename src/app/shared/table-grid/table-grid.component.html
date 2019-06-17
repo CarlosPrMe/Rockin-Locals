@@ -1,5 +1,4 @@
 <table class="table">
-    <!-- <caption class="table__title">Reserva/s futura/s</caption> -->
     <thead>
         <tr class="table__row">
             <th class="table__heading">Día</th>
@@ -10,17 +9,12 @@
     </thead>
 
     <tbody>
-<!--         <tr class="table__row">
-            <td class="table__data">10/6/2019</td>
-            <td class="table__data"><a href="" class="table__link">Ritmo & Compas</a></td>
-            <td class="table__data">Local 10</td>
-            <td class="table__data" >18.00 <button class="btn btn-cancel">Cancelar</button></td>
-        </tr> -->
-        <tr class="table__row" *ngFor="let reserva of testService.reservasFuturas">
-            <td class="table__data">{{reserva.day}}</td>
-            <td class="table__data"><a href="" class="table__link">{{reserva.place}}</a></td>
-            <td class="table__data">{{reserva.local}}</td>
-            <td class="table__data" >{{reserva.hour}}</td>
+
+        <tr class="table__row" *ngFor="let reservation of reservations">
+            <td class="table__data">{{reservation.date.day}} / {{reservation.date.month}} / {{reservation.date.year}}</td>
+            <td class="table__data"><a href="" class="table__link">{{reservation.companyName}}</a></td>
+            <td class="table__data">{{reservation.localName}}</td>
+            <td class="table__data" >{{reservation.numHours}}</td>
         </tr>
     </tbody>
 </table>

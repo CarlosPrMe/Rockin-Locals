@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
@@ -59,6 +59,7 @@ import { GoToPaymentGuard } from './services/go-to-payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
 import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+//import {MatTableModule} from '@angular/material/table';
 
 
 
@@ -139,12 +140,12 @@ import { AddtoFavouritesService } from './services/add-favourites.service';
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,
-    AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
-    }),
+    //AgmCoreModule.forRoot({
+    //  apiKey: ''
+    //}),
     HttpClientModule,
     //NgbModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
   ],
   providers: [
     TestService,

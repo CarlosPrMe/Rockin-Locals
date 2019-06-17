@@ -11,7 +11,9 @@ export class GetReservationsService {
 
   getReservation(user){
    // debugger;
-    return this.httpClient.get(`${environment.apiUrl}/reservations?search=${user}`).toPromise()
+   console.log(user);
+
+    return this.httpClient.get(`${environment.apiUrl}/reservation?search=${user}`).toPromise()
   }
 
 

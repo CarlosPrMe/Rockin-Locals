@@ -5,3 +5,29 @@
 .filter-body{
   filter: blur(5px)
 }
+
+app-datepicker{
+
+  ngb-datepicker{
+
+    .ngb-dp-header {
+      background-color: var(--primary);
+      color: var(--white);
+      font-family: var(--font-family);
+    }
+
+    .ngb-dp-months {
+      display: -ms-flexbox;
+      display: flex;
+      color: var(--third);
+      background-color: var(--gray-100);
+    }
+
+
+    .btn-light {
+      background-color: var(--primary);
+      font-size: 50px;
+    }
+  }
+}
+

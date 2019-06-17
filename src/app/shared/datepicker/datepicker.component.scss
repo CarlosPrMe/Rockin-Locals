@@ -1,11 +1,33 @@
 //@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
 
-.container{
+.container {
   margin: 0 auto;
   //margin-left: 300px;
 }
 
-.btn-light{
-  background-color: var(--primary) !important;
-  font-size: 50px !important;
+:host{
+
+  ngb-datepicker{
+
+    .ngb-dp-header {
+      background-color: var(--primary);
+      color: var(--white);
+      font-family: var(--font-family);
+    }
+
+    .ngb-dp-months {
+      display: -ms-flexbox;
+      display: flex;
+      color: var(--third);
+      background-color: var(--gray-100);
+    }
+
+
+    .btn-light {
+      background-color: var(--primary);
+      font-size: 50px;
+    }
+  }
 }
+
+

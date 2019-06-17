@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { AddtoFavouritesService } from '../../services/add-favourites.service';
+import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-local-info',
@@ -14,20 +15,20 @@ export class LocalInfoComponent implements OnInit {
   @Input() user;
   @Input() userData;
   daySelected;
-  monthList:Array<string>=[]
+  //currentMonth;
+  monthList: Array<string> = []
 
 
-  constructor(private addtoFavouritesService: AddtoFavouritesService) { }
+  constructor(private addtoFavouritesService: AddtoFavouritesService, private ngCalendar: NgbCalendar) {
+
+   // this.currentMonth = this.ngCalendar.getToday();
+   // console.log('this.currentMonth', this.currentMonth);
+
+  }
 
   ngOnInit() {
   }
 
-  month;
-
-  painMonth() {
-    let day = new Date();
-    this.month = day.getMonth()
-  }
 
   booking($event) {
     this.showBooking = !this.showBooking;

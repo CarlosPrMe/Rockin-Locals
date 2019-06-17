@@ -13,7 +13,7 @@ export class LogginFakeInterceptor implements HttpInterceptor {
       id: 1, //user de banda
       type: 'band',
       userName: 'Carlos Prieto',
-      bandName: 'Los palurdos',
+      bandName: 'Linkin Park',
       email: 'carlospm86@gmail.com',
       password: 'carlospm86',
       avatar: 'https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1',

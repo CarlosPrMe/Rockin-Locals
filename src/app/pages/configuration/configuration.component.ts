@@ -13,7 +13,10 @@ export class ConfigurationComponent implements OnInit {
   user;
 
   constructor( private loggingService: LoggingService, private userService: UserService,
-    private router: Router, private activatedRoute: ActivatedRoute) { }
+    private router: Router, private activatedRoute: ActivatedRoute) {
+
+      document.body.scrollTop = 0;
+     }
 
 
   ngOnInit() {

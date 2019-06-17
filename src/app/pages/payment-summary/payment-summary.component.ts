@@ -7,7 +7,9 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 })
 export class PaymentSummaryComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  constructor() {
+    document.body.scrollTop = 0;
+  }
 
   ngOnInit() {
   }
