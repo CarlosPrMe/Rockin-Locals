@@ -20,7 +20,15 @@ export class LoggingService {
       this.token = response.access_token;
       this.user.next(response.user)
       this.isLogged.next(true);
+      console.log(this.user.value);
+
     });
+  }
+
+
+
+  getToken(): string {
+    return this.token;
   }
 
 

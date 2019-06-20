@@ -7,7 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReservationSummaryComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+    document.body.scrollTop = 0
+   }
 
   ngOnInit() {
   }

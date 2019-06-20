@@ -3,18 +3,15 @@
     <ul class="cart__list">
         <li>
             <ul class="cart__item">
-                <li class="cart__data">Local<span class="cart__detail">{{localSelected.name}}</span></li>
-                <li class="cart__data">Dia <span class="cart__detail">{{bookin.date}}</span></li>
-                <li class="cart__data">Hora de entrada <span class="cart__detail">{{bookin.hourIn}}</span></li>
-                <li class="cart__data">Número de horas <span class="cart__detail">{{bookin.hoursNumber}}</span></li>
+                <li class="cart__data">Local<span class="cart__detail">{{reservation?.localName}}</span></li>
+                <li class="cart__data">Dia <span class="cart__detail">{{reservation?.date.day}} / {{reservation?.date.month}} / {{reservation?.date.year}}</span></li>
+                <li class="cart__data">Hora de entrada <span class="cart__detail">{{reservation?.hours[0]}}</span></li>
+                <li class="cart__data">Número de horas <span class="cart__detail">{{reservation?.numHours}}</span></li>
                 <li class="cart__data">Equipo reservado: <span class="cart__detail">
-                  <span *ngIf="bookin.drum">{{localSelected.equipment.drum}}, </span>
-                  <span *ngIf="bookin.ampGuit1">{{localSelected.equipment.ampGuit1}}, </span>
-                  <span *ngIf="bookin.ampGuit2">{{localSelected.equipment.ampGuit2}}, </span>
-                  <span *ngIf="bookin.ampBass">{{localSelected.equipment.ampBass}}, </span>
-                  <span *ngIf="bookin.speakers">{{localSelected.equipment.speakers}}</span>
+                  <span *ngFor="let equip of reservation?.equipment">{{equip}} - </span>
+
                 </span></li>
-                <li class="cart__data">Importe<span class="cart__detail">{{localSelected.price * bookin.hoursNumber}}€</span></li>
+                <li class="cart__data">Importe<span class="cart__detail">{{reservation?.price * reservation?.numHours}}€</span></li>
             </ul>
         </li>
     </ul>
@@ -22,11 +19,11 @@
     <table class="cart-table">
         <tr class="cart-table__row flex--between">
             <th scope="row" class="cart-table__heading">Subtotal</th>
-            <td class="cart-table__data">{{localSelected.price * bookin.hoursNumber}}€</td>
+            <td class="cart-table__data">{{reservation?.price * reservation?.numHours}}€</td>
         </tr>
         <tr class="cart-table__row flex--between">
             <th scope="row" class="cart-table__heading">Total</th>
-            <td class="cart-table__data">{{localSelected.price * bookin.hoursNumber}}€</td>
+            <td class="cart-table__data">{{reservation?.price * reservation?.numHours}}€</td>
         </tr>
     </table>
 </aside>

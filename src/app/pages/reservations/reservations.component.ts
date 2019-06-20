@@ -1,6 +1,9 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
 import { LoggingService } from '../../services/logging.service';
-import { GetReservationsService } from '../../services/getReservations.service';
+import { ReservationsService } from '../../services/reservations.service';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
+import { LocalsService } from '../../services/locals.service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -12,48 +15,58 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
 
   user;
+  userDate;
   reservations: Array<any> = [];
   reservationsPast: Array<any> = [];
   reservationsNext: Array<any> = [];
-  date = Date.now();
-  //localSelected = this.getLocalsService.localSelected
+  //date = Date.now();
+  today: NgbDate;
+
+  nada;
+
 
   constructor(private loggingService: LoggingService,
-    private getReservationsService: GetReservationsService) {
+    private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
+    private localsService: LocalsService, private router: Router) {
+    document.body.scrollTop = 0
 
     this.loggingService.user.subscribe((res) => {
       this.user = res;
+      //console.log(this.user);
+
     })
 
-    this.getReservationsService.getReservation(this.user.bandName).then((data: Array<any>) => {
+    this.loggingService.user
+    this.today = this.ngbCalendar.getToday();
+
+    this.reservationsService.getReservation(this.user.bandName).then((data: Array<any>) => {
       this.reservations = data;
-      console.log(this.reservations);
+      //console.log(this.reservations);
       this.separateReservations.call(this, data);
     })
-
   }
 
 
-  ngOnInit() {
+  ngOnInit() { }
 
-
-  }
-
-  ngOnChanges() {
-
-  }
+  ngOnChanges() { }
 
 
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
-      if (reserva.date > this.date) {
+      if (this.today.before(reserva.date)) {
         this.reservationsNext.push(reserva)
-      } else {
+      } else if (this.today.after(reserva.date)) {
         this.reservationsPast.push(reserva)
       }
     });
-
   }
 
+  async onNavigateTolocal(id) {
+    console.log(id);
+    this.localsService.localSelected = await this.localsService.getLocalsById(id)
+    this.router.navigateByUrl(`/local/${id}`)
+
+  }
 
 }

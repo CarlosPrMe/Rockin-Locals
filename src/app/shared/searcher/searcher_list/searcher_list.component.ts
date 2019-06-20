@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { GetLocalsService } from '../../../services/getLocals.service';
+import { LocalsService } from '../../../services/locals.service';
 
 
 
@@ -11,7 +11,7 @@ import { GetLocalsService } from '../../../services/getLocals.service';
 
 export class SearcherListComponent {
 
-  constructor(private getLocalsService: GetLocalsService) { }
+  constructor(private localsService: LocalsService) { }
 
 
   @Input() localsFound;
@@ -20,7 +20,7 @@ export class SearcherListComponent {
 
 
   goToLocal($event, local) {
-    this.getLocalsService.selectLocal(local);
+    this.localsService.selectLocal(local);
   }
 
 }

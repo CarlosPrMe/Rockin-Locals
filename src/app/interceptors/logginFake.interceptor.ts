@@ -13,28 +13,38 @@ export class LogginFakeInterceptor implements HttpInterceptor {
       id: 1, //user de banda
       type: 'band',
       userName: 'Carlos Prieto',
-      bandName: 'Los palurdos',
+      bandName: 'Linkin Park',
       email: 'carlospm86@gmail.com',
       password: 'carlospm86',
       avatar: 'https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1',
-      terms: true
+      terms: true,
+      favourites: [
+        {
+          companyName:'Pika Studios',
+          companyId:2,
+          localName:'Local 1',
+        },
+        {
+          companyName:'GustaRock',
+          companyId:1,
+          localName:'Local 3',
+        },
+      ]
 
     },
     {
       id: 2, //user de local
       type: 'local',
-      userName: 'Juanito',
-      companyName: 'GustaRock',
+      userName: 'Enrique Herreria',
+      companyName: 'Pika Studios',
       email: 'carlospm87@gmail.com',
       password: 'carlospm87',
      // avatar: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQdZJR0V-0Gj4v1fYHNoYvF0zHUqKK9q0CnMN8-_ve9AcX1nJUx',
       terms: true,
-      image: 'https://www.bonzolocalesdeensayo.com/wp-content/uploads/2015/06/sala1-the-cavern-bonzo-locales-de-ensayo-1.jpg',
       description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Ut vel suscipit molestias nisi, adipisci earum accusamus possimus labore est, dolor magnam, cum exercitationem! Ea dolore eligendi molestias alias asperiores non.',
-      localName: 'Local 3',
-      address: 'Calle Gran vía, 2',
+      address: 'Avenida de los Metales, 16',
       city: 'Leganés',
-      postalCode: '28080',
+      postalCode: '28914',
       equipment: {
       },
       location: {
@@ -42,27 +52,6 @@ export class LogginFakeInterceptor implements HttpInterceptor {
         lng: -3.7015234947205045
       },
     },
-
-    {
-      id:3, // local
-      localName: 'Local 3',
-      companyName: 'GustaRock',
-      address: 'Calle Gran vía, 2',
-      city: 'Leganés',
-      postalCode: '28080',
-      location: {
-        lat: 40.4268965528878,
-        lng: -3.7015234947205045
-      },
-      equipment:{
-        drum: 'Batería Tama SuperStar',
-        ampGuit1: 'Amplificador de guitarra Mesa Booggie',
-        ampGuit2: 'Amplificador de guitarra Line6',
-        ampBass: 'Amplificador de bajo Ampeg',
-        keyboard: 'Casio 3000',
-        speakers: 'Equipo de voz Berhinger',
-      }
-    }
 
   ];
 

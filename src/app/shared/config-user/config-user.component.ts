@@ -45,20 +45,9 @@ export class ConfigUserComponent implements OnInit {
 
     })
 
-    // {
-    //   name: [`${this.user.name}`, Validators.compose([Validators.required, Validators.minLength(5)])],
-    //   bandName: [`${this.user.bandName}`,],
-    //   email: [`${this.user.email}`, Validators.compose([Validators.required, customValidatorEmail])],
-    //   password: [`${this.user.password}`, Validators.compose([Validators.required, Validators.minLength(8)])],
-    //   avatar: ["",],
-    // }
-
-
   }
 
   submit($event, form) {
-    //console.log(form.value);
-
     this.editUser.emit(form.value);
   }
 

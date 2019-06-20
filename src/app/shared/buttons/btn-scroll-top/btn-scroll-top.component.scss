@@ -1,14 +1,27 @@
 //@import '../buttons.component.scss';
-@import '../../../../assets/scss/partials/variables';
-.no-background{
+@import "../../../../assets/scss/partials/variables";
+
+.no-background {
   background-color: transparent;
   border: 0;
+}
+
+@keyframes btnScroll {
+  0% {
+    opacity: 1;
+    //display: block
+  }
+
+  100% {
+    opacity: 0;
+    //display: none
+  }
 }
 
 .btn--scroll-top {
   //display: none;
   position: fixed;
-  z-index: map-get($z-index , 'top' );
+  z-index: map-get($z-index, "top");
   bottom: 4.5rem;
   right: 2.5rem;
   cursor: pointer;
@@ -22,4 +35,17 @@
 svg {
   transition: fill 150ms linear;
   fill: var(--secondary);
+}
+
+.show {
+  transition: all 400ms linear;
+  animation: btnScroll 400ms linear;
+  animation-fill-mode: forwards;
+  animation-direction: reverse;
+}
+
+.hide {
+  transition: all 400ms linear;
+  animation: btnScroll 400ms linear;
+  animation-fill-mode: forwards;
 }

@@ -63,4 +63,9 @@ export class DropdownComponent implements OnInit, OnChanges {
     this.closeSession.emit($event);
   }
 
+  prueba(event){
+    console.log(event);
+
+  }
+
 }

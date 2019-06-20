@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { GetLocalsService } from '../../services/getLocals.service';
+import { LocalsService } from '../../services/locals.service';
 
 @Component({
   selector: 'app-searcher',
@@ -9,7 +9,7 @@ import { GetLocalsService } from '../../services/getLocals.service';
 
 export class SearcherComponent {
 
-  constructor( private getLocalsService: GetLocalsService) { }
+  constructor( private localsService: LocalsService) { }
 
   localsFound;
   showInfo;
@@ -17,11 +17,12 @@ export class SearcherComponent {
   showData(local) {
     console.log(local);
 
-    this.getLocalsService.getLocalsByCity(local).then((data:Array<any>)=> {
+    this.localsService.getLocalsByCity(local).then((data:Array<any>)=> {
       if (data.length === 0) {
         alert('No hay locales de ensayo en esa ubicación');
         this.localsFound = null;
         this.showInfo = false
+
         return null;
       }else{
         this.showInfo = true;

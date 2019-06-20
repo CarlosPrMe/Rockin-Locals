@@ -32,39 +32,13 @@
       Ocultar</button>
   </h2>
   <ul class="list" [ngClass]="{show: showList, hide: !showList}">
-    <li class="aside__item"><a href="#" class="aside__link">Local 8 Ritmo & Compas
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 1 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a></li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
+        <li (click)="goToLocal($event, fav.companyId)" class="aside__item" *ngFor="let fav of user.favourites">
+          <a class="aside__link">{{fav.companyName}} - {{fav.localName}}
+            <app-btn-favourites-delete></app-btn-favourites-delete>
+          </a>
+        </li>
+
+<!-- [routerLink]="['/local',fav.companyId]" -->
+
   </ul>
-  <!--                 <div class="flex--end">
-        <button type="button" class="btn">Editar</button>
-    </div> -->
 </aside>

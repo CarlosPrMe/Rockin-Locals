@@ -2,6 +2,8 @@ import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/cor
 import { map, switchMap, mergeMap } from 'rxjs/operators';
 import { LoggingService } from './services/logging.service';
 import { UserService } from './services/users.services';
+import { ScreenService } from './services/screen.service';
+import { ScrollToService } from 'ng2-scroll-to-el';
 
 @Component({
   selector: 'app-root',
@@ -15,10 +17,13 @@ export class AppComponent implements OnInit, OnChanges {
   showModal: boolean; // Variable para mostral la modal de registro
   userOnline;
 
-  constructor(private userService: UserService, private loggingService:LoggingService, ) {
-     this.loggingService.user.subscribe(data => {
-       this.user = data;
-     })
+
+  constructor(private userService: UserService, private loggingService: LoggingService,
+    private screenService: ScreenService, private scrollService: ScrollToService) {
+
+    this.loggingService.user.subscribe(data => {
+      this.user = data;
+    })
 
     this.userOnline = this.loggingService.isLogged.subscribe(res => {
     })
@@ -43,8 +48,9 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   onCloseSesion($event) {
+    let name = this.user.userName;
     this.loggingService.logOut();
-    alert('Hasta pronto')
+    alert(`Hasta pronto ${name}`)
   }
 
   onRegister(user) {
@@ -57,6 +63,15 @@ export class AppComponent implements OnInit, OnChanges {
   onOpenSession(user) {
     this.loggingService.login(user.email, user.password).then((data) => {
     });
+  }
+
+  //onResize($event) {
+  //  this.screenService.resolution.next($event.target.innerWidth)
+  //}
+
+
+  scrollToTop(element) {
+    this.scrollService.scrollTo(element);
   }
 
 }

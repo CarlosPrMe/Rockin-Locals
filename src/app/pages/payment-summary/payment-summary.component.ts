@@ -1,4 +1,6 @@
-import { Component, OnInit, OnChanges, Input } from '@angular/core';
+import { Component, OnInit, OnChanges } from '@angular/core';
+import { Reservation } from 'src/app/mis clases/reservation';
+import { ReservationsService } from 'src/app/services/reservations.service';
 
 @Component({
   selector: 'app-payment-summary',
@@ -7,9 +9,15 @@ import { Component, OnInit, OnChanges, Input } from '@angular/core';
 })
 export class PaymentSummaryComponent implements OnInit, OnChanges {
 
-  constructor() { }
+  reservation;
+
+  constructor(private reservationService : ReservationsService) {
+    document.body.scrollTop = 0
+  }
 
   ngOnInit() {
+
+  this.reservation = this.reservationService.currentReservation.value;
   }
   ngOnChanges() {
 

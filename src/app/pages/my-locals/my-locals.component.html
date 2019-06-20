@@ -1,5 +1,5 @@
-<app-header-local></app-header-local>
-  <app-my-local [user]="user"></app-my-local>
+<app-header-local [user]="user"></app-header-local>
+  <app-my-local [user]="user" [local]="local"></app-my-local>
   <!-- <app-my-local></app-my-local> -->
   <app-add-local></app-add-local>
-  <app-table></app-table>
+  <app-table [reservations]="reservations"></app-table>

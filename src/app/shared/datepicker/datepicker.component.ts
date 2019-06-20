@@ -1,5 +1,6 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbPeriod } from '@ng-bootstrap/ng-bootstrap';
+import { ScreenService } from '../../services/screen.service';
 
 
 @Component({
@@ -8,19 +9,33 @@ import { NgbCalendar, NgbDate, NgbPeriod } from '@ng-bootstrap/ng-bootstrap';
   styleUrls: ['./datepicker.component.scss'],
 
 })
-export class DatepickerComponent implements OnInit {
+export class DatepickerComponent implements OnInit, OnChanges {
 
-  constructor(private ngCalendar: NgbCalendar) { }
+  resolution;
+  displayMonths;
+  constructor(private ngCalendar: NgbCalendar, private screenService: ScreenService) {
+    this.resolution = this.screenService.resolution.subscribe(res => {
+      //console.log(res);
+      if (res < 550) {
+        this.displayMonths = 1;
+      } else {
+        this.displayMonths = 2;
+      }
 
-  ngOnInit() {
+    })
+  }
+
+
+
+  ngOnInit() { }
+
+  ngOnChanges() {
 
   }
 
   @Output() date = new EventEmitter();
 
 
-
-  displayMonths = 2;
   navigation = 'arrows';
   showWeekNumbers = false;
   outsideDays = 'hidden';
@@ -30,8 +45,9 @@ export class DatepickerComponent implements OnInit {
 
 
   onDateSelect(day) {
-     console.log(day);
-     this.date.emit(day);
+    //console.log(day);
+    this.date.emit(day);
+
   }
 
 

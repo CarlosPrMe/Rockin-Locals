@@ -1,7 +1,7 @@
 
 <agm-map class="map-main" [latitude]="lat" [longitude]="lng" [zoom]='12' > <!-- (mapClick)="takeLongitude($event)" -->
 
-  <agm-marker *ngFor="let local of localsFound"
+  <agm-marker  *ngFor="let local of localsFound"
   [label]="labelOptions"
   [latitude]="local.location.lat"
   [longitude]="local.location.lng" [iconUrl]="icon"></agm-marker>

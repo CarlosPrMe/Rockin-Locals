@@ -68,14 +68,24 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TestService } from './services/test.service';
 import { LogginFakeInterceptor } from './interceptors/logginFake.interceptor';
 import { LoggingService } from './services/logging.service';
-import { GetLocalsService } from './services/getLocals.service';
+import { LocalsService } from './services/locals.service';
 import { UserService } from './services/users.services';
-import { GetReservationsService } from './services/getReservations.service';
+import { ReservationsService } from './services/reservations.service';
 import { AddtoFavouritesService } from './services/add-favourites.service';
+import { GetDayAvailableService } from './services/getDayAvailable.service';
+
+
+import {MatTableModule} from '@angular/material/table';
+import { TableMaterialComponent } from './shared/table-material/table-material.component'
+import { ScreenService } from './services/screen.service';
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+import { ScrollToModule } from 'ng2-scroll-to-el';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
 
 
  const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LogginFakeInterceptor, multi: true },
+  /* { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }, */
 ];
 
 
@@ -125,11 +135,12 @@ import { AddtoFavouritesService } from './services/add-favourites.service';
     PaymentSummaryComponent,
     MyLocalsComponent,
     ReservationsComponent,
-    //ConfigLocalComponent,
     ConfigurationComponent,
     ReservationSummaryComponent,
     TableGridPastComponent,
     DatepickerComponent,
+    TableMaterialComponent,
+    SpinnerComponent,
 
 
   ],
@@ -137,22 +148,24 @@ import { AddtoFavouritesService } from './services/add-favourites.service';
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
+      apiKey: 'tuApiKey'
     }),
     HttpClientModule,
-    //NgbModule,
-    NgbDatepickerModule
+    NgbDatepickerModule,
+    MatTableModule,
+    ScrollToModule.forRoot(),
   ],
   providers: [
     TestService,
     LoggingService,
     UserService,
-    GetLocalsService,
-    GetReservationsService,
+    LocalsService,
+    ReservationsService,
     AddtoFavouritesService,
+    GetDayAvailableService,
+    ScreenService,
     GoToPaymentGuard,
     httpInterceptorProviders
   ],

@@ -1,9 +1,8 @@
 <div class="dropdown" [ngClass]="{'dropdown-show':showMenu, 'dropdown-hide': !showMenu }">
-
   <form class="form" *ngIf="!login" [formGroup]="myForm">
     <div class="form__group">
       <label for="email" class="form__label">Email</label>
-      <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
+      <input (keyup.enter)="submit($event,myForm)"  [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
         formControlName="email" type="email" class="form__control" id="email" required>
     </div>
     <span class="error"
@@ -13,7 +12,7 @@
       Obligatorio </span>
     <div class="form__group">
       <label for="password" class="form__label">Contraseña</label>
-      <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
+      <input (keyup.enter)="submit($event,myForm)" [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
         myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
         type="password" class="form__control" id="password" required minlength="8">
     </div>

@@ -1,7 +1,7 @@
 <section class="info">
   <form action="#" class="form susy" [formGroup]="myForm">
     <div class="info__item row">
-      <span class="info__heading col-sm-4">Local 1</span>
+      <span class="info__heading col-sm-4">{{local.name}}</span>
       <div class="flex--end col-sm-8">
         <button type="button" class="btn" (click)="showLocal($event)">Editar</button>
         <button type="button" class="btn">Eliminar</button>
@@ -27,7 +27,6 @@
     </div>
     <div class="info__edit row" *ngIf="show">
       <div class="form__group col-sm-12 col-md-8">
-        <!-- Revisar este from__group -->
         <label class="form__label">Elige tipo de foto</label>
         <div class="grid--sm">
           <div class="form__block-input">
@@ -131,7 +130,7 @@
         <div class="grid--sm">
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="drum" class="form__check--custom">
+              <input type="checkbox" name="equipment" id="drum" class="form__check--custom" selected>
               <label for="drum" class="form__label form__label--radio form__label--sm">Batería
                 <svg class="svg svg--custom" height="25pt" viewBox="0 -35 512.00061 512" width="25pt"
                   xmlns="http://www.w3.org/2000/svg">

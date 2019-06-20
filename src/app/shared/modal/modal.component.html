@@ -65,7 +65,7 @@
         </div>
         <div class="form__group">
           <label for="email-register" class="form__label">Email</label>
-          <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
             formControlName="email" type="email" class="form__control" id="email-register" required>
         </div>
         <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value"> Email incorrecto</span>
@@ -73,7 +73,7 @@
             Obligatorio </span>
         <div class="form__group">
           <label for="password-register" class="form__label">Contraseña</label>
-          <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
             myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
             type="password" class="form__control" id="password-register" required minlength="8">
         </div>
@@ -83,7 +83,7 @@
           Obligatorio</div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="address" class="form__label">Dirección</label>
-          <input [ngClass]="{invalid: myForm.controls.address.dirty && myForm.controls.errors?.required ||
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid: myForm.controls.address.dirty && myForm.controls.errors?.required ||
             myForm.controls.address.dirty && myForm.controls.address.errors?.minlength}"
             formControlName="address" type="text" class="form__control" id="address" [required]="myForm.controls.type.value === 'local'">
         </div>
@@ -120,7 +120,7 @@
         </div> -->
         <div class="form__group">
           <label for="userName" class="form__label">Nombre</label>
-          <input [ngClass]="{invalid:myForm.controls.userName.dirty && myForm.controls.userName.errors?.required ||
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.userName.dirty && myForm.controls.userName.errors?.required ||
             myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName" type="text"
             class="form__control" id="userName" minlength="5" required>
         </div>
@@ -130,7 +130,7 @@
         </div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'band'">
           <label for="bandName" class="form__label">Nombre del grupo</label>
-          <input [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
             myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}" formControlName="bandName"
             type="text" class="form__control" id="bandName" minlength="2"
             [required]="myForm.controls.type.value === 'band'">
@@ -142,7 +142,7 @@
         </div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="companyName" class="form__label">Nombre de la empresa</label>
-          <input [ngClass]="{invalid:myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.required ||
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.required ||
             myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.minlength}"
             formControlName="companyName" type="text" class="form__control" id="companyName" minlength="2"
             >
@@ -155,7 +155,7 @@
           caracteres</div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="city" class="form__label">Ciudad</label>
-          <input [ngClass]="{invalid:myForm.controls.city.dirty && myForm.controls.city.errors?.required}"
+          <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.city.dirty && myForm.controls.city.errors?.required}"
             formControlName="city" type="text" class="form__control" id="city"
             [required]="myForm.controls.type.value === 'local'">
         </div>
@@ -163,7 +163,7 @@
           Obligatorio</div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="postal-code" class="form__label">Código Postal</label>
-          <input formControlName="postalCode" type="text" class="form__control" id="postal-code"
+          <input (keyup.enter)="submit($event, myForm)" formControlName="postalCode" type="text" class="form__control" id="postal-code"
             [required]="myForm.controls.type.value === 'local'">
         </div>
         <div class="error" *ngIf="myForm.controls.postalCode.dirty && myForm.controls.postalCode.errors?.required">Campo

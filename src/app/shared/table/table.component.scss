@@ -79,7 +79,7 @@
   }
   @media (min-width: 1023px) {
     &__row:hover {
-      background-color: rgb(202, 255, 193);
+      background-color: darken(rgb(229, 243, 247), 10%);
     }
   }
   &__data {

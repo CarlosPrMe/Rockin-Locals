@@ -9,25 +9,16 @@
             <th class="table__heading">Grupo</th>
             <th class="table__heading">Nº Local</th>
             <th class="table__heading">Hora entrada</th>
-            <th class="table__heading">Hora salida</th>
+            <!-- <th class="table__heading">Hora salida</th -->
           </tr>
         </thead>
         <tbody>
-          <tr class="table__row">
-            <td class="table__data">10/6/2019</td>
-            <td class="table__data">Los petardos</td>
-            <td class="table__data">Local 10</td>
-            <td class="table__data">18.00</td>
-            <td class="table__data">20.00</td>
-          </tr>
-          <tr class="table__row">
-            <td class="table__data">10/6/2019</td>
-            <td class="table__data">Los petardos</td>
-            <td class="table__data">Local 10</td>
-            <td class="table__data">18.00</td>
-            <td class="table__data">20.00</td>
-          </tr>
-        </tbody>
+          <tr class="table__row" *ngFor="let reservation of reservations">
+            <td class="table__data">{{reservation.date.day}} / {{reservation.date.month}} / {{reservation.date.year}}</td>
+            <td class="table__data"><a href="" class="table__link">{{reservation.bandName}}</a></td>
+            <td class="table__data">{{reservation.localName}}</td>
+            <td class="table__data" >{{reservation.numHours}}</td>
+        </tr>
       </table>
     </div>
   </div>

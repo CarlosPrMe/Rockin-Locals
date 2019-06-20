@@ -1,4 +1,6 @@
-<button type="button" class="no-background">
+<button [ngClass]="{'show':show, 'hide':!show}" type="button" class="no-background" (click)="scrollTop($event)">
+<!-- <button type="button" class="no-background" (click)="scrollTop($event)"> -->
+
   <svg class=" btn btn--scroll-top" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 476.737 476.737" height="40"
     width="40">
     <g>

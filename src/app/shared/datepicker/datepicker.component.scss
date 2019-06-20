@@ -5,7 +5,39 @@
   //margin-left: 300px;
 }
 
-.btn-light{
-  background-color: var(--primary) !important;
-  font-size: 50px !important;
+
+:host{
+
+  ngb-datepicker{
+
+    .ngb-dp-header {
+      background-color: var(--primary);
+      color: var(--white);
+      font-family: var(--font-family);
+    }
+
+    .ngb-dp-months {
+      display: -ms-flexbox;
+      display: flex;
+      color: var(--third);
+      background-color: var(--gray-100);
+    }
+
+
+    .btn-light {
+      background-color: var(--primary);
+      font-size: 50px;
+    }
+  }
 }
+
+.datepicker{
+  background-color: var(--gray-100);
+  color: var(--secondary);
+  font-family: var(--font-family);
+
+  @media(max-width:767){
+    width: 250px;
+  }
+}
+

@@ -1,17 +1,14 @@
 <main class="grid">
   <div class="main-block">
     <form action="#" class="form" [formGroup]="myForm">
-      <div class="form__group">
-        <label for="paypal" class="form__label">
+      <div class="form__group" >
+        <label for="paypal" class="form__label"(click)="activateMethod($event)" >
           <input formControlName="method" type="radio" id="paypal" class="form__radio--standar" name="method" value="paypal">
           Paypal</label>
-        <p class="form__text">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Esse vero culpa
-          quam, necessitatibus
-          ab, sapiente magnam placeat, corporis nesciunt quos modi excepturi explicabo pariatur
-          consequuntur expedita aliquam quia eaque beatae.</p>
+        <p class="form__text">Abre tu cuenta PayPal gratis y asocia tus tarjetas de crédito o débito. Busca el botón de PayPal a la hora de pagar y compra fácilmente ingresando tu correo electrónico y contraseña.</p>
       </div>
       <div class="form__group">
-        <label for="credit-card" class="form__label">
+        <label for="credit-card" class="form__label" (click)="activateMethod($event)" >
           <input formControlName="method" type="radio" id="credit-card" class="form__radio--standar" name="method" value="card">
           Tajeta de crédito
         </label>
@@ -21,31 +18,44 @@
           <div class="form__group col">
             <label for="card-number" class="form__label form__label--sm">Numero de
               tarjeta</label>
-            <input formControlName="creditNumber" type="text" id="card-number" class="form__input" placeholder="0000 0000 0000 0000">
+            <input [required]="myForm.controls.method.value === 'card'"
+             [ngClass]="{invalid:myForm.controls.creditNumber.dirty && myForm.controls.creditNumber.errors?.required}"
+             formControlName="creditNumber" type="text" id="card-number" class="form__input" placeholder="0000 0000 0000 0000">
+            <div class="error" *ngIf="myForm.controls.creditNumber.dirty && myForm.controls.creditNumber.errors?.required">Campo
+              Obligatorio</div>
           </div>
         </div>
         <div class="row">
           <div class="form__group col-sm-12 col-md-8 col-lg-8">
-            <label for="card-end" class="form__label form__label--sm">Fecha de caducidad</label>
-            <input formControlName="expireDate"  type="date" id="card-end" class="form__input form__input--date" placeholder="MM/AA">
+            <label for="expireDate" class="form__label form__label--sm">Fecha de caducidad</label>
+            <input [required]="myForm.controls.method.value === 'card'"
+             [ngClass]="{invalid:myForm.controls.expireDate.dirty && myForm.controls.expireDate.errors?.required}"
+             formControlName="expireDate"  type="date" id="card-end" class="form__input form__input--date" placeholder="MM/AA">
+            <div class="error" *ngIf="myForm.controls.expireDate.dirty && myForm.controls.expireDate.errors?.required">Campo
+              Obligatorio</div>
           </div>
           <div class="form__group col-sm-12 col-md-4 col-lg-4">
-            <label for="cvv-code" class="form__label form__label--sm">Código CVV</label>
-            <input formControlName="cvvCode" type="text" id="cvv-code" class="form__input" maxlength="3">
+            <label for="cvvCode" class="form__label form__label--sm">Código CVV</label>
+            <input [required]="myForm.controls.method.value === 'card'"
+             [ngClass]="{invalid:myForm.controls.cvvCode.dirty && myForm.controls.cvvCode.errors?.required}"
+             formControlName="cvvCode" type="text" id="cvvCode" class="form__input" maxlength="3">
+            <div class="error" *ngIf="myForm.controls.cvvCode.dirty && myForm.controls.cvvCode.errors?.required">Campo
+              Obligatorio</div>
+
           </div>
         </div>
       </fieldset>
-      <div class="form__group">
+<!--       <div class="form__group">
         <label for="save-method-payment" class="form__label form__label--sm">
           <input type="checkbox" name="" id="save-method-payment" class="form__check">
           Guardar
           datos de pago para próximas reservas</label>
-      </div>
+      </div> -->
       <div class="container--flex">
-        <a href="#" class="btn--link" routerLink="/reservation-summary">Volver a datos de reserva</a>
-        <button type="button" class="btn" (click)="submit($event,myForm)">Aceptar</button>
+        <a href="#" class="btn--link" [routerLink]="['/local',localSelected?.id]"  >Atrás</a><!-- [routerLink]="['/local',localSelected.id]" -->
+        <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm)">Aceptar</button>
       </div>
     </form>
   </div>
-  <app-cart></app-cart>
+  <app-cart [reservation]="reservation"></app-cart>
 </main>

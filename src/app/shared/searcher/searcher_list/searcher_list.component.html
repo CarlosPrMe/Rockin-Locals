@@ -1,11 +1,4 @@
-<!-- <ul class="results__list">
-
-  <li (click)="goToLocal($event, local)" *ngFor="let local of testService.locals" class="results__item" [routerLink]="['/local',local.id]" >
-    <a class="results__link">{{local.address}}</a></li>
-
-</ul> -->
 <ul class="results__list">
-
   <li (click)="goToLocal($event, local)" *ngFor="let local of this.localsFound" class="results__item" [routerLink]="['/local',local.id]" >
     <a class="results__link">{{local.companyName}} - {{local.address}}</a></li>
 
