@@ -1,13 +1,13 @@
 <app-header-user [user]="user"></app-header-user>
 <div class="container">
-<div class="grid">
-  <h2 class="heading">Reserva/s futura/s</h2>
-  <app-table-grid [reservations]="reservationsNext"></app-table-grid>
-  <app-favourites [user]="user" (navigateTolocal)="onNavigateTolocal($event, user.favourites)"></app-favourites>
-  <h2 class="heading">Reservas pasadas</h2>
-  <app-table-grid-past [reservations]="reservationsPast"></app-table-grid-past>
-<!--   <div class="container-btns flex--end">
-    <app-btn-show-more></app-btn-show-more>
-  </div> -->
-</div>
+  <div class="grid">
+    <h2 *ngIf="reservationsNext.length > 0" class="heading">Reserva/s futura/s</h2>
+    <app-table-grid *ngIf="reservationsNext.length > 0" [reservations]="reservationsNext"></app-table-grid>
+    <app-favourites [user]="user" (navigateTolocal)="onNavigateTolocal($event, user.favourites)"
+      (delete)="onDeleteFavourite($event)"></app-favourites>
+    <h2 *ngIf="reservationsPast.length > 0" class="heading">Reservas pasadas</h2>
+    <app-table-grid-past *ngIf="reservationsPast.length > 0" [reservations]="reservationsPast"></app-table-grid-past>
+    <!-- <app-table-grid *ngIf="reservationsPast.length > 0" [reservations]="reservationsPast"></app-table-grid> -->
+
+  </div>
 </div>

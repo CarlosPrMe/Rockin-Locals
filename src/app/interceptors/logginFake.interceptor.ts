@@ -19,11 +19,11 @@ export class LogginFakeInterceptor implements HttpInterceptor {
       avatar: 'https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1',
       terms: true,
       favourites: [
-        {
-          companyName:'Pika Studios',
-          companyId:2,
-          localName:'Local 1',
-        },
+       // {
+       //   companyName:'Pika Studios',
+       //   companyId:2,
+       //   localName:'Local 1',
+       // },
         {
           companyName:'GustaRock',
           companyId:1,

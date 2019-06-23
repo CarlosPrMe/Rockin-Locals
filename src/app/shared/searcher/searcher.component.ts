@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { LocalsService } from '../../services/locals.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-searcher',
@@ -19,7 +21,14 @@ export class SearcherComponent {
 
     this.localsService.getLocalsByCity(local).then((data:Array<any>)=> {
       if (data.length === 0) {
-        alert('No hay locales de ensayo en esa ubicación');
+
+        swal.fire({
+          title: 'Lo sentimos. No hay locales de ensayo en esa ubicación',
+          text: 'Introduce una nueva dirección en el buscador',
+          type: "warning",
+          showConfirmButton: false,
+        });
+
         this.localsFound = null;
         this.showInfo = false
 

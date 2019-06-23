@@ -1,5 +1,4 @@
-<table class="table">
-    <!-- <caption class="table__title">Reserva/s futura/s</caption> -->
+<!-- <table class="table">
     <thead>
         <tr class="table__row">
             <th class="table__heading">Día</th>
@@ -10,12 +9,6 @@
     </thead>
 
     <tbody>
-<!--         <tr class="table__row">
-            <td class="table__data">10/6/2019</td>
-            <td class="table__data"><a href="" class="table__link">Ritmo & Compas</a></td>
-            <td class="table__data">Local 10</td>
-            <td class="table__data" >18.00 <button class="btn btn-cancel">Cancelar</button></td>
-        </tr> -->
         <tr class="table__row" *ngFor="let reservation of reservations">
           <td class="table__data">{{reservation.date.day}} / {{reservation.date.month}} / {{reservation.date.year}}</td>
           <td class="table__data"><a href="" class="table__link">{{reservation.companyName}}</a></td>
@@ -23,4 +16,38 @@
           <td class="table__data" >{{reservation.numHours}}</td>
       </tr>
     </tbody>
+</table> -->
+
+
+<table class="table" mat-table [dataSource]="dataSource">
+
+  <tr class="table__row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  <ng-container matColumnDef="band">
+    <th class="table__heading" *matHeaderCellDef> Día </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
+      {{reservation?.date.month}} / {{reservation?.date.year}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="company">
+    <th class="table__heading" mat-header-cell *matHeaderCellDef> Instalación </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.companyName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="local">
+    <th class="table__heading" mat-header-cell *matHeaderCellDef> NºLocal </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
+  </ng-container>
+
+  <ng-container matColumnDef="hours">
+    <th class="table__heading" mat-header-cell *matHeaderCellDef> Horas </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.numHours}} </td>
+  </ng-container>
+
 </table>
+
+<div class="container--flex col-sm-12 col-md-12">
+  <mat-paginator class="prueba" [length]="length" [pageSize]="2" [pageSizeOptions]="[2, 5]">
+    </mat-paginator>
+</div>

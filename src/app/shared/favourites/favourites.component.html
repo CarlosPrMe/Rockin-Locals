@@ -32,9 +32,9 @@
       Ocultar</button>
   </h2>
   <ul class="list" [ngClass]="{show: showList, hide: !showList}">
-        <li (click)="goToLocal($event, fav.companyId)" class="aside__item" *ngFor="let fav of user.favourites">
-          <a class="aside__link">{{fav.companyName}} - {{fav.localName}}
-            <app-btn-favourites-delete></app-btn-favourites-delete>
+        <li  class="aside__item" *ngFor="let fav of user.favourites">
+          <a (click)="goToLocal($event, fav.companyId)" class="aside__link">{{fav.companyName}} - {{fav.localName}}
+            <app-btn-favourites-delete (deleteFavourite)="deleteFavourite($event, fav.companyId)"></app-btn-favourites-delete>
           </a>
         </li>
 

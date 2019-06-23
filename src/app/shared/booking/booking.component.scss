@@ -157,6 +157,11 @@ svg {
   flex-wrap: wrap;
 }
 
+.btn[disabled]{
+  opacity: .5;
+  pointer-events: none;
+}
+
 .error {
   margin-top: -1rem;
   padding: 0.2rem 0 0 0.5rem;

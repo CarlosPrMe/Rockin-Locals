@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
+
 
 
 @Component({
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
   styleUrls: ['./btn-favourites-delete.component.scss']
 })
 
-export class BtnFavouritesDeleteComponent { }
+export class BtnFavouritesDeleteComponent {
+@Output() deleteFavourite = new EventEmitter
+
+
+  delete($event){
+    this.deleteFavourite.emit($event);
+  }
+ }

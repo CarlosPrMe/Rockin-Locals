@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { customValidatorEmail } from './validators-custom';
+import { LocationService } from '../../services/location.service';
 
 @Component({
   selector: 'app-modal',
@@ -14,10 +15,7 @@ export class ModalComponent implements OnInit {
   @Output() closeModal = new EventEmitter();
   @Output() register = new EventEmitter();
 
-  constructor(private fb: FormBuilder) { }
-
-
-
+  constructor(private fb: FormBuilder, private locationService: LocationService) { }
 
   close($event) {
     this.closeModal.emit($event);
@@ -43,18 +41,12 @@ export class ModalComponent implements OnInit {
 
   submit($event, form) {
 
-
     if (form.valid) {
 
       this.register.emit(form.value);
       form.reset();
       this.showModal = false;
-    } else {
-      alert('Formulario incorrecto');
     }
-
   }
-
-
 
 }

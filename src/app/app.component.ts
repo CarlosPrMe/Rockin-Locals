@@ -4,6 +4,9 @@ import { LoggingService } from './services/logging.service';
 import { UserService } from './services/users.services';
 import { ScreenService } from './services/screen.service';
 import { ScrollToService } from 'ng2-scroll-to-el';
+import { LocationService } from './services/location.service';
+import swal from 'sweetalert2';
+
 
 @Component({
   selector: 'app-root',
@@ -19,7 +22,8 @@ export class AppComponent implements OnInit, OnChanges {
 
 
   constructor(private userService: UserService, private loggingService: LoggingService,
-    private screenService: ScreenService, private scrollService: ScrollToService) {
+    private screenService: ScreenService, private scrollService: ScrollToService,
+    private locationService: LocationService) {
 
     this.loggingService.user.subscribe(data => {
       this.user = data;
@@ -27,12 +31,11 @@ export class AppComponent implements OnInit, OnChanges {
 
     this.userOnline = this.loggingService.isLogged.subscribe(res => {
     })
-
-
   }
 
-  ngOnInit() {
 
+
+  ngOnInit() {
   }
 
   ngOnChanges() {
@@ -50,13 +53,23 @@ export class AppComponent implements OnInit, OnChanges {
   onCloseSesion($event) {
     let name = this.user.userName;
     this.loggingService.logOut();
-    alert(`Hasta pronto ${name}`)
   }
 
-  onRegister(user) {
+  async  onRegister(user) {
+    if (user.city !== "" || user.address !== "" || user.postalCode !== "") {
+      let location: any = await this.locationService.getLocation(user.city, user.address, user.postalCode)
+      user.location = location.results[0].geometry.location;
+    }
     this.userService.addUser(user).then(() => {
-      alert('Bienvenido a Rockin Locals');
       this.toggleModal(user);
+
+      swal.fire({
+        title: 'Bienvenido a Rockin Locals',
+        text: 'Registro con éxito',
+        type: "success",
+        showConfirmButton: false,
+      });
+      //alert('Bienvenido a Rockin Locals');
     })
   }
 
@@ -64,11 +77,6 @@ export class AppComponent implements OnInit, OnChanges {
     this.loggingService.login(user.email, user.password).then((data) => {
     });
   }
-
-  //onResize($event) {
-  //  this.screenService.resolution.next($event.target.innerWidth)
-  //}
-
 
   scrollToTop(element) {
     this.scrollService.scrollTo(element);

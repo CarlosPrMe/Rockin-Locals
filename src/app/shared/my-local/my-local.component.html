@@ -1,7 +1,7 @@
 <section class="info">
   <form action="#" class="form susy" [formGroup]="myForm">
     <div class="info__item row">
-      <span class="info__heading col-sm-4">{{local.name}}</span>
+      <span class="info__heading col-sm-4">{{local?.name}}</span>
       <div class="flex--end col-sm-8">
         <button type="button" class="btn" (click)="showLocal($event)">Editar</button>
         <button type="button" class="btn">Eliminar</button>

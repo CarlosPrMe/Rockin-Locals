@@ -178,7 +178,7 @@
         </div>
         <a href="#" class="modal__link">Terminos y condiciones</a>
         <button  id="submit-register" type="button" class="btn m-a"
-          (click)="submit($event,myForm)" [disabled]="myForm.invalid">Registrarse</button> <!-- (click)="close($event) Para cerrar Modal--> <!-- [ngClass]="{disable:!myForm.valid}" -->
+          (click)="submit($event,myForm)" [disabled]="!myForm.valid">Registrarse</button> <!-- (click)="close($event) Para cerrar Modal--> <!-- [ngClass]="{disable:!myForm.valid}" -->
       </div>
     </form>
   </div>

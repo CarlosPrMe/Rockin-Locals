@@ -1,11 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, ApplicationRef } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
+//CALENDARIO----------------
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+//----------------------------------
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -22,7 +24,6 @@ import { BtnAccessComponent } from './shared/buttons/btn-access/btn-access.compo
 import { BtnCloseComponent } from './shared/buttons/btn-close/btn-close.component';
 import { BtnSuccessComponent } from './shared/buttons/btn-success/btn-success.component';
 import { BtnDangerComponent } from './shared/buttons/btn-danger/btn-danger.component';
-import { BtnScrollTopComponent } from './shared/buttons/btn-scroll-top/btn-scroll-top.component';
 import { BtnFavouritesDeleteComponent } from './shared/buttons/btn-favourites-delete/btn-favourites-delete.component';
 import { CarouselComponent } from './shared/carousel/carousel.componet';
 import { ModalComponent } from './shared/modal/modal.component';
@@ -53,37 +54,63 @@ import { MyLocalsComponent } from './pages/my-locals/my-locals.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ReservationSummaryComponent } from './pages/reservation-summary/reservation-summary.component';
-import { TableGridPastComponent} from './shared/table-grid-past/table-grid-past.component';
-import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
-import { GoToPaymentGuard } from './services/go-to-payment.service';
+import { TableGridPastComponent } from './shared/table-grid-past/table-grid-past.component';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { GoToPaymentGuard } from './services/go-to-payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
-import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+
 
 
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// SERVICIOS
+// SERVICIOS------------------
 import { TestService } from './services/test.service';
 import { LogginFakeInterceptor } from './interceptors/logginFake.interceptor';
 import { LoggingService } from './services/logging.service';
 import { LocalsService } from './services/locals.service';
+import { LocationService } from './services/location.service';
 import { UserService } from './services/users.services';
 import { ReservationsService } from './services/reservations.service';
-import { AddtoFavouritesService } from './services/add-favourites.service';
+import { FavouritesService } from './services/favourites.service';
 import { GetDayAvailableService } from './services/getDayAvailable.service';
-
-
-import {MatTableModule} from '@angular/material/table';
-import { TableMaterialComponent } from './shared/table-material/table-material.component'
 import { ScreenService } from './services/screen.service';
-import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+//------------------------------------
+
+
+//MATERIAL-------------------------------
+import 'hammerjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+//import { TableMaterialComponent } from './shared/table-material/table-material.component'
+import { MatDialogModule } from '@angular/material/dialog';
+import { SpanishPaginatorComponent } from './shared/spanish-paginator/spanish-paginator.component';
+
+
+//import {CdkStepperModule} from '@angular/cdk/stepper';
+//import {CdkTableModule} from '@angular/cdk/table';
+//import {CdkTreeModule} from '@angular/cdk/tree';
+
+
+
+
+//----------------------------------------
+
+//FX------------------
 import { ScrollToModule } from 'ng2-scroll-to-el';
+import { BtnScrollTopComponent } from './shared/buttons/btn-scroll-top/btn-scroll-top.component';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 
- const httpInterceptorProviders = [
+//---------------------------
+
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+
+
+const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LogginFakeInterceptor, multi: true },
   /* { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }, */
 ];
@@ -139,8 +166,9 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     ReservationSummaryComponent,
     TableGridPastComponent,
     DatepickerComponent,
-    TableMaterialComponent,
+    //TableMaterialComponent,
     SpinnerComponent,
+
 
 
   ],
@@ -150,24 +178,30 @@ import { SpinnerComponent } from './shared/spinner/spinner.component';
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'tuApiKey'
+      apiKey: 'yourApiKey'
     }),
     HttpClientModule,
     NgbDatepickerModule,
+    BrowserAnimationsModule,
     MatTableModule,
+    MatPaginatorModule,
+    MatPaginatorModule,
     ScrollToModule.forRoot(),
+    SweetAlert2Module.forRoot(),
   ],
   providers: [
     TestService,
     LoggingService,
     UserService,
     LocalsService,
+    LocationService,
     ReservationsService,
-    AddtoFavouritesService,
+    FavouritesService,
     GetDayAvailableService,
     ScreenService,
-    GoToPaymentGuard,
-    httpInterceptorProviders
+    //GoToPaymentGuard,
+    httpInterceptorProviders,
+    { provide: MatPaginatorIntl, useClass: SpanishPaginatorComponent}
   ],
   bootstrap: [AppComponent]
 })

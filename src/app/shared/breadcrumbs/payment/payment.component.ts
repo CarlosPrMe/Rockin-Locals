@@ -4,6 +4,7 @@ import { LocalsService } from '../../../services/locals.service';
 import { customValidatorEmail } from '../../modal/validators-custom';
 import { Router } from '@angular/router';
 import { ReservationsService } from '../../../services/reservations.service';
+import swal from 'sweetalert2';
 
 @Component({
   selector: 'app-payment',
@@ -27,8 +28,6 @@ export class PaymentComponent implements OnInit {
     console.log(this.localSelected);
     console.log(this.methodActive);
 
-    //debugger
-
   }
 
   ngOnInit() {
@@ -48,14 +47,16 @@ export class PaymentComponent implements OnInit {
     console.log(this.reservation);
     this.reservationService.makeReservation(this.reservation).then((res)=>{
       console.log(res)
-      debugger
     })
 
-    alert('Gracias por tu reserva');
+    swal.fire({
+      title: 'Gracias por la reserva',
+      text: `${this.reservation.companyName} te espera el ${this.reservation.date.day} / ${this.reservation.date.month} / ${this.reservation.date.year} en ${this.reservation.localName} a las ${this.reservation.hours[0]} `,
+      type: "success",
+      showConfirmButton: false,
+    });
+
     this.router.navigateByUrl('/index');
-
-
-
   }
 
   activateMethod($event) {

@@ -12,6 +12,7 @@ export class FavouritesComponent implements OnInit {
 
   showList: boolean;
   @Output() navigateTolocal = new EventEmitter();
+  @Output() delete = new EventEmitter();
 
   @Input() user;
 
@@ -23,6 +24,12 @@ export class FavouritesComponent implements OnInit {
   }
 
   async  goToLocal($event, id) {
-    this.navigateTolocal.emit(id);
+    if($event.target.className === "aside__link"){
+      this.navigateTolocal.emit(id);
+    }
+  }
+
+  deleteFavourite($event, id){
+    this.delete.emit(id);
   }
 }

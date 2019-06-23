@@ -18,6 +18,7 @@ export class MyLocalsComponent implements OnInit {
   reservationsNext: Array<any> = [];
   today: NgbDate;
   local;
+  showTableReservations:boolean = true;
   constructor(private loggingService: LoggingService,
     private reservationsService: ReservationsService,
     private localsService: LocalsService,

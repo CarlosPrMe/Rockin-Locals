@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
-import { AddtoFavouritesService } from '../../services/add-favourites.service';
+import { FavouritesService } from '../../services/favourites.service';
 import { BehaviorSubject } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
 import { Reservation } from '../../mis clases/reservation';
@@ -24,10 +24,14 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   reservation = new Reservation();
   hoursAvailable = [];
   favourite = new Favourite();
+  added: boolean = false; // Para saber si el local ya está en favoritos y mostrar un boton un otro, hacer una logica u otra
 
+  enab
 
-  constructor(private addtoFavouritesService: AddtoFavouritesService, private fb: FormBuilder,
+  constructor(private favouritesService: FavouritesService, private fb: FormBuilder,
     private reservationsService: ReservationsService, private router: Router) { }
+
+
 
   ngOnInit() {
 
@@ -55,16 +59,40 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   }
 
-  ngOnChanges(simple: SimpleChanges) {
+  ngOnChanges(simpleChange : SimpleChanges){
+    //console.log(simpleChange);
+    if(simpleChange.userData.currentValue){
+      this.checkFavourite(simpleChange.userData.currentValue, this.localSelected)
+    }
+  }
+
+  checkFavourite(user, local) {
+    debugger
+    for (let i = 0; i < user.favourites.length; i++) {
+      if (user.favourites[i].companyName === local.companyName) {
+        this.added = true;
+        break
+      }
+    }
   }
 
   addToFavourites(user, local) {
-    //this.addtoFavouritesService.addFavourite(user, local).then((data) => console.log(data))
 
-    this.favourite.companyName = local.companyName;
-    this.favourite.companyId =local.id;
-    this.favourite.localName =local.localName;
+    //Servicio para añadir a favoritos
+    //this.favouritesService.addFavourite(user, local,this.favourite).then((data) => console.log(data))
 
+    //this.favourite.companyName = local.companyName;  Creo que esto  no lo utilizo
+    //this.favourite.companyId = local.id;  Creo que esto  no lo utilizo
+    //this.favourite.localName = local.name;  Creo que esto  no lo utilizo
+
+  }
+
+  deleteFavourite(event,user,local) {
+    console.log(user, +local);
+    this.added= false // A modo de juego
+    //this.favouritesService.deleteFavourite(user,local).then(
+     // this.added= false
+    //) Implementar bien esta peticion
   }
 
   getDay(day) {

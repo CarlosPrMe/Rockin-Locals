@@ -199,7 +199,7 @@
       </div>
       <div class="flex--end">
         <button type="button" class="btn" (click)="cancel($event)">Cancelar</button>
-        <button type="button" class="btn" (click)="submit(myForm)" routerLink="/payment" >Aceptar</button> <!-- routerLink="/payment" -->
+        <button type="button" [disabled]="!myForm.valid" class="btn" (click)="submit(myForm)" routerLink="/payment" >Aceptar</button> <!-- routerLink="/payment" -->
       </div>
     </form>
   </div>

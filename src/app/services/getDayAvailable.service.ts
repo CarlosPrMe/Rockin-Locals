@@ -13,10 +13,10 @@ export class GetDayAvailableService {
   constructor(private httpClient: HttpClient) { }
 
 
-  getHoursAvailable(day, local) {
-
-    return this.httpClient.get(`${environment.apiUrl}/${day}`).toPromise()
-  }
+  //getHoursAvailable(day, local) {
+//
+  //  return this.httpClient.get(`${environment.apiUrl}/${day}`).toPromise()
+  //}
 }
 
 hours: [

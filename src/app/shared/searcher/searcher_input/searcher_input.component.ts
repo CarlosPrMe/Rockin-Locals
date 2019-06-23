@@ -27,4 +27,6 @@ export class SearcherInputComponent implements OnInit {
     form.reset();
   }
 
+
+
 }
