@@ -20,8 +20,6 @@ export class TableGridPastComponent extends TableGridComponent implements OnChan
   ngOnChanges(simpleChange : SimpleChanges){
 
     console.log(simpleChange);
-    debugger
-
     if(simpleChange.reservations.currentValue.length > 0){
       this.dataSource = new MatTableDataSource();
       this.reservations = simpleChange.reservations.currentValue

@@ -9,15 +9,16 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   addUser(user) {
-    return this.httpClient.post(`${environment.apiUrl}/user`, user).toPromise();
+    return this.httpClient.post(`${environment.apiUrl}/users`, user).toPromise();
   }
 
+
   editUser(user){
-    return this.httpClient.patch(`${environment.apiUrl}/user/${user.id}`,user).toPromise();
+    return this.httpClient.put(`${environment.apiUrl}/users/${user.id}`,user).toPromise();
   }
 
   deleteUser(id){
-    return this.httpClient.delete(`${environment.apiUrl}/user/${id}`).toPromise();
+    return this.httpClient.delete(`${environment.apiUrl}/users/${id}`).toPromise();
   }
 
 }

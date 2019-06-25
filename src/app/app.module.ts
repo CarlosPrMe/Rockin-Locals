@@ -74,7 +74,6 @@ import { LocationService } from './services/location.service';
 import { UserService } from './services/users.services';
 import { ReservationsService } from './services/reservations.service';
 import { FavouritesService } from './services/favourites.service';
-import { GetDayAvailableService } from './services/getDayAvailable.service';
 import { ScreenService } from './services/screen.service';
 //------------------------------------
 
@@ -84,8 +83,6 @@ import 'hammerjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
-//import { TableMaterialComponent } from './shared/table-material/table-material.component'
-import { MatDialogModule } from '@angular/material/dialog';
 import { SpanishPaginatorComponent } from './shared/spanish-paginator/spanish-paginator.component';
 
 
@@ -166,7 +163,6 @@ const httpInterceptorProviders = [
     ReservationSummaryComponent,
     TableGridPastComponent,
     DatepickerComponent,
-    //TableMaterialComponent,
     SpinnerComponent,
 
 
@@ -178,7 +174,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'yourApiKey'
+      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
     }),
     HttpClientModule,
     NgbDatepickerModule,
@@ -197,7 +193,6 @@ const httpInterceptorProviders = [
     LocationService,
     ReservationsService,
     FavouritesService,
-    GetDayAvailableService,
     ScreenService,
     //GoToPaymentGuard,
     httpInterceptorProviders,

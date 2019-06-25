@@ -32,7 +32,7 @@
           <div class="form__block-input">
             <div class="form__group">
               <label for="photo360" class="form__label form__label--radio">Foto 360*
-                <input formControlName="imageType" type="radio" name="imageType" id="photo360" class="form__radio" value="360">
+                <input formControlName="imageType" type="radio" name="imageType" id="photo360" class="form__radio" value="360" [checked]="checked">
                 <svg class="icon-label icon-label--sm icon-label--left" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 60 60">
 
@@ -67,7 +67,7 @@
           <div class="form__block-input">
             <div class="form__group">
               <label for="photo-normal" class="form__label form__label--radio">Clásica
-                <input formControlName="imageType" type="radio" name="imageType" id="photo-normal" class="form__radio" value="panoramic">
+                <input formControlName="imageType" type="radio" name="imageType" id="photo-normal" class="form__radio" value="panoramic" [checked]="checkedPano">
                 <svg class="icon-label icon-label--sm icon-label--left" width="40pt" height="30pt"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 58 58">
@@ -130,7 +130,7 @@
         <div class="grid--sm">
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="drum" class="form__check--custom" selected>
+              <input formControlName="checkDrum" type="checkbox" name="equipment" id="drum" class="form__check--custom" value="true">
               <label for="drum" class="form__label form__label--radio form__label--sm">Batería
                 <svg class="svg svg--custom" height="25pt" viewBox="0 -35 512.00061 512" width="25pt"
                   xmlns="http://www.w3.org/2000/svg">
@@ -151,7 +151,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="guit-amp1" class="form__check--custom">
+              <input formControlName="checkAmpGuit1" type="checkbox" name="equipment" id="guit-amp1" class="form__check--custom" value="true">
               <label for="guit-amp1" class="form__label form__label--radio form__label--sm">Amplificador
                 de
                 guitarra
@@ -216,7 +216,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="guit-amp2" class="form__check--custom">
+              <input formControlName="checkAmpGuit2" type="checkbox" name="equipment" id="guit-amp2" class="form__check--custom" value="true">
               <label for="guit-amp2" class="form__label form__label--radio form__label--sm">Amplificador
                 de guitarra
                 2
@@ -231,7 +231,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="bass-amp" class="form__check--custom">
+              <input formControlName="checkAmpBass" type="checkbox" name="equipment" id="bass-amp" class="form__check--custom" value="true">
               <label for="bass-amp" class="form__label form__label--radio form__label--sm">Amplificador de
                 bajo
                 <svg class="svg svg--custom" height="25pt" width="25pt" viewBox="0 0 391.758 391.758">
@@ -274,7 +274,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="keyborad" class="form__check--custom">
+              <input formControlName="checkKeyboard" type="checkbox" name="equipment" id="keyboard" class="form__check--custom" value="true">
               <label for="keyboard" class="form__label form__label--radio form__label--sm">Teclado
                 <svg class="svg svg--custom" height="25pt" width="25pt" viewBox="0 -86 512 512">
                   <path
@@ -306,7 +306,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="speakers" class="form__check--custom">
+              <input formControlName="checkOthers" type="checkbox" name="equipment" id="speakers" class="form__check--custom" value="true">
               <label for="speakers" class="form__label form__label--radio form__label--sm">Equipo
                 de
                 voz

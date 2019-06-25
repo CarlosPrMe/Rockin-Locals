@@ -5,6 +5,7 @@ import { customValidatorEmail } from '../../modal/validators-custom';
 import { Router } from '@angular/router';
 import { ReservationsService } from '../../../services/reservations.service';
 import swal from 'sweetalert2';
+import { log } from 'util';
 
 @Component({
   selector: 'app-payment',
@@ -16,17 +17,15 @@ export class PaymentComponent implements OnInit {
   myForm;
   @Input() reservation;
   localSelected;
-  //methodSelected:boolean;
-  methodActive: boolean = false
+  methodActive: boolean = false;
 
 
   constructor(private fb: FormBuilder, private localservice: LocalsService,
     private reservationService: ReservationsService,
     private router: Router) {
     this.localSelected = this.localservice.localSelected
-    console.log(this.localservice.localSelected);
-    console.log(this.localSelected);
-    console.log(this.methodActive);
+    console.log(this.reservationService.hoursAvailable.value);
+    console.log(this.reservation)
 
   }
 
@@ -43,11 +42,25 @@ export class PaymentComponent implements OnInit {
   submit($event, form) {
     console.log(form.value);
 
+
     this.reservation.methodPayment = form.value;
     console.log(this.reservation);
-    this.reservationService.makeReservation(this.reservation).then((res)=>{
-      console.log(res)
+    debugger
+    this.reservationService.makeReservation(this.reservation).then((res) => {
+      //console.log(res)
     })
+
+    if (this.reservationService.emptyDay.value) {
+      //Crear una disponibiliad
+      this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+      debugger
+    } else {
+      //Modificamos la disponibiliadad
+      this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+      debugger
+    }
+    this.reservationService.emptyDay.next(false);
+
 
     swal.fire({
       title: 'Gracias por la reserva',
@@ -61,7 +74,7 @@ export class PaymentComponent implements OnInit {
 
   activateMethod($event) {
     this.methodActive = true;
-    console.log(this.methodActive);
+    //console.log(this.methodActive);
 
   }
 }

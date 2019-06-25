@@ -22,9 +22,7 @@ export class ConfigurationComponent implements OnInit {
   ngOnInit() {
 
     this.loggingService.user.subscribe((res) => {
-      //debugger
       this.user = res;
-      //console.log(res)
     })
   }
 

@@ -38,10 +38,11 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
     this.today = this.ngbCalendar.getToday();
 
-    this.reservationsService.getReservation(this.user.bandName).then((data: Array<any>) => {
+    this.reservations=[];
+
+    this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
       this.reservations = data;
       console.log(this.reservations);
-      debugger
       this.separateReservations.call(this, data);
     })
 

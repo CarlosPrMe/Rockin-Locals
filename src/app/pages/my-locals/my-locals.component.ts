@@ -30,7 +30,7 @@ export class MyLocalsComponent implements OnInit {
 
     this.loggingService.user.subscribe((res) => this.user = res);
 
-    this.reservationsService.getReservation(this.user.companyName).then((data: Array<any>) => {
+    this.reservationsService.getReservationByLocal(this.user.companyName).then((data: Array<any>) => {
       this.reservations = data;
       this.separateReservations.call(this, data);
     })

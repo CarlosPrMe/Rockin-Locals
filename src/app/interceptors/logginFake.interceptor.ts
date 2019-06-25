@@ -26,7 +26,7 @@ export class LogginFakeInterceptor implements HttpInterceptor {
        // },
         {
           companyName:'GustaRock',
-          companyId:1,
+          companyId: '5d10cefb2e919d314c494770' ,
           localName:'Local 3',
         },
       ]

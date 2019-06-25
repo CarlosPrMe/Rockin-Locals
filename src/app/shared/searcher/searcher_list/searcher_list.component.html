@@ -1,5 +1,5 @@
 <ul class="results__list">
-  <li (click)="goToLocal($event, local)" *ngFor="let local of this.localsFound" class="results__item" [routerLink]="['/local',local.id]" >
+  <li (click)="goToLocal($event, local)" *ngFor="let local of this.localsFound" class="results__item" [routerLink]="['/local',local._id]" >
     <a class="results__link">{{local.companyName}} - {{local.address}}</a></li>
 
 </ul>

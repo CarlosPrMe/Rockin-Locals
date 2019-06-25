@@ -1,5 +1,6 @@
 import { Injectable, } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
+import { environment } from '../../environments/environment';
 import { Subject, BehaviorSubject } from "rxjs";
 
 @Injectable()
@@ -24,6 +25,19 @@ export class LoggingService {
 
     });
   }
+
+/*   login(user, pass) {
+    return this.httpClient.post(`${environment.apiUrl}`, {
+      email: user,
+      password: pass
+    }).toPromise().then((response: any) => {
+      this.token = response.access_token;
+      this.user.next(response.user)
+      this.isLogged.next(true);
+      console.log(this.user.value);
+
+    });
+  } */
 
 
 

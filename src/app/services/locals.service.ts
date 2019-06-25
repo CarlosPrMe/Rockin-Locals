@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient,HttpParams } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 
@@ -11,15 +11,23 @@ export class LocalsService {
 
   localSelected;
 
+
   getLocalsByCity(city) {
-    return this.httpClient.get(`${environment.apiUrl}/local?search=${city}`).toPromise();
+    if (!isNaN(+city)) {
+      let params = new HttpParams().set('postalCode',city);
+      return this.httpClient.get(`${environment.apiUrl}/locals`, {params}).toPromise();
+    }else{
+      let params = new HttpParams().set('city', city);
+      return this.httpClient.get(`${environment.apiUrl}/locals`, {params}).toPromise();
+    }
   }
+
  async getLocalsById(id) {
-    return this.httpClient.get(`${environment.apiUrl}/local/${id}`).toPromise();
+    return this.httpClient.get(`${environment.apiUrl}/locals/${id}`).toPromise();
   }
 
   getLocalsByLocal(user) {
-    return this.httpClient.get(`${environment.apiUrl}/local?search=${user}`).toPromise();
+    return this.httpClient.get(`${environment.apiUrl}/locals?companyName=${user}`).toPromise();
   }
 
   selectLocal(local) {
@@ -27,7 +35,7 @@ export class LocalsService {
   }
 
   editLocal(local){
-   return this.httpClient.put(`${environment.apiUrl}/local/${local.id}`,local).toPromise();
+   return this.httpClient.put(`${environment.apiUrl}/locals/${local.id}`,local).toPromise();
   }
 
 }

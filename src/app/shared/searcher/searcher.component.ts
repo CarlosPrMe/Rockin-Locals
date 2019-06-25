@@ -11,37 +11,36 @@ import swal from 'sweetalert2';
 
 export class SearcherComponent {
 
-  constructor( private localsService: LocalsService) { }
+  constructor(private localsService: LocalsService) { }
 
   localsFound;
   showInfo;
 
   showData(local) {
-    console.log(local);
+    if (!isNaN(+local)) {
+      local = +local
+    } else {
+      local = local;
+    }
+    //console.log(local);
 
-    this.localsService.getLocalsByCity(local).then((data:Array<any>)=> {
+    this.localsService.getLocalsByCity(local).then((data: Array<any>) => {
       if (data.length === 0) {
-
         swal.fire({
           title: 'Lo sentimos. No hay locales de ensayo en esa ubicación',
           text: 'Introduce una nueva dirección en el buscador',
           type: "warning",
           showConfirmButton: false,
-        });
-
+        })
         this.localsFound = null;
         this.showInfo = false
-
         return null;
-      }else{
+      } else {
         this.showInfo = true;
         this.localsFound = data;
       }
-      console.log(data)
+      //console.log(data)
     })
-
   }
-
-
 }
 
