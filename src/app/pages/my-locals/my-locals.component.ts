@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { LoggingService } from '../../services/logging.service';
+import { LoginService } from '../../services/login.service';
 import { ReservationsService } from '../../services/reservations.service';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { LocalsService } from '../../services/locals.service';
@@ -19,7 +19,7 @@ export class MyLocalsComponent implements OnInit {
   today: NgbDate;
   local;
   showTableReservations:boolean = true;
-  constructor(private loggingService: LoggingService,
+  constructor(private loginService: LoginService,
     private reservationsService: ReservationsService,
     private localsService: LocalsService,
     private ngbCalendar: NgbCalendar) {
@@ -28,7 +28,7 @@ export class MyLocalsComponent implements OnInit {
 
     this.today = this.ngbCalendar.getToday();
 
-    this.loggingService.user.subscribe((res) => this.user = res);
+    this.loginService.user.subscribe((res) => this.user = res);
 
     this.reservationsService.getReservationByLocal(this.user.companyName).then((data: Array<any>) => {
       this.reservations = data;

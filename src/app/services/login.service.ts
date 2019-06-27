@@ -5,13 +5,13 @@ import { Subject, BehaviorSubject } from "rxjs";
 
 @Injectable()
 
-export class LoggingService {
+export class LoginService {
 
   constructor(private httpClient: HttpClient) { }
 
   user = new BehaviorSubject(null);
   token;
-  isLogged = new BehaviorSubject(false);
+  isLoged = new BehaviorSubject(false);
 
   login(user, pass) {
     return this.httpClient.post(`https://localhost:3000/auth/login`, {
@@ -20,7 +20,7 @@ export class LoggingService {
     }).toPromise().then((response: any) => {
       this.token = response.access_token;
       this.user.next(response.user)
-      this.isLogged.next(true);
+      this.isLoged.next(true);
       console.log(this.user.value);
 
     });
@@ -33,7 +33,7 @@ export class LoggingService {
     }).toPromise().then((response: any) => {
       this.token = response.access_token;
       this.user.next(response.user)
-      this.isLogged.next(true);
+      this.isLoged.next(true);
       console.log(this.user.value);
 
     });
@@ -49,7 +49,7 @@ export class LoggingService {
   logOut() {
     this.token = null;
     this.user.next(false);
-    this.isLogged.next(false);
+    this.isLoged.next(false);
   }
 
 }

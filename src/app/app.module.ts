@@ -67,8 +67,8 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // SERVICIOS------------------
 import { TestService } from './services/test.service';
-import { LogginFakeInterceptor } from './interceptors/logginFake.interceptor';
-import { LoggingService } from './services/logging.service';
+import { LoginFakeInterceptor } from './interceptors/loginFake.interceptor';
+import { LoginService } from './services/login.service';
 import { LocalsService } from './services/locals.service';
 import { LocationService } from './services/location.service';
 import { UserService } from './services/users.services';
@@ -108,7 +108,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 
 
 const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: LogginFakeInterceptor, multi: true },
+  { provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
   /* { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }, */
 ];
 
@@ -187,7 +187,7 @@ const httpInterceptorProviders = [
   ],
   providers: [
     TestService,
-    LoggingService,
+    LoginService,
     UserService,
     LocalsService,
     LocationService,

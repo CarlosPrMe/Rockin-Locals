@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LocalsService } from '../../services/locals.service';
-import { LoggingService } from '../../services/logging.service';
+import { LoginService } from '../../services/login.service';
 import { ReservationsService } from '../../services/reservations.service';
 
 @Component({
@@ -17,14 +17,14 @@ export class LocalComponent implements OnInit, OnDestroy {
 
   localSelected = this.localsService.localSelected
 
-  constructor(private localsService: LocalsService, private logginsService: LoggingService,
+  constructor(private localsService: LocalsService, private loginsService: LoginService,
     private reservationsService: ReservationsService) {
 
     document.body.scrollTop = 0
 
-    this.isUser = this.logginsService.isLogged.subscribe((res) => this.user = res);
+    this.isUser = this.loginsService.isLoged.subscribe((res) => this.user = res);
 
-    this.isUserData = this.logginsService.user.subscribe((res) => { this.userData = res })
+    this.isUserData = this.loginsService.user.subscribe((res) => { this.userData = res })
   }
 
   ngOnInit() {

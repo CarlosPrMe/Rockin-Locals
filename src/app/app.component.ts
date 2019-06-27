@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
 import { map, switchMap, mergeMap } from 'rxjs/operators';
-import { LoggingService } from './services/logging.service';
+import { LoginService } from './services/login.service';
 import { UserService } from './services/users.services';
 import { ScreenService } from './services/screen.service';
 import { ScrollToService } from 'ng2-scroll-to-el';
@@ -21,15 +21,15 @@ export class AppComponent implements OnInit, OnChanges {
   userOnline;
 
 
-  constructor(private userService: UserService, private loggingService: LoggingService,
+  constructor(private userService: UserService, private loginService: LoginService,
     private screenService: ScreenService, private scrollService: ScrollToService,
     private locationService: LocationService) {
 
-    this.loggingService.user.subscribe(data => {
+    this.loginService.user.subscribe(data => {
       this.user = data;
     })
 
-    this.userOnline = this.loggingService.isLogged.subscribe(res => {
+    this.userOnline = this.loginService.isLoged.subscribe(res => {
     })
   }
 
@@ -52,7 +52,7 @@ export class AppComponent implements OnInit, OnChanges {
 
   onCloseSesion($event) {
     let name = this.user.userName;
-    this.loggingService.logOut();
+    this.loginService.logOut();
   }
 
   async  onRegister(user) {
@@ -60,21 +60,33 @@ export class AppComponent implements OnInit, OnChanges {
       let location: any = await this.locationService.getLocation(user.city, user.address, user.postalCode)
       user.location = location.results[0].geometry.location;
     }
-    this.userService.addUser(user).then(() => {
+    this.userService.addUser(user).then((res: any) => {
+
+      if (res.errors) {
+        swal.fire({
+          title: 'Error en el registro',
+          text: 'Algo ha ido mal',
+          type: "error",
+          showConfirmButton: false,
+        });
+      } else {
+        swal.fire({
+          title: 'Bienvenido a Rockin Locals',
+          text: 'Registro con éxito',
+          type: "success",
+          showConfirmButton: false,
+        });
+
+      }
+      console.log(res);
+      //debugger
       this.toggleModal(user);
 
-      swal.fire({
-        title: 'Bienvenido a Rockin Locals',
-        text: 'Registro con éxito',
-        type: "success",
-        showConfirmButton: false,
-      });
-      //alert('Bienvenido a Rockin Locals');
     })
   }
 
   onOpenSession(user) {
-    this.loggingService.login(user.email, user.password).then((data) => {
+    this.loginService.login(user.email, user.password).then((data) => {
     });
   }
 

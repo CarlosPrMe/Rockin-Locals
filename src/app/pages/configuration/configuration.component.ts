@@ -1,5 +1,5 @@
 import { Component, OnInit, OnChanges, OnDestroy } from '@angular/core';
-import { LoggingService } from '../../services/logging.service';
+import { LoginService } from '../../services/login.service';
 import { UserService } from '../../services/users.services';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -12,7 +12,7 @@ export class ConfigurationComponent implements OnInit {
 
   user;
 
-  constructor( private loggingService: LoggingService, private userService: UserService,
+  constructor( private loginService: LoginService, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute) {
 
       document.body.scrollTop = 0
@@ -21,7 +21,7 @@ export class ConfigurationComponent implements OnInit {
 
   ngOnInit() {
 
-    this.loggingService.user.subscribe((res) => {
+    this.loginService.user.subscribe((res) => {
       this.user = res;
     })
   }

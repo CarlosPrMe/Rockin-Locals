@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { LoggingService } from '../services/logging.service';
+import { LoginService } from '../services/login.service';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
 export class AuthorizationInterceptor implements HttpInterceptor {
 
-  constructor(private authorization: LoggingService) { }
+  constructor(private authorization: LoginService) { }
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {

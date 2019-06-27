@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
-import { LoggingService } from '../../services/logging.service';
+import { LoginService } from '../../services/login.service';
 
 
 
@@ -23,8 +23,8 @@ export class DropdownComponent implements OnInit, OnChanges {
   @Output() openSession = new EventEmitter();
 
 
-  constructor(private fb: FormBuilder, private loggingService: LoggingService) {
-    this.loggingService.user.subscribe((res) => {
+  constructor(private fb: FormBuilder, private loginService: LoginService) {
+    this.loginService.user.subscribe((res) => {
       this.user = res;
     })
   };

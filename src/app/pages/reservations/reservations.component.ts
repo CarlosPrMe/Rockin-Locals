@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
-import { LoggingService } from '../../services/logging.service';
+import { LoginService } from '../../services/login.service';
 import { ReservationsService } from '../../services/reservations.service';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { LocalsService } from '../../services/locals.service';
@@ -16,23 +16,19 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
 
   user;
-  userDate;
   reservations: Array<any> = [];
   reservationsPast: Array<any> = [];
   reservationsNext: Array<any> = [];
   //date = Date.now();
   today: NgbDate;
 
-  nada;
-
-
-  constructor(private loggingService: LoggingService,
+  constructor(private loginService: LoginService,
     private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
     private localsService: LocalsService, private router: Router,
     private favourites : FavouritesService) {
     document.body.scrollTop = 0
 
-    this.loggingService.user.subscribe((res) => {
+    this.loginService.user.subscribe((res) => {
       this.user = res;
     })
 
@@ -75,7 +71,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   onDeleteFavourite(id){
     console.log('id del local a borrar',id);
-    this.favourites.deleteFavourite(id, this.user.id).then(res=>{});
+    this.favourites.deleteFavourite(this.user, id).then(res=>{});
 
   }
 

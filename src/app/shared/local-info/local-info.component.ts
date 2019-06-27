@@ -72,6 +72,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   checkFavourite(user, local) {
     debugger
+
     for (let i = 0; i < user.favourites.length; i++) {
       if (user.favourites[i].companyName === local.companyName) {
         this.added = true;
@@ -82,25 +83,41 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   addToFavourites(user, local) {
 
-    //Servicio para añadir a favoritos
-    //this.favouritesService.addFavourite(user, local,this.favourite).then((data) => console.log(data))
+    let favourites = {
+      idLocal: local.id,
+      localName: local.name,
+      company: local.companyName
+    }
 
-    //this.favourite.companyName = local.companyName;  Creo que esto  no lo utilizo
-    //this.favourite.companyId = local.id;  Creo que esto  no lo utilizo
-    //this.favourite.localName = local.name;  Creo que esto  no lo utilizo
-
+    if (!user.favourites || user.favourites.length === 0) {
+      user.favourites = [];
+    }
+    user.favourites.push(favourites);
+    this.favouritesService.modifyFavourite(user).then((data) => {
+      console.log(data);
+      this.added = true;
+    })
   }
 
   deleteFavourite(event, user, local) {
     console.log(user, +local);
-    this.added = false // A modo de juego
-    //this.favouritesService.deleteFavourite(user,local).then(
-    // this.added= false
-    //) Implementar bien esta peticion
+
+    let favourites = user.favourites.filter(f => f.company !== local.companyName);
+
+    user = Object.assign(user, favourites);
+
+    this.favouritesService.modifyFavourite(user).then((res) => {
+      console.log(res)
+      this.added = false;
+    }
+
+    )
+
+    // Lo que me llega en el evento $event,userData.id, localSelected.id)
   }
 
   getDay(date) {
-    this.reservationsService.daySelected.next(date) //Formato Date
+    this.reservationsService.daySelected.next(date)
     this.daySelected.next(date)
     this.resetHours();
 
@@ -139,13 +156,13 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.askReservation.emit(this.reservation)
     console.log(this.reservation);
     console.log(this.changeAvailavility(form.value));
-debugger
-    if(this.reservObj.id){
+    debugger
+    if (this.reservObj.id) {
       this.reservObj.hours = Object.assign(this.reservationsService.hoursAvailable.value, this.changeAvailavility(form.value))
       this.reservationsService.hoursAvailable.next(this.reservObj);
       debugger
-    }else{
-      this.reservObj=this.changeAvailavility(form.value)
+    } else {
+      this.reservObj = this.changeAvailavility(form.value)
       this.reservationsService.hoursAvailable.next(this.reservObj);
       debugger
     }

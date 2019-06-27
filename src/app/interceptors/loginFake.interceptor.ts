@@ -6,7 +6,7 @@ import { Observable, of, throwError } from 'rxjs';
 
 @Injectable()
 
-export class LogginFakeInterceptor implements HttpInterceptor {
+export class LoginFakeInterceptor implements HttpInterceptor {
 
   myUsers = [
     {
@@ -62,7 +62,7 @@ export class LogginFakeInterceptor implements HttpInterceptor {
       const found = this.myUsers.findIndex(u => u.email === user.email && u.password === user.password);
       if (found > -1) {
         return of(new HttpResponse(
-          { status: 200, body: { access_token: 'LogginFAke', user: this.myUsers[found] } }))
+          { status: 200, body: { access_token: 'LoginFAke', user: this.myUsers[found] } }))
       }
 
       return throwError(new HttpErrorResponse({ status: 401 }))
