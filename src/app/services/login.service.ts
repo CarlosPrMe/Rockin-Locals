@@ -2,6 +2,8 @@ import { Injectable, } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import { environment } from '../../environments/environment';
 import { Subject, BehaviorSubject } from "rxjs";
+import swal from 'sweetalert2';
+import { async } from '@angular/core/testing';
 
 @Injectable()
 
@@ -13,15 +15,36 @@ export class LoginService {
   token;
   isLoged = new BehaviorSubject(false);
 
-  login(user, pass) {
-    return this.httpClient.post(`https://localhost:3000/auth/login`, {
-      email: user,
+  async login(email, pass) {
+    //debugger;
+    return this.httpClient.post(`${environment.apiUrl}/auth/login`, {
+      email: email,
       password: pass
-    }).toPromise().then((response: any) => {
-      this.token = response.access_token;
-      this.user.next(response.user)
-      this.isLoged.next(true);
-      console.log(this.user.value);
+
+    }).subscribe((response: any) => {
+      debugger;
+      if(response.access_token){
+
+        this.token = response.access_token;
+        this.user.next(response.user)
+        this.isLoged.next(true);
+        console.log(this.user.value);
+        /* swal.fire({
+          title: `Hola ${response.user.userName}`,
+          type: "success",
+          showConfirmButton: false,
+        }); */
+
+      }else{
+        swal.fire({
+          title: 'Error en el login',
+          text: 'Usuario/contraseña incorrecto',
+          type: "error",
+          showConfirmButton: false,
+        });
+        console.log(response);
+      }
+
 
     });
   }
@@ -47,9 +70,15 @@ export class LoginService {
 
 
   logOut() {
-    this.token = null;
-    this.user.next(false);
-    this.isLoged.next(false);
+
+    return this.httpClient.get(`${environment.apiUrl}/auth/logout`).toPromise()
+    .then((res)=>{
+      debugger
+      console.log(res);
+      this.token = null;
+      this.user.next(false);
+      this.isLoged.next(false);
+    })
   }
 
 }

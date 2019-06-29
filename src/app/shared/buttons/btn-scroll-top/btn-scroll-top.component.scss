@@ -21,14 +21,22 @@
 .btn--scroll-top {
   //display: none;
   position: fixed;
-  z-index: map-get($z-index, "top");
-  bottom: 4.5rem;
-  right: 2.5rem;
+  z-index: map-get($z-index, "overtop");
+
   cursor: pointer;
   border-radius: 100%;
   transition: all 150ms linear;
   &:hover {
     fill: var(--primary);
+  }
+
+  @media (max-width:767px){
+    bottom: 1rem;
+    right: 1rem;
+  }
+  @media (min-width:768px){
+    bottom: 4.5rem;
+    right: 2.5rem;
   }
 }
 

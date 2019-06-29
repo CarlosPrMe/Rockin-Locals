@@ -17,9 +17,9 @@ export class BtnScrollTopComponent  {
   constructor(private screnService: ScreenService) {
     this.screnService.heigth.subscribe((res) => {this.heigth = res;
 
-      if (this.heigth > 800) {
+      if (this.heigth > 700) {
         this.show = true
-      } else if (this.heigth < 800) {
+      } else if (this.heigth < 700) {
         this.show = false
       }
 

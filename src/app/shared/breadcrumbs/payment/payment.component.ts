@@ -24,8 +24,8 @@ export class PaymentComponent implements OnInit {
     private reservationService: ReservationsService,
     private router: Router) {
     this.localSelected = this.localservice.localSelected
-    console.log(this.reservationService.hoursAvailable.value);
-    console.log(this.reservation)
+    //console.log(this.reservationService.hoursAvailable.value);
+    //console.log(this.reservation)
 
   }
 
@@ -40,14 +40,12 @@ export class PaymentComponent implements OnInit {
   }
 
   submit($event, form) {
-    console.log(form.value);
-
-
+    //console.log(form.value);
     this.reservation.methodPayment = form.value;
-    console.log(this.reservation);
+    //console.log(this.reservation);
     debugger
     this.reservationService.makeReservation(this.reservation).then((res) => {
-      //console.log(res)
+      console.log(res)
     })
 
     if (this.reservationService.emptyDay.value) {

@@ -25,21 +25,22 @@ export class ReservationsService {
   }
 
   askHoursAvailable(date, company) {
-    const params = new HttpParams().set('day', date.day).set('month', date.month).set('companyName', company);
-    debugger
+    const params = new HttpParams().set('day', date.day).set('month', date.month).set('year', date.year).set('companyName', company);
+    //debugger
     return this.httpClient.get(`${environment.apiUrl}/availabilities`, { params }).toPromise();
   }
 
 
   makeReservation(reserva) {
-    return this.httpClient.post(`${environment.apiUrl}/reservations`, {reserva}).toPromise()
+    debugger
+    return this.httpClient.post(`${environment.apiUrl}/reservations`, {reserva}).toPromise();
   }
 
   startAvailability(date, companyName, local, newHours) {
     return this.httpClient.post(`${environment.apiUrl}/availabilities/`,{
       date: date,
       companyName: companyName,
-      hours: newHours,
+      hours: newHours.hours,
       localName: local}).toPromise();
   }
 

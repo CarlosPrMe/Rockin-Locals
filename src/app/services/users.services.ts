@@ -11,7 +11,7 @@ export class UserService {
   addUser(user) {
     //console.log(user);
 
-    return this.httpClient.post(`${environment.apiUrl}/auth/sign-up`, user).toPromise();
+    return this.httpClient.post(`${environment.apiUrl}/auth/sign-up`, user)
   }
 
 

@@ -56,13 +56,16 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   async  onRegister(user) {
-    if (user.city !== "" || user.address !== "" || user.postalCode !== "") {
+    if (user.type === 'local') {
       let location: any = await this.locationService.getLocation(user.city, user.address, user.postalCode)
       user.location = location.results[0].geometry.location;
     }
-    this.userService.addUser(user).then((res: any) => {
+    console.log(user);
 
-      if (res.errors) {
+    this.userService.addUser(user).subscribe((res: any) => {
+
+
+      if (res >= 500) {
         swal.fire({
           title: 'Error en el registro',
           text: 'Algo ha ido mal',
@@ -78,7 +81,7 @@ export class AppComponent implements OnInit, OnChanges {
         });
 
       }
-      console.log(res);
+      console.log('sin await', res);
       //debugger
       this.toggleModal(user);
 
@@ -86,6 +89,7 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   onOpenSession(user) {
+   // debugger;
     this.loginService.login(user.email, user.password).then((data) => {
     });
   }

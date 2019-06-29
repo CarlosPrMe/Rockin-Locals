@@ -54,7 +54,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
-      if (this.today.before(reserva.date)) {
+      if (this.today.before(reserva.date) || this.today.equals(reserva.date)) {
         this.reservationsNext.push(reserva)
       } else if (this.today.after(reserva.date)) {
         this.reservationsPast.push(reserva)
@@ -63,6 +63,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
   }
 
   async onNavigateTolocal(id) {
+debugger
     //console.log(id);
     this.localsService.localSelected = await this.localsService.getLocalsById(id)
     this.router.navigateByUrl(`/local/${id}`)
@@ -70,8 +71,12 @@ export class ReservationsComponent implements OnInit, OnChanges {
   }
 
   onDeleteFavourite(id){
+    debugger
     console.log('id del local a borrar',id);
-    this.favourites.deleteFavourite(this.user, id).then(res=>{});
+    this.favourites.deleteFavourite(this.user, id).then((res)=>{
+      debugger
+      this.loginService.user.next(res)
+    });
 
   }
 

@@ -108,7 +108,7 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 
 
 const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
+  //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
   /* { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }, */
 ];
 
