@@ -3,8 +3,9 @@
     <div class="info__item row">
       <span class="info__heading col-sm-4">{{local?.name}}</span>
       <div class="flex--end col-sm-8">
+          <!-- <button *ngIf="!local" type="button" class="btn" (click)="showLocal($event)">Añadir local</button> -->
         <button type="button" class="btn" (click)="showLocal($event)">Editar</button>
-        <button type="button" class="btn">Eliminar</button>
+        <button type="button" class="btn" (click)="delete(local._id)">Eliminar</button>
       </div>
     </div>
     <div class="info__edit row" *ngIf="show">
@@ -345,7 +346,7 @@
       </div>
     </div>
     <div class=" flex--end" *ngIf="show">
-      <button type="button" class="btn" (click)="submit($event,myForm)">Aceptar</button>
+      <button type="button" class="btn" (click)="submit($event,myForm, user)">Aceptar</button>
       <button type="reset" class="btn" (click)="showLocal($event)">Cancelar</button>
     </div>
   </form>

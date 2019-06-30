@@ -106,6 +106,10 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 
 import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
 
+//PRUEBA PARA SUBIR IMAGEN--------
+import { UploadFilesComponent } from './shared/upload-files/upload-files.component';
+import { UploadImageService } from './services/upload.service';
+//--------------------------------
 
 const httpInterceptorProviders = [
   //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
@@ -164,6 +168,7 @@ const httpInterceptorProviders = [
     TableGridPastComponent,
     DatepickerComponent,
     SpinnerComponent,
+    UploadFilesComponent,
 
 
 
@@ -174,7 +179,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
+      apiKey: YOUR_API_KEY
     }),
     HttpClientModule,
     NgbDatepickerModule,
@@ -196,6 +201,7 @@ const httpInterceptorProviders = [
     ScreenService,
     //GoToPaymentGuard,
     httpInterceptorProviders,
+    UploadImageService,
     { provide: MatPaginatorIntl, useClass: SpanishPaginatorComponent}
   ],
   bootstrap: [AppComponent]

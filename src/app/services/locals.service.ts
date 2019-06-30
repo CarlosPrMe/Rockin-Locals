@@ -35,7 +35,18 @@ export class LocalsService {
   }
 
   editLocal(local){
-   return this.httpClient.put(`${environment.apiUrl}/locals/${local.id}`,local).toPromise();
+    debugger
+   return this.httpClient.put(`${environment.apiUrl}/locals/${local._id}`,local).toPromise();
+  }
+
+  deleteLocal(id){
+    debugger
+    return this.httpClient.delete(`${environment.apiUrl}/locals/${id}`).toPromise()
+  }
+
+  createLocal(local){
+    debugger
+    return this.httpClient.post(`${environment.apiUrl}/locals`,local).toPromise();
   }
 
 }

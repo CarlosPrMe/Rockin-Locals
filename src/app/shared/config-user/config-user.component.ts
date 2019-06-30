@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
 
 
+
 @Component({
   selector: 'app-config-user',
   templateUrl: './config-user.component.html',
@@ -26,8 +27,8 @@ export class ConfigUserComponent implements OnInit {
     this.myForm = this.fb.group({
       userName: [``, Validators.compose([Validators.required, Validators.minLength(5)])],
       bandName: [``,Validators.required],
-      email: [``, Validators.compose([Validators.required, customValidatorEmail])],
-      password: [``, Validators.compose([Validators.required, Validators.minLength(8)])],
+      //email: [``, Validators.compose([Validators.required, customValidatorEmail])],
+      //password: [``, Validators.compose([Validators.required, Validators.minLength(8)])],
       avatar: ["",],
     })
 
@@ -39,8 +40,8 @@ export class ConfigUserComponent implements OnInit {
     this.myForm.setValue({
       userName: this.user.userName,
       bandName: this.user.bandName,
-      email: this.user.email,
-      password: this.user.password,
+      //email: this.user.email,
+      //password: this.user.password,
       avatar: this.user.avatar,
 
     })
@@ -48,11 +49,13 @@ export class ConfigUserComponent implements OnInit {
   }
 
   submit($event, form) {
+    debugger
     this.editUser.emit(form.value);
   }
 
   delete($event) {
-    this.deleteUser.emit(this.user.id);
+    debugger
+    this.deleteUser.emit(this.user._id);
   }
 
 }

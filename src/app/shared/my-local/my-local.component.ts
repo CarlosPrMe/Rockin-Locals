@@ -1,7 +1,8 @@
-import { Component, OnInit, Input, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
 import { LocalsService } from '../../services/locals.service';
 import { Router } from '@angular/router';
+import { LocalClass } from '../../mis clases/local';
 
 @Component({
   selector: 'app-my-local',
@@ -16,12 +17,16 @@ export class MyLocalComponent implements OnInit, OnChanges {
   checked360 = false;
   checkedPano = false;
   show: boolean = false;
+  @Output() updateLocal = new EventEmitter();
+  @Output() deleteLocal = new EventEmitter();
+
   constructor(private fb: FormBuilder, private localservice: LocalsService,
     private router: Router) {
 
   }
 
   ngOnInit() {
+
     this.myForm = this.fb.group({
       checkDrum: [''],
       checkAmpGuit1: [''],
@@ -43,8 +48,9 @@ export class MyLocalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-
+    debugger
     if (this.local) {
+      this.show = false;
       if (!this.local.equipment.keyboard) {
         this.local.equipment.keyboard = '';
       }
@@ -53,11 +59,11 @@ export class MyLocalComponent implements OnInit, OnChanges {
       }
 
       if (this.local.imageType) {
-        if(this.local.imageType === "360"){
-          this.checked360= true;
+        if (this.local.imageType === "360") {
+          this.checked360 = true;
         }
-        if(this.local.imageType === "panoramic"){
-          this.checkedPano= true;
+        if (this.local.imageType === "panoramic") {
+          this.checkedPano = true;
         }
 
       } else {
@@ -114,6 +120,9 @@ export class MyLocalComponent implements OnInit, OnChanges {
         others: this.local.equipment.others
       })
     }
+    else {
+      this.show = true;
+    }
   }
 
   showLocal($event) {
@@ -121,13 +130,44 @@ export class MyLocalComponent implements OnInit, OnChanges {
   }
 
 
-  submit(event, form) {
-    console.log(form.value);
-    //this.show = !this.show;
-    //this.localservice.editLocal(form.value).then((data)=>console.log(data))
-    this.router.navigateByUrl('index')
+  submit(event, form, currentUser) {
 
 
+    let UpdatedLocal = {}
+    debugger
+    console.log(form.value, currentUser);
+    let local = new LocalClass();
+    let equipment = {
+      drum: form.value.drum,
+      ampGuit1: form.value.ampGuit1,
+      ampGuit2: form.value.ampGuit2,
+      ampBass: form.value.ampBass,
+      keyboard: form.value.keyboard,
+      others: form.value.others
+    }
 
+    local.city = currentUser.city;
+    local.postalCode = currentUser.postalCode;
+    local.address = currentUser.address;
+    local.name = form.value.name;
+    local.location = currentUser.location;
+    local.equipment = equipment;
+    local.image = form.value.image;
+    local.price = form.value.price;
+    local.companyName = currentUser.companyName;
+    local.imageType = form.value.imageType;
+    local.description = currentUser.description;
+    debugger
+    if (this.local) {
+      UpdatedLocal = Object.assign(this.local, local)
+    }
+    UpdatedLocal = local
+    this.updateLocal.emit(UpdatedLocal);
+  }
+
+  delete(id) {
+    this.deleteLocal.emit(id)
   }
 }
+
+

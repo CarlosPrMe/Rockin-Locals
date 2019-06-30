@@ -35,7 +35,7 @@ export class LoginService {
           showConfirmButton: false,
         }); */
 
-      }else{
+      }else if (response.status === 401){
         swal.fire({
           title: 'Error en el login',
           text: 'Usuario/contraseña incorrecto',

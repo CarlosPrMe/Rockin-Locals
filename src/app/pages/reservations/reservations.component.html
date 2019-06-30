@@ -1,7 +1,7 @@
 <app-header-user [user]="user"></app-header-user>
 <div class="container">
   <div class="grid">
-    <h2 *ngIf="reservationsNext.length === 0" class="heading">Aquí aparecerán tus reservas cuando tangas alguna</h2>
+    <h2 *ngIf="reservationsNext.length === 0" class="heading">Aquí aparecerán todas tus reservas (pasadas y futuras)</h2>
     <h2 *ngIf="reservationsNext.length > 0" class="heading">Reserva/s futura/s</h2>
     <app-table-grid *ngIf="reservationsNext.length > 0" [reservations]="reservationsNext"></app-table-grid>
     <app-favourites [user]="user" (navigateTolocal)="onNavigateTolocal($event, user.favourites)"

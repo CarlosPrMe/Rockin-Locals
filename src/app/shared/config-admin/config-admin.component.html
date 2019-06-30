@@ -81,13 +81,10 @@
             </div>
           </div>
         </div>
-
-
-      <div class="info__item row">
+<!--       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-4 col-lg-4">Email</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <!-- <label class="form__label" for="email">Email</label> -->
             <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required ||
                 myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom}" formControlName="email"
               class="form__control" type="email" id="email" required>
@@ -103,7 +100,6 @@
         <span class="info__heading col-sm-12 col-md-4 col-lg-4">Contraseña</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <!-- <label class="form__label" for="email">Contraseña</label> -->
             <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
                 myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}"
               formControlName="password" type="password" class="form__control" id="password-register" required
@@ -115,8 +111,7 @@
           <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
             Obligatorio</div>
         </div>
-      </div>
-
+      </div> -->
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-8 col-lg-4">Dirección</span>
         <div class="info__edit ">
