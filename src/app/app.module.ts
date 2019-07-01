@@ -109,11 +109,15 @@ import { AuthorizationInterceptor } from './interceptors/authorization.intercept
 //PRUEBA PARA SUBIR IMAGEN--------
 import { UploadFilesComponent } from './shared/upload-files/upload-files.component';
 import { UploadImageService } from './services/upload.service';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { LoadingService } from './services/loading.service';
 //--------------------------------
 
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
 const httpInterceptorProviders = [
+  //{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
   //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
-  /* { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true }, */
+   //{ provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
 ];
 
 
@@ -169,6 +173,7 @@ const httpInterceptorProviders = [
     DatepickerComponent,
     SpinnerComponent,
     UploadFilesComponent,
+    PageNotFoundComponent,
 
 
 
@@ -179,7 +184,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: YOUR_API_KEY
+      apiKey: ''
     }),
     HttpClientModule,
     NgbDatepickerModule,
@@ -201,6 +206,7 @@ const httpInterceptorProviders = [
     ScreenService,
     //GoToPaymentGuard,
     httpInterceptorProviders,
+    LoadingService,
     UploadImageService,
     { provide: MatPaginatorIntl, useClass: SpanishPaginatorComponent}
   ],

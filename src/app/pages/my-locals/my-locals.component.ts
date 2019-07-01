@@ -73,6 +73,7 @@ export class MyLocalsComponent implements OnInit {
             showConfirmButton: false,
           });
 
+          this.local=null
           this.router.navigateByUrl('/index');
         }
       })
@@ -88,6 +89,7 @@ export class MyLocalsComponent implements OnInit {
             type: "success",
             showConfirmButton: false,
           });
+          this.local=null
           this.router.navigateByUrl('/index');
         }
 

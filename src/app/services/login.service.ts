@@ -26,6 +26,7 @@ export class LoginService {
       if(response.access_token){
 
         this.token = response.access_token;
+        localStorage.setItem('access_token',this.token)
         this.user.next(response.user)
         this.isLoged.next(true);
         console.log(this.user.value);
@@ -78,6 +79,7 @@ export class LoginService {
       this.token = null;
       this.user.next(false);
       this.isLoged.next(false);
+      localStorage.removeItem('access_token');
     })
   }
 

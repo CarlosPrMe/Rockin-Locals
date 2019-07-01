@@ -31,7 +31,9 @@
     "rxjs": "~6.3.3",
     "susy": "^3.0.5",
     "sweetalert2": "^8.13.0",
+    "three": "^0.106.2",
     "tslib": "^1.9.0",
+    "vrview": "^0.2.0",
     "zone.js": "~0.8.26"
   },
   "devDependencies": {

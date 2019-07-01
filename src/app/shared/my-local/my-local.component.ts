@@ -158,10 +158,10 @@ export class MyLocalComponent implements OnInit, OnChanges {
     local.imageType = form.value.imageType;
     local.description = currentUser.description;
     debugger
+    UpdatedLocal = local
     if (this.local) {
       UpdatedLocal = Object.assign(this.local, local)
     }
-    UpdatedLocal = local
     this.updateLocal.emit(UpdatedLocal);
   }
 

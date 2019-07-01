@@ -44,6 +44,12 @@ export class LocalsService {
     return this.httpClient.delete(`${environment.apiUrl}/locals/${id}`).toPromise()
   }
 
+  deleteLocalByCompany(companyName){
+    let params = new HttpParams().set('companyName',companyName)
+    debugger
+    return this.httpClient.delete(`${environment.apiUrl}/locals/${params}`).toPromise()
+  }
+
   createLocal(local){
     debugger
     return this.httpClient.post(`${environment.apiUrl}/locals`,local).toPromise();

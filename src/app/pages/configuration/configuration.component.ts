@@ -72,6 +72,15 @@ export class ConfigurationComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         debugger
+        if(this.user.type === 'local'){
+          this.localService.deleteLocalByCompany(this.user.companyName).then((res:any)=>{
+            debugger;
+
+            if(res.ok !== 1){
+              new Error('Local no encontrado');
+            }
+          })
+        }
         this.userService.deleteUser(id).then((res: any) => {
           if (res.ok = 1) {
             swal.fire({

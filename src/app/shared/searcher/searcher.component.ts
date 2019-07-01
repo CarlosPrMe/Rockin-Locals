@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 import { LocalsService } from '../../services/locals.service';
 import swal from 'sweetalert2';
+import { LoadingService } from 'src/app/services/loading.service';
 
 
 @Component({
@@ -9,12 +10,26 @@ import swal from 'sweetalert2';
   styleUrls: ['./searcher.component.scss']
 })
 
-export class SearcherComponent {
+export class SearcherComponent implements OnInit, OnChanges {
 
-  constructor(private localsService: LocalsService) { }
+  constructor(private localsService: LocalsService,
+    private loadingService: LoadingService) { }
 
   localsFound;
   showInfo;
+  loading
+
+  ngOnInit(){
+  }
+
+  ngOnChanges(simpleChange: SimpleChanges){
+
+    this.loadingService.loading.subscribe(res => this.loading = res)
+    console.log(simpleChange);
+    console.log(this.loading);
+
+
+}
 
   showData(local) {
     if (!isNaN(+local)) {

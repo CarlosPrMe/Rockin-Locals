@@ -10,8 +10,9 @@ import { TestService } from '../../../services/test.service';
 export class SearcherBodyComponent {
 
   @Input() showInfo;
-
   @Input() localsFound;
+  @Input() loading;
+
 
   constructor() { }
 

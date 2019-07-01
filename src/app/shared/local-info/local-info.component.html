@@ -20,8 +20,10 @@
           Borrar de favoritos
         </button>
       </div>
-      <img class="media__image" src="{{localSelected?.image}}" alt="">
-      <!-- <app-image-circular></app-image-circular> -->
+      <img *ngIf="localSelected?.imageType === 'panoramic'" class="media__image" src="{{localSelected?.image}}" alt="">
+      <app-image-circular *ngIf="localSelected?.imageType === '360'" [image360]="localSelected?.image">
+      </app-image-circular>
+      <!-- <app-image-circular *ngIf="localSelected.imageType=== '360'" [image360]="localSelected?.image"></app-image-circular> -->
     </div>
     <div class="media__item media__item--flex col-sm-12 col-md-12 col-lg-6">
 
@@ -36,10 +38,10 @@
     </h3>
   </div>
   <div class="row">
-    <section class="list col-sm-12 col-md-5 col-lg-6">
+    <section class="list col-sm-12 col-md-6 col-lg-6">
       <h4 class="list__heading">Equipamiento del local</h4>
     </section>
-    <div class="col-sm-12 col-md-7 col-lg-6">
+    <div class="col-sm-12 col-md-6 col-lg-6">
       <h4 class="list__heading" *ngIf="!daySelected.value">Selecciona un día </h4>
       <h4 class="list__heading" *ngIf="daySelected.value">Día seleccionado: {{daySelected.value?.day}} /
         {{daySelected.value?.month}} /
@@ -51,9 +53,8 @@
 
 
 <div class="susy">
-  <div class="row">
-    <form action="" class="form col-lg-12 col-md-12 col-sm-12" [formGroup]="myForm">
-      <div class="form__container">
+
+    <form action="" class=" form__container col-lg-12 col-md-12 col-sm-12" [formGroup]="myForm">
         <fieldset class="form__block" *ngIf="localSelected?.equipment?.drum">
           <span class="form__label">Elige el equipo que necesitas</span>
           <div class="form__group">
@@ -392,7 +393,7 @@
           <button *ngIf="user" type="button" class="btn" (click)="submit($event,myForm)">Reservar</button>
           <label *ngIf="!user" class="advise">Inicia sesión o regístrate para reservar</label>
         </div>
-      </div>
+
     </form>
-  </div>
+
 </div>

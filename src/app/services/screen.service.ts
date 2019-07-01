@@ -12,8 +12,6 @@ export class ScreenService {
     window.addEventListener('scroll', (e) => this.heigth.next(window.scrollY));
     window.addEventListener('resize', (e) => this.resolution.next(window.screen.width));
 
-
-
   }
 
 }

@@ -15,7 +15,7 @@ export class DatepickerComponent implements OnInit, OnChanges {
   displayMonths;
   constructor(private ngCalendar: NgbCalendar, private screenService: ScreenService) {
     this.resolution = this.screenService.resolution.subscribe(res => {
-      //console.log(res);
+
       if (res < 550) {
         this.displayMonths = 1;
       } else {
