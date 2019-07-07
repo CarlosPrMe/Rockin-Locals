@@ -5,6 +5,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import swal from 'sweetalert2';
 import { LocalsService } from '../../services/locals.service';
 import { LocationService } from '../../services/location.service';
+import { BehaviorSubject } from 'rxjs';
 
 @Component({
   selector: 'app-configuration',
@@ -14,7 +15,7 @@ import { LocationService } from '../../services/location.service';
 export class ConfigurationComponent implements OnInit {
 
   user;
-
+  company = new BehaviorSubject(null);
   constructor(private loginService: LoginService, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute, private localService: LocalsService,
     private locationService: LocationService) {
@@ -29,8 +30,9 @@ export class ConfigurationComponent implements OnInit {
   }
 
 
-  onEditUser(newData, user) {
-    if(user.type === 'local'){
+ async onEditUser(newData, user) {
+   if( await user.type === 'local'){
+    this.company.next(user.companyName) ;
       debugger
       if(user.address !== newData.address || user.city !== newData.city || user.postalCode !== newData.postalCode ){
         this.locationService.getLocation(newData.city,newData.address,newData.postalCode).then((res:any)=>{
@@ -38,13 +40,27 @@ export class ConfigurationComponent implements OnInit {
           newData.location = res.results[0].geometry.location
         })
       }
+      if(user.description !== newData.description){
+        this.localService.getLocalsByLocal(newData.companyName).then((res)=>{
+          debugger;
+          const local =Object.assign(res[0]) ;
+          local.description = newData.description;
+          this.localService.editLocal(local).catch().then();
+        })
+      }
+      if(this.company.value !== newData.companyName){
+        this.localService.getLocalsByLocal(this.company.value).then((res)=>{
+          debugger;
+          const local =Object.assign(res[0], newData.companyName) ;
+          this.localService.editLocal(local).catch().then();
+        })
+      }
     }
-    user = Object.assign(user, newData)
+    user = await Object.assign(user, newData)
     debugger
     this.userService.editUser(user).then((res: any) => {
       debugger
       if (res) {
-
         swal.fire({
           title: '¡Cambios realizados con éxito!',
           type: 'success',
@@ -90,6 +106,7 @@ export class ConfigurationComponent implements OnInit {
               timer: 2000,
               showConfirmButton: false,
             })
+            localStorage.removeItem('access_token');
           }
           this.loginService.user.next(null);
           this.router.navigate(['/index']);

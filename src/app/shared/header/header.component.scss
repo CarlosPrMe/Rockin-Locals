@@ -1,9 +1,76 @@
+@keyframes header{
+  0%{
+    background-image: url("../../../assets/img/vinilo_02.jpg");
+  }
+  10%{
+    background-image: url("../../../assets/img/vinilo_01.jpg");
+  }
+  20%{
+    background-image: url("../../../assets/img/header_3.jpg");
+  }
+  30%{
+    background-image: url("../../../assets/img/header_2.jpg");
+  }
+  40%{
+    background-image: url("../../../assets/img/bg_02.jpg");
+  }
+  50%{
+    background-image: url("../../../assets/img/bg_05.jpg");
+  }
+  60%{
+    background-image: url("../../../assets/img/bg_06.jpg");
+  }
+  70%{
+    background-image: url("../../../assets/img/bg_07.jpg");
+  }
+  80%{
+    background-image: url("../../../assets/img/bg_08.jpg");
+  }
+  90%{
+    background-image: url("../../../assets/img/mesa_01.jpg");
+  }
+  100%{
+    background-image: url("../../../assets/img/vinilo_02.jpg");
+  }
+}
+
+.back-1{
+  background-image: url("../../../assets/img/vinilo_02.jpg");
+}
+.back-2{
+  background-image: url("../../../assets/img/vinilo_01.jpg");
+}
+.back-3{
+  background-image: url("../../../assets/img/header_3.jpg");
+}
+.back-4{
+  background-image: url("../../../assets/img/header_2.jpg");
+}
+.back-5{
+  background-image: url("../../../assets/img/bg_02.jpg");
+}
+.back-6{
+  background-image: url("../../../assets/img/bg_05.jpg");
+}
+.back-7{
+  background-image: url("../../../assets/img/bg_06.jpg");
+}
+.back-8{
+  background-image: url("../../../assets/img/bg_07.jpg");
+}
+.back-9{
+  background-image: url("../../../assets/img/bg_08.jpg");
+}
+.back-10{
+  background-image: url("../../../assets/img/mesa_01.jpg");
+}
+
 .header {
   position: relative;
-  background-image: url("../../../assets/img/vinilo_02.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   color: var(--white);
+  animation: header 60s linear infinite;
 
   &--user,
   &--local {
@@ -12,15 +79,6 @@
     background-repeat: no-repeat;
     color: var(--white);
   }
-
-/*   &--local{
-    background-image: url("../../../assets/img/grupo_01.jpg");
-  }
-
-
-  &--user{
-    background-image: url("../../../assets/img/grupo_02.jpg");
-  } */
 
   &__heading {
     font-family: var(--font-family-head);
@@ -37,7 +95,7 @@
 
 @media (max-width: 767px) {
   .header {
-    padding: 4rem 0 2rem;
+    padding: 2rem 0 ;
     &__heading {
       padding-bottom: 1rem;
       font-size: calc(var(--font-size-md) * 1.8);
@@ -45,13 +103,13 @@
     }
 
     &--user {
-      padding: 5rem 0 2rem;
+      padding: 2rem 0 ;
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
       border-bottom: 1px solid var(--gray-200);
     }
 
     &--local {
-      padding: 5.5rem 0 3rem;
+      padding: 2.5rem 0 3rem;
     }
     &__text {
       color: var(--white);

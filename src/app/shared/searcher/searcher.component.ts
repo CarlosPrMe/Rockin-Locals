@@ -19,17 +19,20 @@ export class SearcherComponent implements OnInit, OnChanges {
   showInfo;
   loading
 
-  ngOnInit(){
+  ngOnInit() {
   }
 
-  ngOnChanges(simpleChange: SimpleChanges){
-
-    this.loadingService.loading.subscribe(res => this.loading = res)
+  ngOnChanges(simpleChange: SimpleChanges) {
+    debugger
+    this.loadingService.loading.subscribe((res) => {
+      debugger
+      this.loading = res
+    })
     console.log(simpleChange);
     console.log(this.loading);
 
 
-}
+  }
 
   showData(local) {
     if (!isNaN(+local)) {

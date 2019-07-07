@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent } from '@angular/common/http';
+import { HttpInterceptor, HttpRequest, HttpHandler, HttpEvent, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginService } from '../services/login.service';
 import { tap } from 'rxjs/operators';
 
 @Injectable()
-export class AuthorizationInterceptor implements HttpInterceptor {
+/* export class AuthorizationInterceptor implements HttpInterceptor {
 
   constructor(private authorization: LoginService) { }
 
@@ -30,5 +30,37 @@ export class AuthorizationInterceptor implements HttpInterceptor {
       );
     }
     return next.handle(req);
+  }
+} */
+
+export class AuthorizationInterceptor implements HttpInterceptor {
+
+  constructor(private loginService : LoginService) { }
+
+  intercept(req: HttpRequest<any>, next: HttpHandler):
+    Observable<HttpEvent<any>> {
+
+      if (!req.url.includes('auth/login') && !req.url.includes('maps.googleapis.com')) {
+       // debugger;
+
+      const secureReq = req.clone({
+        headers: req.headers.set('Authorization', `Bearer ${this.loginService.getToken() ? this.loginService.getToken() : localStorage.access_token}`)
+
+      });
+      //debugger
+      //console.log(secureReq);
+
+      return next.handle(secureReq).pipe(
+        tap((event: any) => {
+          if (event && event.url) {
+          }
+        })
+      );
+    }
+    //console.log('Volviendo del  en interceptor');
+    console.log(req);
+
+    return next.handle(req);
+
   }
 }

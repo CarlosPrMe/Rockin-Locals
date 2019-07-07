@@ -39,8 +39,7 @@
 
 .navbar {
   position: fixed;
-  z-index: map-get($z-index, 'layer3');
-  height: 3.2rem;
+  z-index: map-get($z-index, 'top');
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -52,10 +51,15 @@
   @media (min-width: 1024px) {
     animation: navbar 0.5s linear;
   }
+  @media (min-width: 768px) {
+    height: 3.2rem;
+    top: 0;
+  }
 
   @media (max-width: 767px) {
     height: 3rem;
     padding: 0 1rem;
+    bottom: 0;
   }
 }
 .navbar__menu {

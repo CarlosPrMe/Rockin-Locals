@@ -59,6 +59,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 //import { GoToPaymentGuard } from './services/go-to-payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { DragScrollModule } from 'ngx-drag-scroll';
 
 
 
@@ -114,10 +116,11 @@ import { LoadingService } from './services/loading.service';
 //--------------------------------
 
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { DragCarouselComponent } from './shared/drag-carousel/drag-carousel.component';
 const httpInterceptorProviders = [
-  //{ provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true }
+  { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
-   //{ provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
+   { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
 ];
 
 
@@ -174,6 +177,7 @@ const httpInterceptorProviders = [
     SpinnerComponent,
     UploadFilesComponent,
     PageNotFoundComponent,
+    DragCarouselComponent,
 
 
 
@@ -184,7 +188,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: ''
+      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
     }),
     HttpClientModule,
     NgbDatepickerModule,
@@ -194,6 +198,8 @@ const httpInterceptorProviders = [
     MatPaginatorModule,
     ScrollToModule.forRoot(),
     SweetAlert2Module.forRoot(),
+    Ng2CarouselamosModule,
+    DragScrollModule
   ],
   providers: [
     TestService,

@@ -31,7 +31,7 @@
       </svg>
       Ocultar</button>
   </h2>
-  <ul class="list list--clean" *ngIf="user.favourites.length === 0" [ngClass]="{show: showList, hide: !showList}">
+  <ul class="list list--clean" *ngIf="user?.favourites?.length === 0" [ngClass]="{show: showList, hide: !showList}">
     <li class="aside__item aside__item--clean">Aquí estarán tus locales favoritos</li>
   </ul>
   <ul class="list" [ngClass]="{show: showList, hide: !showList}">

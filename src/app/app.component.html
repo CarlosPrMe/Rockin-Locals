@@ -1,15 +1,14 @@
 <div class="general" [ngClass]="{'filter-body':showModal}" #navbar>
   <app-navbar (showMenu)="onShowMenu($event)" [user]="user" [userOnline]="userOnline"></app-navbar>
-
   <app-dropdown [showMenu]="showMenu" (showModal)="toggleModal($event)" (navigate)="onShowMenu($event)"
     (closeSession)="onCloseSesion($event)" [login]="user" (openSession)="onOpenSession($event, user)">
-
   </app-dropdown>
-  <router-outlet></router-outlet>
-  <!-- <app-image-circular ></app-image-circular> -->
+  <div [ngClass]="{'shadow':showMenu}">
+    <router-outlet></router-outlet>
+  </div>
   <app-footer></app-footer>
 </div>
-
-<!-- <app-upload-files></app-upload-files> -->
-<app-modal [showModal]="showModal" (closeModal)="toggleModal($event)" (register)="onRegister($event, user)"></app-modal>
 <app-btn-scroll-top class="prueba" (doScroll)="scrollToTop(navbar)"></app-btn-scroll-top>
+
+<app-modal [showModal]="showModal" (closeModal)="toggleModal($event)" (register)="onRegister($event, user)"></app-modal>
+<!-- <app-upload-files></app-upload-files> -->

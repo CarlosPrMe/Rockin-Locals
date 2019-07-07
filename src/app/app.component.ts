@@ -6,6 +6,7 @@ import { ScreenService } from './services/screen.service';
 import { ScrollToService } from 'ng2-scroll-to-el';
 import { LocationService } from './services/location.service';
 import swal from 'sweetalert2';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -23,14 +24,29 @@ export class AppComponent implements OnInit, OnChanges {
 
   constructor(private userService: UserService, private loginService: LoginService,
     private screenService: ScreenService, private scrollService: ScrollToService,
-    private locationService: LocationService) {
+    private locationService: LocationService, private router :Router) {
+
+    console.log(localStorage.access_token);
+    debugger
+    if (localStorage.access_token) {
+
+      this.loginService.checkUserLocalStorage(localStorage.access_token).then((res) => {
+        debugger
+        this.loginService.user.next(res);
+        this.loginService.isLoged.next(true);
+        this.router.navigate(['/index']);
+      })
+    }
 
     this.loginService.user.subscribe(data => {
+      debugger
       this.user = data;
     })
 
     this.userOnline = this.loginService.isLoged.subscribe(res => {
     })
+
+
   }
 
 
@@ -89,7 +105,7 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   onOpenSession(user) {
-   // debugger;
+    // debugger;
     this.loginService.login(user.email, user.password).then((data) => {
     });
   }

@@ -1,12 +1,30 @@
 @import "../../node_modules/susy/sass/susy";
+@import "../assets/scss/partials/variables";
 
 /*Efecto Filter con Modal Abierta
+
 */
-.filter-body{
-  filter: blur(5px)
+
+
+
+.filter-body {
+  filter: blur(5px);
 }
 
-.prueba{
+.prueba {
   position: relative;
-  z-index: 9999;
+  z-index: map-get($z-index, "layer2");
+}
+
+.general {
+  @media (max-width: 767px) {
+    padding-bottom: 2.5rem;
+  }
+}
+.shadow {
+  @media (max-width: 767px) {
+    transition: all 150ms linear;
+    filter: brightness(0.2);
+    background-color: rgba($color: #000000, $alpha: 0.7)
+  }
 }

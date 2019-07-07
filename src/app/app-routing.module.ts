@@ -11,6 +11,7 @@ import { BandOnLine } from './guards/bandOnline.guard';
 import { GoToPayment } from './guards/toPayment.guard';
 import { LocalOnLine } from './guards/localOnline.guard';
 import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { LocalFound } from './guards/localFound.guard';
 
 
 const routes: Routes = [
@@ -18,7 +19,8 @@ const routes: Routes = [
     path: "index", component: IndexComponent,
   },
   {
-    path: "local/:id", component: LocalComponent
+    path: "local/:id", component: LocalComponent,
+    canActivate:[LocalFound]
   },
 
   {

@@ -20,13 +20,7 @@
   align-items: flex-end;
 }
 
-/* .flex--end {
-  display: flex;
-  justify-content: flex-end;
-} */
-
 .modal {
-
   top: 4rem;
   z-index: map-get($z-index, "overtop");
   left: 0;
