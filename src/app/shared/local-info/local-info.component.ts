@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { FavouritesService } from '../../services/favourites.service';
 import { BehaviorSubject } from 'rxjs';
 import { FormBuilder } from '@angular/forms';
@@ -29,7 +29,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   today
   favourite = new Favourite();
   added: boolean = false; // Para saber si el local ya está en favoritos y mostrar un boton un otro, hacer una logica u otra
-
+  @ViewChild('image') image:ElementRef;
 
   constructor(private favouritesService: FavouritesService, private fb: FormBuilder,
     private reservationsService: ReservationsService, private router: Router,
@@ -70,6 +70,14 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     if (simpleChange.userData.currentValue) {
       this.checkFavourite(simpleChange.userData.currentValue, this.localSelected)
     }
+
+    console.log(this.added);
+    console.log(this.localSelected);
+    console.log(this.user);
+    console.log(this.userData);
+
+
+
   }
 
   checkFavourite(user, local) {
@@ -233,5 +241,11 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     return equipmentSelected;
   }
 
+
+  zoom(event){
+    console.log('hola');
+
+    this.image.nativeElement.requestFullscreen();
+  }
 
 }

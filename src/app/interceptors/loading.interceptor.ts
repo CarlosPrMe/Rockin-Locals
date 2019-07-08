@@ -11,18 +11,13 @@ export class LoadingInterceptor implements HttpInterceptor {
 
   intercept(req: HttpRequest<any>, next: HttpHandler):
     Observable<HttpEvent<any>> {
-
-   // debugger
     this.loadingservice.loading.next(true);
-    console.log(this.loadingservice.loading.value);
-
-
+    //console.log(this.loadingservice.loading.value);
     return next.handle(req).pipe(
       tap((event: any) => {
-       // debugger;
         setTimeout(() => {
           this.loadingservice.loading.next(false);
-          console.log(this.loadingservice.loading.value);
+          //console.log(this.loadingservice.loading.value);
         }, 3000);
 
       })

@@ -26,12 +26,9 @@ export class AppComponent implements OnInit, OnChanges {
     private screenService: ScreenService, private scrollService: ScrollToService,
     private locationService: LocationService, private router :Router) {
 
-    console.log(localStorage.access_token);
-    debugger
     if (localStorage.access_token) {
 
       this.loginService.checkUserLocalStorage(localStorage.access_token).then((res) => {
-        debugger
         this.loginService.user.next(res);
         this.loginService.isLoged.next(true);
         this.router.navigate(['/index']);
@@ -39,17 +36,13 @@ export class AppComponent implements OnInit, OnChanges {
     }
 
     this.loginService.user.subscribe(data => {
-      debugger
       this.user = data;
     })
 
     this.userOnline = this.loginService.isLoged.subscribe(res => {
     })
 
-
   }
-
-
 
   ngOnInit() {
   }
@@ -76,11 +69,8 @@ export class AppComponent implements OnInit, OnChanges {
       let location: any = await this.locationService.getLocation(user.city, user.address, user.postalCode)
       user.location = location.results[0].geometry.location;
     }
-    console.log(user);
 
     this.userService.addUser(user).subscribe((res: any) => {
-
-
       if (res >= 500) {
         swal.fire({
           title: 'Error en el registro',
@@ -97,15 +87,11 @@ export class AppComponent implements OnInit, OnChanges {
         });
 
       }
-      console.log('sin await', res);
-      //debugger
       this.toggleModal(user);
-
     })
   }
 
   onOpenSession(user) {
-    // debugger;
     this.loginService.login(user.email, user.password).then((data) => {
     });
   }
