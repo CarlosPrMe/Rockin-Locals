@@ -10,13 +10,13 @@ export class FavouritesService {
 
 
   modifyFavourite(user) {
-    debugger
+
     return this.httpClient.put(`${environment.apiUrl}/users/${user._id}`,user).toPromise();
 
   }
 
   deleteFavourite(user, idFavouriteToDelete) {
-    debugger
+
     let favourites = user.favourites.filter(f => f.idLocal !== idFavouriteToDelete);
     user.favourites=[]
     user.favourites=favourites;

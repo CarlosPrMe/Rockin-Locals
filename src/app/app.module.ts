@@ -117,6 +117,8 @@ import { LoadingService } from './services/loading.service';
 
 import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { DragCarouselComponent } from './shared/drag-carousel/drag-carousel.component';
+import { HeaderParallaxComponent } from './shared/header/header-parallax/header-parallax.component';
+import { ParallaxDirective } from './shared/directives/parallax.directive';
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
@@ -178,6 +180,8 @@ const httpInterceptorProviders = [
     UploadFilesComponent,
     PageNotFoundComponent,
     DragCarouselComponent,
+    HeaderParallaxComponent,
+    ParallaxDirective
 
 
 
@@ -188,7 +192,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'AIzaSyBLcfK5xmIW_LvJWRRBPXUQLrIi3CKg4w8'
+      apiKey: 'Your api key'
     }),
     HttpClientModule,
     NgbDatepickerModule,

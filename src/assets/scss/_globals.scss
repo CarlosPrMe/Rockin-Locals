@@ -23,7 +23,7 @@
 }
 
 .bgc--grey {
-  background-color: var(--gray-100);
+  background-color: var(--gray-200);
 
   @media (max-width: 1023px) {
     padding: 1rem 0;
@@ -67,8 +67,9 @@
 Animacion para los inputs
 -----------------*/
 
-@keyframes inputsAnimation{
+/* @keyframes inputsAnimation{
   0%{ transform: scale(1)};
   50%{transform: scale(1.08)};
   100%{transform: scale(1)};
 }
+ */

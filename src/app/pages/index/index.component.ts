@@ -10,7 +10,10 @@ import { HttpClient } from '@angular/common/http';
 export class IndexComponent implements OnInit {
 
   constructor(private loginService: LoginService, ) {
-    document.body.scrollTop = 0
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
 
 
   }

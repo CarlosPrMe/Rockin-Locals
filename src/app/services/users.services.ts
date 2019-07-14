@@ -10,17 +10,17 @@ export class UserService {
 
   addUser(user) {
     //console.log(user);
-    return this.httpClient.post(`${environment.apiUrl}/auth/sign-up`, user)
+    return this.httpClient.post(`${environment.apiUrl}/auth/sign-up`, user).toPromise();
   }
 
 
   editUser(user){
-    debugger
+
     return this.httpClient.put(`${environment.apiUrl}/users/${user._id}`,user).toPromise();
   }
 
   deleteUser(id){
-    debugger
+
     return this.httpClient.delete(`${environment.apiUrl}/users/${id}`).toPromise();
   }
 

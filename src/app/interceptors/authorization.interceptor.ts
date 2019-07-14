@@ -41,13 +41,13 @@ export class AuthorizationInterceptor implements HttpInterceptor {
     Observable<HttpEvent<any>> {
 
       if (!req.url.includes('auth/login') && !req.url.includes('maps.googleapis.com')) {
-       // debugger;
+       //  ;
 
       const secureReq = req.clone({
         headers: req.headers.set('Authorization', `Bearer ${this.loginService.getToken() ? this.loginService.getToken() : localStorage.access_token}`)
 
       });
-      //debugger
+      //
       //console.log(secureReq);
 
       return next.handle(secureReq).pipe(

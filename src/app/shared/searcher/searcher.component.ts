@@ -4,6 +4,7 @@ import swal from 'sweetalert2';
 import { LoadingService } from 'src/app/services/loading.service';
 
 
+
 @Component({
   selector: 'app-searcher',
   templateUrl: './searcher.component.html',
@@ -18,14 +19,15 @@ export class SearcherComponent implements OnInit, OnChanges {
   localsFound;
   showInfo;
   loading
+  scroll;
 
   ngOnInit() {
   }
 
   ngOnChanges(simpleChange: SimpleChanges) {
-    debugger
+
     this.loadingService.loading.subscribe((res) => {
-      debugger
+
       this.loading = res
     })
     console.log(simpleChange);
@@ -35,14 +37,27 @@ export class SearcherComponent implements OnInit, OnChanges {
   }
 
   showData(local) {
-    if (!isNaN(+local)) {
+
+/*     if (!isNaN(+local)) {
       local = +local
     } else {
       local = local;
-    }
-    //console.log(local);
+    } */
 
-    this.localsService.getLocalsByCity(local).then((data: Array<any>) => {
+    this.localsService.getLocalsByCity(local).catch((err)=> {
+      console.log(err);
+      if(err){
+        this.localsFound = null;
+        this.showInfo = false
+        swal.fire({
+          title: 'Lo sentimos. Ha habido un error',
+          text: 'Introduce una nueva dirección en el buscador',
+          type: "warning",
+          showConfirmButton: false,
+        })
+        return null;
+      }
+    }).then((data: Array<any>) => {
       if (data.length === 0) {
         swal.fire({
           title: 'Lo sentimos. No hay locales de ensayo en esa ubicación',
@@ -57,7 +72,6 @@ export class SearcherComponent implements OnInit, OnChanges {
         this.showInfo = true;
         this.localsFound = data;
       }
-      //console.log(data)
     })
   }
 }

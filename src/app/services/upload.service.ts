@@ -17,7 +17,7 @@ export class UploadImageService {
 
     console.log('enviando');
     console.log(formData);
-    debugger
+
 
     return this.httpClient.post(`${environment.apiUrl}/uploads`, image);
   }

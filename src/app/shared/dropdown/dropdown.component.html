@@ -24,17 +24,17 @@
       <div class="form__group flex--end">
         <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm)">Entrar</button>
       </div>
-      <div class="form__group">
+      <!-- <div class="form__group">
         <input formControlName="sessionOpen" type="checkbox" id="session-open" class="form__check" value="true">
         <label for="session-open" class="form__label form__label--sm">Mantener sesión
           abierta</label>
-      </div>
+      </div> -->
 
-      <a href="#" class="dropdown__link">¿Olvidaste tu contraseña?</a>
+      <!-- <a href="#" class="dropdown__link">¿Olvidaste tu contraseña?</a> -->
 
       <div class="form__group">
         <span class="dropdown__text">Si aún no tienes cuenta</span>
-        <button id="register" type="button" class="btn btn--lg" (click)="modal($event)">Regístrate</button>
+        <button id="register" type="button" class="btn btn--lg" (click)="[modal($event), scroll($event)]">Regístrate</button>
       </div>
     </div>
   </form>

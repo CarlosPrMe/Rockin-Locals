@@ -14,13 +14,18 @@
           <div class="form__block-input">
             <div class="form__group">
               <label class="form__label" for="name">Nombre de tu local</label>
-              <input formControlName="name" class="form__control" type="text" id="name">
+              <input formControlName="name" class="form__control" type="text" id="name" required minlength="5"
+              [ngClass]="{invalid:myForm.controls.name.dirty && myForm.controls.name.errors?.required}">
+              <div class="error" *ngIf="myForm.controls.name.errors?.required">Campo Obligatorio</div>
+              <div class="warning" *ngIf="myForm.controls.name.errors?.minlength">Mínimo 5 caracteres</div>
             </div>
           </div>
           <div class="form__block-input">
             <div class="form__group">
               <label class="form__label" for="price">Precio/hora</label>
-              <input formControlName="price" class="form__control" type="number" id="price">
+              <input formControlName="price" class="form__control" type="number" id="price" required
+              [ngClass]="{invalid:myForm.controls.price.dirty && myForm.controls.price.errors?.required}">
+              <div class="error" *ngIf="myForm.controls.price.errors?.required">Campo Obligatorio</div>
             </div>
           </div>
         </div>
@@ -33,7 +38,7 @@
           <div class="form__block-input">
             <div class="form__group">
               <label for="photo360" class="form__label form__label--radio">Foto 360*
-                <input formControlName="imageType" type="radio" name="imageType" id="photo360" class="form__radio" value="360" [checked]="checked">
+                <input formControlName="imageType" type="radio" name="imageType" id="photo360" class="form__radio" value="360" [checked]="checked" required>
                 <svg class="icon-label icon-label--sm icon-label--left" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" width="40" height="40" viewBox="0 0 60 60">
 
@@ -89,6 +94,8 @@
             </div>
           </div>
         </div>
+        <div class="error" *ngIf="myForm.controls.imageType.errors?.required">Campo Obligatorio</div>
+
       </div>
       <div class="form__group col-sm-12 col-md-8">
         <div class="grid--sm">
@@ -117,7 +124,9 @@
 
                 </svg>
               </label> -->
-              <input formControlName="image" type="text" class="form__control form__file" placeholder="Introduce URL">
+              <input formControlName="image" type="text" class="form__control form__file" placeholder="Introduce URL"
+              [ngClass]="{invalid:myForm.controls.image.errors?.required}" required>
+              <div class="error" *ngIf="myForm.controls.image.errors?.required">Campo Obligatorio</div>
             </div>
           </div>
         </div>
@@ -346,8 +355,8 @@
       </div>
     </div>
     <div class=" flex--end" *ngIf="show">
-      <button type="button" class="btn" (click)="submit($event,myForm, user)">Aceptar</button>
       <button type="reset" class="btn" (click)="showLocal($event)">Cancelar</button>
+      <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm, user)">Aceptar</button>
     </div>
   </form>
 </section>

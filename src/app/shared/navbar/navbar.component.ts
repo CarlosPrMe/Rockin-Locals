@@ -19,7 +19,7 @@ export class NavbarComponent implements OnInit, OnChanges {
 
 
   ngOnChanges(changes: SimpleChanges) {
-    //debugger
+    //
     //console.log(changes);
   }
 

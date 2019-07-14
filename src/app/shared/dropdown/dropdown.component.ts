@@ -21,6 +21,7 @@ export class DropdownComponent implements OnInit, OnChanges {
   @Output() navigate = new EventEmitter();
   @Output() closeSession = new EventEmitter();
   @Output() openSession = new EventEmitter();
+  @Output() doScroll = new EventEmitter();
 
 
   constructor(private fb: FormBuilder, private loginService: LoginService) {
@@ -66,6 +67,10 @@ export class DropdownComponent implements OnInit, OnChanges {
   prueba(event){
     console.log(event);
 
+  }
+
+  scroll(event){
+    this.doScroll.emit(event)
   }
 
 }

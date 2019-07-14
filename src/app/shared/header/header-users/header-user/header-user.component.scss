@@ -84,7 +84,7 @@
       //padding-bottom: 2rem;
       text-align: left;
       margin-left: 4rem;
-      font-size: var(--font-size-xl);
+      font-size: calc(var(--font-size-xl)*0.8);
     }
 
     &--user,

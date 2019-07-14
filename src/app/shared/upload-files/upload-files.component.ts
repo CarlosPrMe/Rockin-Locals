@@ -27,7 +27,7 @@ export class UploadFilesComponent implements OnInit {
       (response) => {
 console.log(response);
 
-        debugger
+
 
         this.respuestaImagenEnviada = response;
         if (this.respuestaImagenEnviada <= 1) {

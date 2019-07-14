@@ -16,7 +16,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
   myForm;
   checked360 = false;
   checkedPano = false;
-  show: boolean = false;
+  show: boolean = true;
   @Output() updateLocal = new EventEmitter();
   @Output() deleteLocal = new EventEmitter();
 
@@ -48,9 +48,9 @@ export class MyLocalComponent implements OnInit, OnChanges {
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    debugger
+
     if (this.local) {
-      this.show = false;
+     // this.show = false;
       if (!this.local.equipment.keyboard) {
         this.local.equipment.keyboard = '';
       }
@@ -121,20 +121,20 @@ export class MyLocalComponent implements OnInit, OnChanges {
       })
     }
     else {
-      this.show = true;
+      //this.show = true;
     }
   }
 
-  showLocal($event) {
-    this.show = !this.show;
-  }
+  // showLocal($event) {
+  //   this.show = !this.show;
+  // }
 
 
   submit(event, form, currentUser) {
 
 
     let UpdatedLocal = {}
-    debugger
+
     console.log(form.value, currentUser);
     let local = new LocalClass();
     let equipment = {
@@ -157,7 +157,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
     local.companyName = currentUser.companyName;
     local.imageType = form.value.imageType;
     local.description = currentUser.description;
-    debugger
+
     UpdatedLocal = local
     if (this.local) {
       UpdatedLocal = Object.assign(this.local, local)

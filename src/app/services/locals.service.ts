@@ -13,6 +13,7 @@ export class LocalsService {
 
 
   getLocalsByCity(city) {
+
     if (!isNaN(+city)) {
       let params = new HttpParams().set('postalCode',city);
       return this.httpClient.get(`${environment.apiUrl}/locals`, {params}).toPromise();
@@ -35,23 +36,23 @@ export class LocalsService {
   }
 
   editLocal(local){
-    debugger
+
    return this.httpClient.put(`${environment.apiUrl}/locals/${local._id}`,local).toPromise();
   }
 
   deleteLocal(id){
-    debugger
+
     return this.httpClient.delete(`${environment.apiUrl}/locals/${id}`).toPromise()
   }
 
   deleteLocalByCompany(companyName){
     let params = new HttpParams().set('companyName',companyName)
-    debugger
+
     return this.httpClient.delete(`${environment.apiUrl}/locals/${params}`).toPromise()
   }
 
   createLocal(local){
-    debugger
+
     return this.httpClient.post(`${environment.apiUrl}/locals`,local).toPromise();
   }
 

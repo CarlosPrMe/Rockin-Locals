@@ -1,11 +1,11 @@
 @import "../../../../assets/scss/partials/mixin";
 @import "../../../../assets/scss/partials/variables";
 
-@keyframes inputsAnimation{
+/* @keyframes inputsAnimation{
   0%{ transform: scale(1)};
   50%{transform: scale(1.08)};
   100%{transform: scale(1)};
-}
+} */
 
 .btn {
   @include button;
@@ -30,6 +30,9 @@
     @media (min-width: 1024px) {
       padding-left: 2.5rem;
       align-self: stretch;
+      &:hover .svg-btn{
+        transform: scale(0.25);
+      }
     }
   }
 }
@@ -44,6 +47,7 @@ svg {
   position: absolute;
   left: -1.8rem;
   top: -1.85rem;
+  transition: all 150ms linear;
   @media (max-width: 1023px) {
     display: none;
   }
@@ -89,5 +93,19 @@ svg {
         animation: inputsAnimation 250ms ease-out ;
       }
     }
+
+    &::placeholder{
+      color: var(--gray-600);
+    }
   }
+}
+
+.disable{
+  opacity: .3;
+  pointer-events: none;
+}
+
+.btn[disabled]{
+  opacity: .5;
+  pointer-events: none;
 }

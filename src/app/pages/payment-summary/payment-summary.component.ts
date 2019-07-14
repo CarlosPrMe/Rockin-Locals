@@ -12,7 +12,10 @@ export class PaymentSummaryComponent implements OnInit, OnChanges {
   reservation;
 
   constructor(private reservationService : ReservationsService) {
-    document.body.scrollTop = 0
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   }
 
   ngOnInit() {

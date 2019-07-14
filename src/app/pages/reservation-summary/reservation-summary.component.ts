@@ -8,7 +8,10 @@ import { Component, OnInit } from '@angular/core';
 export class ReservationSummaryComponent implements OnInit {
 
   constructor() {
-    document.body.scrollTop = 0
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
    }
 
   ngOnInit() {

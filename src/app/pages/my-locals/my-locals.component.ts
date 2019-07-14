@@ -27,12 +27,15 @@ export class MyLocalsComponent implements OnInit {
     private ngbCalendar: NgbCalendar,
     private router: Router) {
 
-    document.body.scrollTop = 0;
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
 
     this.today = this.ngbCalendar.getToday();
 
     this.loginService.user.subscribe((res) => this.user = res);
-    debugger
+
 
     this.reservationsService.getReservationByLocal(this.user.companyName).then((data: Array<any>) => {
       this.reservations = data;
@@ -41,14 +44,14 @@ export class MyLocalsComponent implements OnInit {
 
     this.localsService.getLocalsByLocal(this.user.companyName).then(data => {
       this.local = data[0];
-      debugger
+
     })
 
   }
 
   ngOnInit() {
     this.user
-    debugger
+
   }
 
   separateReservations(arrayReser) {
@@ -61,44 +64,57 @@ export class MyLocalsComponent implements OnInit {
     });
   }
 
-  onUpdateLocal(local) {
-    debugger;
+  async onUpdateLocal(local) {
+    debugger
     if (local._id) {
-      this.localsService.editLocal(local).then((res) => {
+      debugger
+      let localToEdit: any = await this.localsService.editLocal(local)
+      debugger
+      if (!localToEdit) {
         debugger
-        if (res) {
-          swal.fire({
-            title: 'Local Editado',
-            type: "success",
-            showConfirmButton: false,
-          });
-
-          this.local=null
-          this.router.navigateByUrl('/index');
-        }
-      })
-
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al hacer los cambios!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      } else {
+        debugger
+        this.router.navigateByUrl('/index');
+        this.local = null //No entiendo por que
+        return swal.fire({
+          title: 'Local Editado',
+          type: "success",
+          showConfirmButton: false,
+        });
+      }
     } else {
-
-      this.localsService.createLocal(local).then((res: any) => {
+      debugger
+      let newLocal: any = await this.localsService.createLocal(local);
+      debugger
+      if (!newLocal) {
         debugger
-        console.log(res);
-        if (res._id) {
-          swal.fire({
-            title: 'Local añadido',
-            type: "success",
-            showConfirmButton: false,
-          });
-          this.local=null
-          this.router.navigateByUrl('/index');
-        }
-
-      })
+        this.router.navigateByUrl('/index');
+        return swal.fire({
+          title: '¡Error al añadir el local!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      } if (newLocal._id) {
+        debugger
+        this.local = null
+        this.router.navigateByUrl('/index');
+        return swal.fire({
+          title: 'Local añadido',
+          type: "success",
+          showConfirmButton: false,
+        });
+      }
     }
   }
 
   onDeleteLocal(id) {
-    debugger
+
     swal.fire({
       title: '¿Estás seguro de eliminar el local?',
       text: 'Se perderá toda la información',
@@ -111,7 +127,8 @@ export class MyLocalsComponent implements OnInit {
       if (result.value) {
         debugger
         this.localsService.deleteLocal(id).then((res: any) => {
-          if (res.ok = 1) {
+          debugger
+          if (res.ok === 1) {
             swal.fire({
               title: '¡Eliminado!',
               text: 'Tu local ha sido eliminado con éxito',

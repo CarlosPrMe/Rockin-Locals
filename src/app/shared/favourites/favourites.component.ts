@@ -24,7 +24,7 @@ export class FavouritesComponent implements OnInit {
   }
 
   async  goToLocal($event, id) {
-    debugger
+
     if($event.target.className === "aside__link"){
       this.navigateTolocal.emit(id);
     }

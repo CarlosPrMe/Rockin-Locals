@@ -6,6 +6,7 @@ import swal from 'sweetalert2';
 import { LocalsService } from '../../services/locals.service';
 import { LocationService } from '../../services/location.service';
 import { BehaviorSubject } from 'rxjs';
+import { reject } from 'q';
 
 @Component({
   selector: 'app-configuration',
@@ -19,7 +20,10 @@ export class ConfigurationComponent implements OnInit {
   constructor(private loginService: LoginService, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute, private localService: LocalsService,
     private locationService: LocationService) {
-    document.body.scrollTop = 0
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
   }
 
 
@@ -30,53 +34,133 @@ export class ConfigurationComponent implements OnInit {
   }
 
 
- async onEditUser(newData, user) {
-   if( await user.type === 'local'){
-    this.company.next(user.companyName) ;
+  async onEditUser(newData, user) {
+    const currentUser = user;
+    const currentLocal = { ...user };
+    debugger
+    if (user.type === 'local') {
+      this.company.next(user.companyName);
       debugger
-      if(user.address !== newData.address || user.city !== newData.city || user.postalCode !== newData.postalCode ){
-        this.locationService.getLocation(newData.city,newData.address,newData.postalCode).then((res:any)=>{
-          debugger
+      if (user.address !== newData.address || user.city !== newData.city || user.postalCode !== newData.postalCode) {
+        debugger
+        let res: any = await this.locationService.getLocation(newData.city, newData.address, newData.postalCode)
+        debugger
+        if (res.results.length === 0 || !res) {
+          this.loginService.user.next(currentLocal);
+          this.router.navigate(['/index']);
+          return swal.fire({
+            title: '¡Error al editar usuario!',
+            type: "error",
+            showConfirmButton: false,
+          })
+        } else {
           newData.location = res.results[0].geometry.location
-        })
+          debugger
+        }
       }
-      if(user.description !== newData.description){
-        this.localService.getLocalsByLocal(newData.companyName).then((res)=>{
-          debugger;
-          const local =Object.assign(res[0]) ;
+      if (user.description !== newData.description) {
+        let res: any = await this.localService.getLocalsByLocal(currentLocal.companyName)
+        debugger
+        if (!res) {
+          this.loginService.user.next(currentLocal);
+          debugger
+          return swal.fire({
+            title: '¡Error al hacer los cambios!',
+            type: "error",
+            showConfirmButton: false,
+          })
+        } else {
+          const local = Object.assign(res[0]);
           local.description = newData.description;
-          this.localService.editLocal(local).catch().then();
-        })
-      }
-      if(this.company.value !== newData.companyName){
-        this.localService.getLocalsByLocal(this.company.value).then((res)=>{
-          debugger;
-          const local =Object.assign(res[0], newData.companyName) ;
-          this.localService.editLocal(local).catch().then();
-        })
+          let localEdited: any = await this.localService.editLocal(local)
+          debugger
+          if (!localEdited) {
+            return swal.fire({
+              title: '¡Error al hacer los cambios!',
+              type: "error",
+              showConfirmButton: false,
+            })
+          }
+        }
+
+        if (this.company.value !== newData.companyName) {
+          debugger
+          let local: any = await this.localService.getLocalsByLocal(this.company.value)
+          debugger
+          this.loginService.user.next(currentLocal);
+          if (!local) {
+            return swal.fire({
+              title: '¡Error al editar usuario!',
+              type: "error",
+              showConfirmButton: false,
+            })
+          } else {
+            const newLocal = Object.assign(local[0], newData.companyName);
+            this.localService.editLocal(newLocal).catch().then();
+
+          }
+        }
+        let userNew = await { ...user, ...newData }
+        debugger
+        let change: any = await this.userService.editUser(userNew)
+        debugger
+        if (!change) {
+          debugger
+          this.loginService.user.next(currentLocal);
+          this.router.navigate(['/index']);
+          return swal.fire({
+            title: '¡Error al hacer los cambios!',
+            type: "error",
+            showConfirmButton: false,
+          })
+        } else {
+          debugger
+          this.loginService.user.next(change.data);
+          this.router.navigate(['/index']);
+          return swal.fire({
+            title: '¡Cambios realizados con éxito!',
+            type: 'success',
+            showConfirmButton: false,
+          })
+        }
       }
     }
-    user = await Object.assign(user, newData)
-    debugger
-    this.userService.editUser(user).then((res: any) => {
+    //Aqui empieza la edicion del usuario banda
+    else {
+      let userNew = { ...user, ...newData }
       debugger
-      if (res) {
-        swal.fire({
-          title: '¡Cambios realizados con éxito!',
-          type: 'success',
-          cancelButtonColor: '#be1e1e',
-          confirmButtonText: 'Aceptar'
-        })
-      }
-    }).then(result => {
-      this.loginService.user.next(user);
-      this.router.navigate(['/index']);
-    })
+      await this.userService.editUser(userNew).catch((err) => {
+        debugger
+        if (err) {
+          debugger
+          this.loginService.user.next(currentUser);
+          this.router.navigate(['/index']);
+          return swal.fire({
+            title: '¡Error al hacer los cambios!',
+            type: "error",
+            showConfirmButton: false,
+          })
+
+        }
+      }).then((res: any) => {
+        if (res.data) {
+          this.loginService.user.next(res.data);
+          this.router.navigate(['/index']);
+          swal.fire({
+            title: '¡Cambios realizados con éxito!',
+            type: 'success',
+            showConfirmButton: false,
+          })
+        }
+      })
+
+    }
+
 
   }
 
   onDeleteUser(id) {
-    debugger;
+    debugger
     swal.fire({
       title: '¿Estás seguro de eliminar tu cuenta?',
       text: 'Se perderá toda la información',
@@ -88,17 +172,40 @@ export class ConfigurationComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         debugger
-        if(this.user.type === 'local'){
-          this.localService.deleteLocalByCompany(this.user.companyName).then((res:any)=>{
-            debugger;
-
-            if(res.ok !== 1){
-              new Error('Local no encontrado');
+        if (this.user.type === 'local') {
+          debugger
+          this.localService.deleteLocalByCompany(this.user.companyName).catch(err => {
+            debugger
+            if (err) {
+              this.router.navigate(['/index']);
+              return swal.fire({
+                title: '¡Error al hacer los cambios!',
+                type: "error",
+                showConfirmButton: false,
+              })
             }
           })
+          /* .then((res: any) => {
+            debugger
+            if (res.ok !== 1) {
+              new Error('Local no encontrado');
+            }
+          }) */
         }
-        this.userService.deleteUser(id).then((res: any) => {
-          if (res.ok = 1) {
+        debugger
+        this.userService.deleteUser(id).catch(err => {
+          debugger
+          if (err) {
+            this.router.navigate(['/index']);
+            return swal.fire({
+              title: '¡Error al hacer los cambios!',
+              type: "error",
+              showConfirmButton: false,
+            })
+          }
+        }).then((res: any) => {
+          debugger
+          if (res.ok === 1) {
             swal.fire({
               title: '¡Eliminada!',
               text: 'Tu cuenta ha sido eliminada con éxito',
@@ -107,9 +214,9 @@ export class ConfigurationComponent implements OnInit {
               showConfirmButton: false,
             })
             localStorage.removeItem('access_token');
+            this.loginService.user.next(null);
+            this.router.navigate(['/index']);
           }
-          this.loginService.user.next(null);
-          this.router.navigate(['/index']);
         })
       }
     })

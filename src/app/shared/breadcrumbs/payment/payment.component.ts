@@ -43,7 +43,7 @@ export class PaymentComponent implements OnInit {
     //console.log(form.value);
     this.reservation.methodPayment = form.value;
     //console.log(this.reservation);
-    debugger
+
     this.reservationService.makeReservation(this.reservation).then((res) => {
       console.log(res)
     })
@@ -51,11 +51,11 @@ export class PaymentComponent implements OnInit {
     if (this.reservationService.emptyDay.value) {
       //Crear una disponibiliad
       this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
-      debugger
+
     } else {
       //Modificamos la disponibiliadad
       this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
-      debugger
+
     }
     this.reservationService.emptyDay.next(false);
 

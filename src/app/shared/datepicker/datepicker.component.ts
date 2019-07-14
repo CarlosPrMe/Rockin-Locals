@@ -47,9 +47,36 @@ export class DatepickerComponent implements OnInit, OnChanges {
   onDateSelect(day) {
     //console.log(day);
     this.date.emit(day);
+    this.moveScreen();
+  }
+
+
+  moveScreen() {
+    if (this.screenService.resolution.value > 1024) {
+
+      window.scrollTo({
+        top: 690,
+        left: 0,
+        behavior:'smooth'
+      })
+    }
+    else if (this.screenService.resolution.value < 1023 && this.screenService.resolution.value >= 768) {
+      window.scrollTo({
+        top: 860,
+        left: 0,
+        behavior:'smooth'
+      });
+    }
+    else if (this.screenService.resolution.value <= 767) {
+      window.scrollTo({
+        top: 1475,
+        left: 0,
+        behavior:'smooth'
+      });
+    }
 
   }
 
 
-
 }
+

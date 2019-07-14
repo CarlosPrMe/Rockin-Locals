@@ -1,7 +1,8 @@
 <div class="container">
   <form action="#" class="form" [formGroup]="myForm">
       <div class="search" >
-          <input  (keyup.enter)="submit($event, myForm)" formControlName="place" type="search" placeholder="Ciudad o código postal" class="search__control">
+          <input  (keyup.enter)="submit($event, myForm)" formControlName="place" type="search" placeholder="Ciudad o código postal"
+          class="search__control">
           <button type="button" class="btn btn--search"  (click)="submit($event, myForm)">
               <svg class="svg-btn" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56.966 56.966">

@@ -1,7 +1,4 @@
 @import '../../../assets/scss/partials/variables';
-//@import '../../../assets/scss/partials/reset';
-//@import '../../../assets/scss/partials/fonts';
-//@import '../../../assets/scss/partials/mixin';
 
 //Animacion de entrada Navbar(Solo una vez)
 
@@ -22,18 +19,21 @@
 @keyframes userBlock {
   0% {
     transform: translateY(-400%);
+    opacity: 0;
   }
 
-  45% {
+/*   45% {
     transform: translateY(50%);
-  }
+  } */
 
-  75% {
-    transform: translateY(-15%);
+  85% {
+    opacity: 0;
+    //transform: translateY(-15%);
   }
 
   100% {
     transform: translateY(0%);
+    opacity: 1;
   }
 }
 
@@ -80,7 +80,7 @@
   }
 
   @media (min-width: 1024px) {
-    animation: userBlock 1.2s linear 1 forwards;
+    animation: userBlock .8s linear 1 forwards;
   }
 }
 
@@ -94,13 +94,13 @@
   @media (min-width: 1023px) {
     margin-right: 1rem;
     transform: translateY(-400%);
-    animation: userBlock 1.2s linear 0.5s 1 forwards;
+    animation: userBlock .8s linear 0.5s 1 forwards;
   }
 }
 
 .btn--access {
   transform: translateY(-400%);
-  animation: userBlock 1.2s linear 1s 1 forwards;
+  animation: userBlock .8s linear 1s 1 forwards;
 }
 
 .navbar__link {

@@ -1,19 +1,23 @@
-@import '../buttons.component.scss';
+@import "../buttons.component.scss";
 
 @keyframes userBlock {
   0% {
     transform: translateY(-400%);
+    opacity: 0;
   }
 
-  45% {
+  /*   45% {
     transform: translateY(50%);
   }
+ */
 
-  75% {
-    transform: translateY(-15%);
+  85% {
+    opacity: 0;
+    //transform: translateY(-15%);
   }
 
   100% {
+    opacity: 1;
     transform: translateY(0%);
   }
 }
@@ -27,7 +31,7 @@
   }
   @media (min-width: 1024px) {
     transform: translateY(-400%);
-    animation: userBlock 1.2s linear 1s 1 forwards;
+    animation: userBlock 0.8s linear 1s 1 forwards;
     &:hover {
       background-color: var(--secondary);
       border: 1px solid var(--white);

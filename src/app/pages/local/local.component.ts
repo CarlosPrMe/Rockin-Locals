@@ -20,7 +20,10 @@ export class LocalComponent implements OnInit, OnDestroy {
   constructor(private localsService: LocalsService, private loginsService: LoginService,
     private reservationsService: ReservationsService) {
 
-    document.body.scrollTop = 0
+      window.scrollTo({
+        top: 0,
+        left: 0,
+      });
 
     this.isUser = this.loginsService.isLoged.subscribe((res) => this.user = res);
 

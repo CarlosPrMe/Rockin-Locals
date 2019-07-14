@@ -5,6 +5,7 @@ import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { LocalsService } from '../../services/locals.service';
 import { Router } from '@angular/router';
 import { FavouritesService } from '../../services/favourites.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -25,8 +26,11 @@ export class ReservationsComponent implements OnInit, OnChanges {
   constructor(private loginService: LoginService,
     private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
     private localsService: LocalsService, private router: Router,
-    private favourites : FavouritesService) {
-    document.body.scrollTop = 0
+    private favourites: FavouritesService) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+    });
 
     this.loginService.user.subscribe((res) => {
       this.user = res;
@@ -34,7 +38,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
     this.today = this.ngbCalendar.getToday();
 
-    this.reservations=[];
+    this.reservations = [];
 
     this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
       this.reservations = data;
@@ -63,19 +67,32 @@ export class ReservationsComponent implements OnInit, OnChanges {
   }
 
   async onNavigateTolocal(id) {
-debugger
+
     //console.log(id);
     this.localsService.localSelected = await this.localsService.getLocalsById(id)
     this.router.navigateByUrl(`/local/${id}`)
 
   }
 
-  onDeleteFavourite(id){
+  onDeleteFavourite(id) {
+    let currentUser = { ...this.user };
     debugger
-    console.log('id del local a borrar',id);
-    this.favourites.deleteFavourite(this.user, id).then((res)=>{
+    this.favourites.deleteFavourite(this.user, id).catch((err) => {
       debugger
-      this.loginService.user.next(res)
+      if (err) {
+        this.loginService.user.next(currentUser);
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al editar favoritos!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      }
+    }).then((res:any) => {
+      debugger
+      if(res.data){
+        this.loginService.user.next(res.data)
+      }
     });
 
   }

@@ -49,12 +49,12 @@ export class ConfigUserComponent implements OnInit {
   }
 
   submit($event, form) {
-    debugger
+
     this.editUser.emit(form.value);
   }
 
   delete($event) {
-    debugger
+
     this.deleteUser.emit(this.user._id);
   }
 

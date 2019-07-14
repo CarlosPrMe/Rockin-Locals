@@ -39,7 +39,7 @@ export class ConfigAdminComponent implements OnInit {
       city: [""],
     });
 
-debugger
+
     this.myForm.setValue({
       userName: this.user.userName,
       companyName: this.user.companyName,
@@ -51,7 +51,7 @@ debugger
       postalCode: this.user.postalCode,
       city: this.user.city,
     })
-debugger
+
 
   }
 

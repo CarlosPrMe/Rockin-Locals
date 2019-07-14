@@ -37,10 +37,12 @@ PLACEHOLDER
   font-family: var(--font-family);
   font-size: 1rem;
 
+
   &::placeholder{
     color: var(--gray-500);
   }
   &:focus{
+    transition: all 250ms linear;
     border: 0;
     border-bottom: 1px solid var(--gray-400);
     //animation: inputsAnimation 250ms ease-out 1;

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Favourite } from '../../mis clases/favourite';
 import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from '../../services/login.service';
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -29,7 +30,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   today
   favourite = new Favourite();
   added: boolean = false; // Para saber si el local ya está en favoritos y mostrar un boton un otro, hacer una logica u otra
-  @ViewChild('image') image:ElementRef;
+  @ViewChild('image') image: ElementRef;
 
   constructor(private favouritesService: FavouritesService, private fb: FormBuilder,
     private reservationsService: ReservationsService, private router: Router,
@@ -63,10 +64,11 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     })
     this.today = this.ngCalendar.getToday()
     this.getDay(this.today);
-    debugger
+
   }
 
   ngOnChanges(simpleChange: SimpleChanges) {
+    debugger
     if (simpleChange.userData.currentValue) {
       this.checkFavourite(simpleChange.userData.currentValue, this.localSelected)
     }
@@ -82,46 +84,71 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   checkFavourite(user, local) {
     debugger
-
-    for (let i = 0; i < user.favourites.length; i++) {
-      if (user.favourites[i].companyName === local.companyName) {
-        this.added = true;
-        break
+    if (user.favourites.length > 0) {
+      for (let i = 0; i < user.favourites.length; i++) {
+        if (user.favourites[i].companyName === local.companyName) {
+          this.added = true;
+          break
+        }
       }
     }
   }
 
   addToFavourites(user, local) {
-
+    debugger
     let favourites = {
       idLocal: local._id,
       localName: local.name,
       companyName: local.companyName// No estoy seguro si el nombre de la propiedad es company:local.companyName o companyName:local.companyName
     }
-    debugger
+
     if (!user.favourites || user.favourites.length === 0) {
       user.favourites = [];
     }
     user.favourites.push(favourites);
-    this.favouritesService.modifyFavourite(user).then((data) => {
-      console.log(data);
+    this.favouritesService.modifyFavourite(user).catch((err) => {
       debugger
-      this.loginService.user.next(data);
-      this.added = true;
-
+      if (err) {
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al editar favoritos!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      }
+    }).then((res: any) => {
+      debugger
+      if (res.data) {
+        console.log(res.data);
+        this.loginService.user.next(res.data);
+        this.added = true;
+      }
     })
   }
 
   deleteFavourite(event, user, local) {
-    console.log(user, +local);
+    let currentUser = {...user};
     debugger
     //let favourites = user.favourites.filter(f => f.companyName !== local.companyName);
     //user = Object.assign(user, favourites);
-    this.favouritesService.deleteFavourite(user, local._id).then((res) => {
+    this.favouritesService.deleteFavourite(user, local._id).catch((err) => {
+      debugger
+      if (err) {
+        this.loginService.user.next(currentUser);
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al editar favoritos!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      }
+    }).then((res: any) => {
       console.log(res)
       debugger
-      this.loginService.user.next(res);
-      this.added = false;
+      if (res.data) {
+        this.loginService.user.next(res.data);
+        this.added = false;
+      }
     })
   }
 
@@ -144,10 +171,10 @@ export class LocalInfoComponent implements OnInit, OnChanges {
         }
 
         this.reservationsService.emptyDay.next(false);
-        debugger
+
       } else {
         this.reservationsService.emptyDay.next(true);
-        debugger
+
       }
     })
   }
@@ -164,15 +191,15 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.askReservation.emit(this.reservation)
     //console.log(this.reservation);
     //console.log(this.changeAvailavility(form.value));//Solo da un objeto con las horas reservadas que luego se añaden a las que habia o si no se crea uno nuevo
-    debugger
+
     if (this.reservObj.id) {
       this.reservObj.hours = Object.assign(this.reservationsService.hoursAvailable.value, this.changeAvailavility(form.value))
       this.reservationsService.hoursAvailable.next(this.reservObj); //A lo mejor aqui hay que pasarlo this.reservObj.hours. ASi le estoy pasando un prop _id y un obj con las horas
-      debugger
+
     } else {
       this.reservObj.hours = this.changeAvailavility(form.value)
       this.reservationsService.hoursAvailable.next(this.reservObj);//A lo mejor aqui hay que pasarlo this.reservObj.hours. Asi solo le paso ls horas
-      debugger
+
     }
 
     this.router.navigateByUrl('/payment')
@@ -242,9 +269,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
 
-  zoom(event){
-    console.log('hola');
-
+  zoom(event) {
     this.image.nativeElement.requestFullscreen();
   }
 

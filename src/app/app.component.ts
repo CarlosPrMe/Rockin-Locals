@@ -24,7 +24,7 @@ export class AppComponent implements OnInit, OnChanges {
 
   constructor(private userService: UserService, private loginService: LoginService,
     private screenService: ScreenService, private scrollService: ScrollToService,
-    private locationService: LocationService, private router :Router) {
+    private locationService: LocationService, private router: Router) {
 
     if (localStorage.access_token) {
 
@@ -67,27 +67,42 @@ export class AppComponent implements OnInit, OnChanges {
   async  onRegister(user) {
     if (user.type === 'local') {
       let location: any = await this.locationService.getLocation(user.city, user.address, user.postalCode)
+      if (location.results.length === 0) {
+        this.toggleModal(true);
+        return swal.fire({
+          title: '¡Error en el registro!',
+          type: "error",
+          text: 'Ubicación errónea',
+          showConfirmButton: false,
+        })
+      }
       user.location = location.results[0].geometry.location;
     }
 
-    this.userService.addUser(user).subscribe((res: any) => {
-      if (res >= 500) {
-        swal.fire({
+    this.userService.addUser(user).catch((err:any) => {
+      debugger
+      if (err) {
+        debugger
+        this.toggleModal(true);
+        return swal.fire({
           title: 'Error en el registro',
-          text: 'Algo ha ido mal',
+          text: `${err.error}`,
           type: "error",
           showConfirmButton: false,
         });
-      } else {
+      }
+    }).then((res: any) => {
+      debugger
+      if (res.status === 200) {
+        debugger
         swal.fire({
           title: 'Bienvenido a Rockin Locals',
           text: 'Registro con éxito',
           type: "success",
           showConfirmButton: false,
         });
-
+        this.toggleModal(user);
       }
-      this.toggleModal(user);
     })
   }
 
