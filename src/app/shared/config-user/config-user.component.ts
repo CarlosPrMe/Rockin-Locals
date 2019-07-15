@@ -1,7 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, SimpleChanges } from '@angular/core';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
-
+import { customValidatorUrl } from '../modal/validators-custom';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class ConfigUserComponent implements OnInit {
       bandName: [``,Validators.required],
       //email: [``, Validators.compose([Validators.required, customValidatorEmail])],
       //password: [``, Validators.compose([Validators.required, Validators.minLength(8)])],
-      avatar: ["",],
+      avatar: ["",Validators.compose([customValidatorUrl])]
     })
 
     if (!this.user.avatar) {

@@ -1,6 +1,7 @@
 import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
+import { customValidatorUrl } from '../modal/validators-custom';
 
 
 @Component({
@@ -33,7 +34,7 @@ export class ConfigAdminComponent implements OnInit {
       description: ["",Validators.maxLength(300)],
       //email: [``, Validators.compose([Validators.required, customValidatorEmail])],
       //password: [``,],
-      avatar: ["",],
+      avatar: ["",Validators.compose([customValidatorUrl])],
       address: [""],
       postalCode: [""],
       city: [""],

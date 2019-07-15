@@ -1,5 +1,6 @@
 import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { customValidatorUrl } from '../modal/validators-custom';
 import { LocalsService } from '../../services/locals.service';
 import { Router } from '@angular/router';
 import { LocalClass } from '../../mis clases/local';
@@ -37,7 +38,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
       name: [""],
       price: [""],
       imageType: [""],
-      image: [""],
+      image: ["", Validators.compose([customValidatorUrl])],
       drum: [""],
       ampGuit1: [""],
       ampGuit2: [""],
@@ -50,7 +51,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
   ngOnChanges(simpleChanges: SimpleChanges) {
 
     if (this.local) {
-     // this.show = false;
+      // this.show = false;
       if (!this.local.equipment.keyboard) {
         this.local.equipment.keyboard = '';
       }
@@ -157,7 +158,8 @@ export class MyLocalComponent implements OnInit, OnChanges {
     local.companyName = currentUser.companyName;
     local.imageType = form.value.imageType;
     local.description = currentUser.description;
-
+    local.companyId = currentUser._id;
+    debugger
     UpdatedLocal = local
     if (this.local) {
       UpdatedLocal = Object.assign(this.local, local)

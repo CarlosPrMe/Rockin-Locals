@@ -10,6 +10,7 @@ export class LocalClass{
   companyName:String;
   imageType:String;
   description: String;
+  companyId:String;
 
   constructor(){}
 }

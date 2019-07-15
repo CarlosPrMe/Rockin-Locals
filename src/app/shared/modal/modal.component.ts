@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, Validators, AbstractControl } from '@angular/forms';
 import { customValidatorEmail } from './validators-custom';
+import { customValidatorUrl } from './validators-custom';
 import { LocationService } from '../../services/location.service';
 
 @Component({
@@ -31,7 +32,7 @@ export class ModalComponent implements OnInit {
       companyName: ["",],
       email: ["", Validators.compose([Validators.required, customValidatorEmail])],
       password: ["", Validators.compose([Validators.required, Validators.minLength(8)])],
-      avatar: ["",],
+      avatar: ["",Validators.compose([customValidatorUrl])],
       city: ["",],
       postalCode: ["",],
       address: ["",],

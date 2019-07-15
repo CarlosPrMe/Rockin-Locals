@@ -11,6 +11,8 @@ export class Reservation{
   numHours:any;
   equipment:any;
   methodPayment:any;
+  companyId:String;
+  bandId:String;
 
 
   constructor(){}

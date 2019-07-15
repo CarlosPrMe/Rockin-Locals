@@ -24,7 +24,7 @@ export class SearcherBodyComponent implements OnChanges {
     if (this.localsFound) {
       if (this.screen.resolution.value > 1024) {
         window.scrollTo({
-          top: 500,
+          top: 550,
           left: 0,
           behavior: 'smooth'
         });

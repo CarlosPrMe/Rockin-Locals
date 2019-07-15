@@ -13,6 +13,7 @@
     top: 0.5rem;
   }
   @media (min-width: 1024px) {
+    margin: .5rem 1rem;
     &:hover {
       background-color: transparent;
       transform: scale(1.2);

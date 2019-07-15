@@ -40,7 +40,14 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
     this.reservations = [];
 
-    this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
+/*     this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
+      this.reservations = data;
+      console.log(this.reservations);
+      this.separateReservations.call(this, data);
+    }) */
+    debugger
+    this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
+      debugger
       this.reservations = data;
       console.log(this.reservations);
       this.separateReservations.call(this, data);

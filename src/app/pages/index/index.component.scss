@@ -32,3 +32,15 @@
 .shadow-carousel{
   box-shadow: 0 0 1rem rgba(0,0,0,0.3);
 }
+
+.farol{
+  position: fixed;
+  top: 40rem;
+
+
+  &__media{
+    //max-width: 50px;
+    //height: auto;
+    left: 2rem;
+  }
+}

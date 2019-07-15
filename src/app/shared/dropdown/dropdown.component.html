@@ -1,25 +1,30 @@
 <div class="dropdown" [ngClass]="{'dropdown-show':showMenu, 'dropdown-hide': !showMenu }">
   <form class="form" *ngIf="!login" [formGroup]="myForm">
-    <div class="form__group">
-      <label for="email" class="form__label">Email</label>
-      <input (keyup.enter)="submit($event,myForm)"  [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
-        formControlName="email" type="email" class="form__control" id="email" required>
-    </div>
-    <span class="error"
+    <!--     <span class="error"
       *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value">
       Email incorrecto</span>
-    <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
-      Obligatorio </span>
+      <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
+        Obligatorio </span> -->
+    <!--     <div class="form__group">
+          <label for="password" class="form__label">Contraseña</label>
+          <input (keyup.enter)="submit($event,myForm)" [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
+            myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
+            type="password" class="form__control" id="password" required minlength="8">
+          </div> -->
+    <!--     <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo 8
+            caracteres</div>
+            <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
+              Obligatorio</div> -->
+    <div class="form__group">
+      <label for="email" class="form__label">Email</label>
+      <input (keyup.enter)="submit($event,myForm)"
+        formControlName="email" type="email" class="form__control" id="email" required>
+    </div>
     <div class="form__group">
       <label for="password" class="form__label">Contraseña</label>
-      <input (keyup.enter)="submit($event,myForm)" [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
-        myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
-        type="password" class="form__control" id="password" required minlength="8">
+      <input (keyup.enter)="submit($event,myForm)" formControlName="password" type="password" class="form__control"
+        id="password" required minlength="8">
     </div>
-    <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo 8
-      caracteres</div>
-    <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
-      Obligatorio</div>
     <div>
       <div class="form__group flex--end">
         <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm)">Entrar</button>
@@ -34,15 +39,16 @@
 
       <div class="form__group">
         <span class="dropdown__text">Si aún no tienes cuenta</span>
-        <button id="register" type="button" class="btn btn--lg" (click)="[modal($event), scroll($event)]">Regístrate</button>
+        <button id="register" type="button" class="btn btn--lg"
+          (click)="[modal($event), scroll($event)]">Regístrate</button>
       </div>
     </div>
   </form>
 
   <div *ngIf="login">
     <ul class="dropdown__list">
-      <li *ngIf="user.type=== 'band'" class="dropdown__item" (click)="menu($event)"><a routerLink="reservations" href="#"
-          class="dropdown__link--menu">Mis reservas</a>
+      <li *ngIf="user.type=== 'band'" class="dropdown__item" (click)="menu($event)"><a routerLink="reservations"
+          href="#" class="dropdown__link--menu">Mis reservas</a>
       </li>
       <li *ngIf="user.type=== 'local'" class="dropdown__item" (click)="menu($event)"><a routerLink="my-locals" href="#"
           class="dropdown__link--menu">Mis reservas/Mis locales</a>

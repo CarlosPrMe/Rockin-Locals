@@ -27,8 +27,12 @@ export class LocalsService {
     return this.httpClient.get(`${environment.apiUrl}/locals/${id}`).toPromise();
   }
 
-  getLocalsByLocal(user) {
+/*   getLocalsByLocal(user) {
     return this.httpClient.get(`${environment.apiUrl}/locals?companyName=${user}`).toPromise();
+  } */
+  getLocalsByLocal(id) {
+    let params = new HttpParams().set('companyId', id);
+    return this.httpClient.get(`${environment.apiUrl}/locals`,{params}).toPromise();
   }
 
   selectLocal(local) {
@@ -40,15 +44,24 @@ export class LocalsService {
    return this.httpClient.put(`${environment.apiUrl}/locals/${local._id}`,local).toPromise();
   }
 
-  deleteLocal(id){
+  /*   deleteLocal(id){
 
+      return this.httpClient.delete(`${environment.apiUrl}/locals/${id}`).toPromise()
+    } */
+  deleteLocal(id){
+    debugger
     return this.httpClient.delete(`${environment.apiUrl}/locals/${id}`).toPromise()
   }
 
-  deleteLocalByCompany(companyName){
+/*   deleteLocalByCompany(companyName){
     let params = new HttpParams().set('companyName',companyName)
 
     return this.httpClient.delete(`${environment.apiUrl}/locals/${params}`).toPromise()
+  } */
+  deleteLocalByCompany(companyId){
+    let params = new HttpParams().set('companyId',companyId)
+debugger
+    return this.httpClient.delete(`${environment.apiUrl}/locals`,{ params }).toPromise()
   }
 
   createLocal(local){

@@ -300,6 +300,13 @@ svg {
   color: red;
 }
 
+.warning {
+  margin-top: 0rem;
+  padding: 0.2rem 0 0 0.5rem;
+  font-size: calc(var(--font-size-base) * 0.7);
+  color: var(--warning);
+}
+
 .invalid {
   border: 1px solid red !important;
 }

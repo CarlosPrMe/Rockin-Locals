@@ -20,7 +20,7 @@
         <div id="prueba" class="info__edit">
           <div class="form__group form__group--file">
             <input formControlName="avatar" type="text" class="form__control form__file" placeholder="Introduce URL">
-
+            <div class="warning" *ngIf="myForm.controls.avatar.touched && myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom">Formato incorrecto</div>
             <!--            <input type="file" name="image" id="file-upload" class=" form__label form__file">
             <label for="file-upload" class="form__label form__label--sm form__label--file">Subir imagen
               <svg class="icon-label upload" xmlns="http://www.w3.org/2000/svg"

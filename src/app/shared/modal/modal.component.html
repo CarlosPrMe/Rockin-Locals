@@ -68,7 +68,7 @@
           <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required}"
             formControlName="email" type="email" class="form__control" id="email-register" required>
         </div>
-        <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value"> Email incorrecto</span>
+        <span class="warning" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value"> Email incorrecto</span>
         <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
             Obligatorio </span>
         <div class="form__group">
@@ -77,7 +77,7 @@
             myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}" formControlName="password"
             type="password" class="form__control" id="password-register" required minlength="8">
         </div>
-        <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo 8
+        <div class="warning" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo 8
           caracteres</div>
         <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
           Obligatorio</div>
@@ -95,6 +95,7 @@
           <label class="form__label">Imagen de usuario</label>
           <input formControlName="avatar" type="text" class="form__control" placeholder="Introduce URL">
         </div>
+        <div class="warning" *ngIf="myForm.controls.avatar.touched && myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom">Formato incorrecto</div>
 <!--         <div class="form__group form__group--file">
           <input formControlName="avatar" type="file" class="form__label form__file" id="avatar">
           <label for="avatar" class="form__label form__label--sm form__label--file">Elige imagen
@@ -124,7 +125,7 @@
             myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName" type="text"
             class="form__control" id="userName" minlength="5" required>
         </div>
-        <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">Mínimo 5
+        <div class="warning" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">Mínimo 5
           caracteres</div>
         <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo Obligatorio
         </div>
@@ -135,7 +136,7 @@
             type="text" class="form__control" id="bandName" minlength="2"
             [required]="myForm.controls.type.value === 'band'">
         </div>
-        <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">Mínimo 2
+        <div class="warning" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">Mínimo 2
           caracteres</div>
         <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">Campo
           Obligatorio
@@ -150,7 +151,7 @@
         <div class="error" *ngIf="myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.required">Campo
           Obligatorio
         </div>
-        <div class="error" *ngIf="myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.minlength">Mínimo
+        <div class="warning" *ngIf="myForm.controls.companyName.dirty && myForm.controls.companyName.errors?.minlength">Mínimo
           2
           caracteres</div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">

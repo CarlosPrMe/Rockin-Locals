@@ -15,12 +15,20 @@ export class ReservationsService {
 
   constructor(private httpClient: HttpClient, private ngCalendar: NgbCalendar) { }
 
-  getReservationByLocal(user) {
+/*   getReservationByLocal(user) {
     let params = new HttpParams().set('companyName', user);
     return this.httpClient.get(`${environment.apiUrl}/reservations`, { params }).toPromise();
+  } */
+  getReservationByLocal(id) {
+    let params = new HttpParams().set('companyId', id);
+    return this.httpClient.get(`${environment.apiUrl}/reservations`, { params }).toPromise();
   }
-  getReservationByBand(user) {
+/*   getReservationByBand(user) {
     let params = new HttpParams().set('bandName', user);
+    return this.httpClient.get(`${environment.apiUrl}/reservations`, { params }).toPromise();
+  } */
+  getReservationByBand(id) {
+    let params = new HttpParams().set('bandId', id);
     return this.httpClient.get(`${environment.apiUrl}/reservations`, { params }).toPromise();
   }
 

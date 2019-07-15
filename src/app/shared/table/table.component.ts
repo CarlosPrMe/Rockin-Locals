@@ -14,7 +14,7 @@ export class TableComponent implements OnInit, OnChanges {
   @Input() reservations:Array<any>;
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
-  displayedColumns: string[] = ['day', 'band', 'local', 'hours'];
+  displayedColumns: string[] = ['day', 'band', 'local', 'hourIn', 'hours'];
 
   constructor() { }
 

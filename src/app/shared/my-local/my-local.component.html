@@ -126,7 +126,8 @@
               </label> -->
               <input formControlName="image" type="text" class="form__control form__file" placeholder="Introduce URL"
               [ngClass]="{invalid:myForm.controls.image.errors?.required}" required>
-              <div class="error" *ngIf="myForm.controls.image.errors?.required">Campo Obligatorio</div>
+              <div class="error error--inline" *ngIf="myForm.controls.image.errors?.required">Campo Obligatorio</div>
+              <div class="warning" *ngIf="myForm.controls.image.dirty && myForm.controls.image.errors?.urlCustom">Formato incorrecto</div>
             </div>
           </div>
         </div>

@@ -6,7 +6,6 @@ import swal from 'sweetalert2';
 import { LocalsService } from '../../services/locals.service';
 import { LocationService } from '../../services/location.service';
 import { BehaviorSubject } from 'rxjs';
-import { reject } from 'q';
 
 @Component({
   selector: 'app-configuration',
@@ -59,7 +58,9 @@ export class ConfigurationComponent implements OnInit {
         }
       }
       if (user.description !== newData.description) {
-        let res: any = await this.localService.getLocalsByLocal(currentLocal.companyName)
+        debugger
+        //let res: any = await this.localService.getLocalsByLocal(currentLocal.companyName)
+        let res: any = await this.localService.getLocalsByLocal(currentLocal._id)
         debugger
         if (!res) {
           this.loginService.user.next(currentLocal);
@@ -82,48 +83,52 @@ export class ConfigurationComponent implements OnInit {
             })
           }
         }
-
-        if (this.company.value !== newData.companyName) {
-          debugger
-          let local: any = await this.localService.getLocalsByLocal(this.company.value)
-          debugger
-          this.loginService.user.next(currentLocal);
-          if (!local) {
-            return swal.fire({
-              title: '¡Error al editar usuario!',
-              type: "error",
-              showConfirmButton: false,
-            })
-          } else {
-            const newLocal = Object.assign(local[0], newData.companyName);
-            this.localService.editLocal(newLocal).catch().then();
-
-          }
-        }
-        let userNew = await { ...user, ...newData }
+      }
+      if (this.company.value !== newData.companyName) {
         debugger
-        let change: any = await this.userService.editUser(userNew)
+        //let local: any = await this.localService.getLocalsByLocal(this.company.value)
+        let local: any = await this.localService.getLocalsByLocal(this.user._id)
         debugger
-        if (!change) {
-          debugger
+        if (!local) {
           this.loginService.user.next(currentLocal);
           this.router.navigate(['/index']);
           return swal.fire({
-            title: '¡Error al hacer los cambios!',
+            title: '¡Error al editar usuario!',
             type: "error",
             showConfirmButton: false,
           })
         } else {
           debugger
-          this.loginService.user.next(change.data);
-          this.router.navigate(['/index']);
-          return swal.fire({
-            title: '¡Cambios realizados con éxito!',
-            type: 'success',
-            showConfirmButton: false,
-          })
+          //const newLocal = Object.assign(local[0], newData.companyName);
+          const newLocal = { ...local[0], ...newData };
+          this.localService.editLocal(newLocal).catch().then();
+
         }
       }
+      let userNew = await { ...user, ...newData }
+      debugger
+      let change: any = await this.userService.editUser(userNew)
+      debugger
+      if (!change) {
+        debugger
+        this.loginService.user.next(currentLocal);
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al hacer los cambios!',
+          type: "error",
+          showConfirmButton: false,
+        })
+      } else {
+        debugger
+        this.loginService.user.next(change.data);
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Cambios realizados con éxito!',
+          type: 'success',
+          showConfirmButton: false,
+        })
+      }
+
     }
     //Aqui empieza la edicion del usuario banda
     else {
@@ -174,7 +179,8 @@ export class ConfigurationComponent implements OnInit {
         debugger
         if (this.user.type === 'local') {
           debugger
-          this.localService.deleteLocalByCompany(this.user.companyName).catch(err => {
+          //this.localService.deleteLocalByCompany(this.user.companyName).catch(err => {
+          this.localService.deleteLocalByCompany(id).catch(err => {
             debugger
             if (err) {
               this.router.navigate(['/index']);
@@ -185,12 +191,6 @@ export class ConfigurationComponent implements OnInit {
               })
             }
           })
-          /* .then((res: any) => {
-            debugger
-            if (res.ok !== 1) {
-              new Error('Local no encontrado');
-            }
-          }) */
         }
         debugger
         this.userService.deleteUser(id).catch(err => {

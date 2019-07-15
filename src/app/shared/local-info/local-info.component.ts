@@ -180,6 +180,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
   submit(event, form) {
+
     this.reservation.companyName = this.localSelected.companyName;
     this.reservation.localName = this.localSelected.name;
     this.reservation.date = this.reservationsService.daySelected.value;
@@ -188,6 +189,9 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.reservation.numHours = this.getHoursSelected(form.value).length;
     this.reservation.bandName = this.userData.bandName;
     this.reservation.price = this.localSelected.price;
+    this.reservation.bandId = this.userData._id;
+    this.reservation.companyId = this.localSelected.companyId;
+    debugger
     this.askReservation.emit(this.reservation)
     //console.log(this.reservation);
     //console.log(this.changeAvailavility(form.value));//Solo da un objeto con las horas reservadas que luego se añaden a las que habia o si no se crea uno nuevo

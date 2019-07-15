@@ -36,15 +36,18 @@ export class MyLocalsComponent implements OnInit {
 
     this.loginService.user.subscribe((res) => this.user = res);
 
-
-    this.reservationsService.getReservationByLocal(this.user.companyName).then((data: Array<any>) => {
+debugger
+    this.reservationsService.getReservationByLocal(this.user._id).then((data: Array<any>) => {
+      debugger
       this.reservations = data;
       this.separateReservations.call(this, data);
     })
 
-    this.localsService.getLocalsByLocal(this.user.companyName).then(data => {
+/*     this.localsService.getLocalsByLocal(this.user.companyName).then(data => {
       this.local = data[0];
-
+    }) */
+    this.localsService.getLocalsByLocal(this.user._id).then(data => {
+      this.local = data[0];
     })
 
   }
@@ -126,7 +129,17 @@ export class MyLocalsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
         debugger
-        this.localsService.deleteLocal(id).then((res: any) => {
+        this.localsService.deleteLocal(id).catch(err=>{
+          debugger
+          if(err){
+            this.router.navigate(['/index']);
+            return swal.fire({
+              title: '¡Error al editar el local!',
+              type: "error",
+              showConfirmButton: false,
+            })
+          }
+        }).then((res: any) => {
           debugger
           if (res.ok === 1) {
             swal.fire({
@@ -136,9 +149,9 @@ export class MyLocalsComponent implements OnInit {
               timer: 2000,
               showConfirmButton: false,
             })
+            this.local = null;
+            this.router.navigate(['/index']);
           }
-          this.local = null;
-          this.router.navigate(['/index']);
         })
       }
     })

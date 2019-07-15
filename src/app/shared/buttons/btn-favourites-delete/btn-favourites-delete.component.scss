@@ -15,4 +15,12 @@
       fill: var(--primary);
     }
   }
+
+  &:active {
+    background-color: var(--danger);
+    svg{
+      fill: var(--white);
+    }
+  }
+
 }

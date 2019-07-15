@@ -1,5 +1,5 @@
 <app-header-local [user]="user"></app-header-local>
-<app-my-local [user]="user" [local]="local" (updateLocal)="onUpdateLocal($event)" (deleteLocal)="onDeleteLocal($event)"></app-my-local>
+<app-my-local [user]="user" [local]="local" (updateLocal)="onUpdateLocal($event)" (deleteLocal)="onDeleteLocal(local._id)"></app-my-local>
 <!-- <app-add-local></app-add-local> -->
 <div *ngIf="reservations.length > 0" class="container container--flex-end ">
   <button *ngIf='!showTableReservations' (click)="showTableReservations = !showTableReservations" class="btn ml-a">Mostrar Listado de reservas</button>
