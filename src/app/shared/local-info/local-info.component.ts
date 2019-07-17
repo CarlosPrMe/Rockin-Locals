@@ -6,7 +6,7 @@ import { Reservation } from '../../mis clases/reservation';
 import { ReservationsService } from '../../services/reservations.service';
 import { Router } from '@angular/router';
 import { Favourite } from '../../mis clases/favourite';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
 import { LoginService } from '../../services/login.service';
 import swal from 'sweetalert2';
 
@@ -27,10 +27,16 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   reservation = new Reservation();
   hoursAvailable = [];
   reservObj: any = {}; //Objeto que paso para hacer un put o post de las horas de reserva
-  today
+  today: NgbDate;
+  justToday: NgbDate//Para sacar el actual y desactivar las horas pasadas en este dia
+  now: Number;//Para sacar la hora actual y desactivar las horas pasadas en este dia
+  //allHours: object = { hour11: 11, hour12: 12, hour13: 13, hour14: 14, hour15: 15, hour16: 16, hour17: 17, hour18: 18, hour19: 19, hour20: 20, hour21: 21, hour22: 22 }
+  allHours: Array<number> = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
   favourite = new Favourite();
   added: boolean = false; // Para saber si el local ya está en favoritos y mostrar un boton un otro, hacer una logica u otra
   @ViewChild('image') image: ElementRef;
+
+  disabledHours: object;
 
   constructor(private favouritesService: FavouritesService, private fb: FormBuilder,
     private reservationsService: ReservationsService, private router: Router,
@@ -64,26 +70,20 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     })
     this.today = this.ngCalendar.getToday()
     this.getDay(this.today);
-
+    //this.disabledHours = null;
+    debugger;
   }
 
   ngOnChanges(simpleChange: SimpleChanges) {
-    debugger
+
     if (simpleChange.userData.currentValue) {
       this.checkFavourite(simpleChange.userData.currentValue, this.localSelected)
     }
 
-    console.log(this.added);
-    console.log(this.localSelected);
-    console.log(this.user);
-    console.log(this.userData);
-
-
-
   }
 
   checkFavourite(user, local) {
-    debugger
+
     if (user.favourites.length > 0) {
       for (let i = 0; i < user.favourites.length; i++) {
         if (user.favourites[i].companyName === local.companyName) {
@@ -95,7 +95,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
   addToFavourites(user, local) {
-    debugger
+
     let favourites = {
       idLocal: local._id,
       localName: local.name,
@@ -107,7 +107,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     }
     user.favourites.push(favourites);
     this.favouritesService.modifyFavourite(user).catch((err) => {
-      debugger
+
       if (err) {
         this.router.navigate(['/index']);
         return swal.fire({
@@ -117,22 +117,27 @@ export class LocalInfoComponent implements OnInit, OnChanges {
         })
       }
     }).then((res: any) => {
-      debugger
+
       if (res.data) {
         console.log(res.data);
         this.loginService.user.next(res.data);
         this.added = true;
+        return swal.fire({
+          title: '¡Local añadido!',
+          type: "success",
+          showConfirmButton: false,
+        })
       }
     })
   }
 
   deleteFavourite(event, user, local) {
-    let currentUser = {...user};
-    debugger
+    let currentUser = { ...user };
+
     //let favourites = user.favourites.filter(f => f.companyName !== local.companyName);
     //user = Object.assign(user, favourites);
     this.favouritesService.deleteFavourite(user, local._id).catch((err) => {
-      debugger
+
       if (err) {
         this.loginService.user.next(currentUser);
         this.router.navigate(['/index']);
@@ -144,7 +149,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
       }
     }).then((res: any) => {
       console.log(res)
-      debugger
+
       if (res.data) {
         this.loginService.user.next(res.data);
         this.added = false;
@@ -156,8 +161,18 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.reservationsService.daySelected.next(date)
     this.daySelected.next(date)
     this.resetHours();
+    this.disabledHours = {};
+    this.now = new Date().getHours();
+    debugger
+    if (this.today.equals(date)) {
+      debugger
+      this.disableHoursByHour(this.now, this.allHours)
 
-    this.reservationsService.askHoursAvailable(date, this.localSelected.companyName).then((res: Array<any>) => {
+    }
+    this.reservObj = {}
+
+    //this.reservationsService.askHoursAvailable(date, this.localSelected.companyName).then((res: Array<any>) => {
+    this.reservationsService.askHoursAvailable(date, this.localSelected.companyId).then((res: Array<any>) => {
       //console.log(res);
 
       if (res.length > 0) {
@@ -167,10 +182,14 @@ export class LocalInfoComponent implements OnInit, OnChanges {
         for (const hour in this.hoursAvailable[0].hours) {
           if (this.hoursAvailable[0].hours[hour] === true) {
             this.myForm.controls[`${hour}`].disable()
+            this.disabledHours[hour] = true;
+
           }
         }
 
         this.reservationsService.emptyDay.next(false);
+
+        console.log('this.disabledHours', this.disabledHours);
 
       } else {
         this.reservationsService.emptyDay.next(true);
@@ -180,6 +199,8 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
   submit(event, form) {
+
+    this.disabledHours = null;
 
     this.reservation.companyName = this.localSelected.companyName;
     this.reservation.localName = this.localSelected.name;
@@ -191,16 +212,19 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.reservation.price = this.localSelected.price;
     this.reservation.bandId = this.userData._id;
     this.reservation.companyId = this.localSelected.companyId;
-    debugger
+    this.reservation.moment = Date.now();
+
     this.askReservation.emit(this.reservation)
     //console.log(this.reservation);
     //console.log(this.changeAvailavility(form.value));//Solo da un objeto con las horas reservadas que luego se añaden a las que habia o si no se crea uno nuevo
 
     if (this.reservObj.id) {
+
       this.reservObj.hours = Object.assign(this.reservationsService.hoursAvailable.value, this.changeAvailavility(form.value))
       this.reservationsService.hoursAvailable.next(this.reservObj); //A lo mejor aqui hay que pasarlo this.reservObj.hours. ASi le estoy pasando un prop _id y un obj con las horas
 
     } else {
+
       this.reservObj.hours = this.changeAvailavility(form.value)
       this.reservationsService.hoursAvailable.next(this.reservObj);//A lo mejor aqui hay que pasarlo this.reservObj.hours. Asi solo le paso ls horas
 
@@ -211,6 +235,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
 
   getHoursSelected(form) {
+
     let hours = []
     form.hour11 ? hours.push('11:00') : null;
     form.hour12 ? hours.push('12:00') : null;
@@ -228,6 +253,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
   changeAvailavility(form) {
+
     let hours: any = {}
     form.hour11 ? hours.hour11 = true : null;
     form.hour12 ? hours.hour12 = true : null;
@@ -246,6 +272,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
 
   resetHours() {
+
     this.myForm.controls['hour11'].enable();
     this.myForm.controls['hour12'].enable();
     this.myForm.controls['hour13'].enable();
@@ -275,6 +302,20 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   zoom(event) {
     this.image.nativeElement.requestFullscreen();
+  }
+
+  disableHoursByHour(now, hours) {
+    for (let i = 0; i < hours.length; i++) {
+      debugger;
+      if (hours[i] <= now) {
+        this.disabledHours[`hour${hours[i]}`] = true;
+      }
+      if (hours[i] > now) {
+        break;
+      }
+    }
+
+
   }
 
 }

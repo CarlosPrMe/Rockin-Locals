@@ -237,13 +237,16 @@
       fill: var(--yellow);
     }
   }
-  &:active {
-    color: var(--gray-800);
-    background-color: orange;
-    & svg {
-      fill: var(--white);
-      transform: scale(1.4);
+  @media(min-width:1024px){
+    &:active {
+      color: var(--gray-800);
+      background-color: orange;
+      & svg {
+        fill: var(--white);
+        transform: scale(1.4);
+      }
     }
+
   }
   & svg {
     fill: var(--third);
@@ -417,10 +420,15 @@ svg {
   opacity: 0.3;
   //background-color: red;
   pointer-events: none;
+  position: relative;
 }
 .enabled {
   opacity: 1;
   background-color: inherit;
+}
+
+.hide{
+  display: none;
 }
 
 .advise {

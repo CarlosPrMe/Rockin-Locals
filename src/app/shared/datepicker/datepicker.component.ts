@@ -67,13 +67,13 @@ export class DatepickerComponent implements OnInit, OnChanges {
         behavior:'smooth'
       });
     }
-    else if (this.screenService.resolution.value <= 767) {
+/*     else if (this.screenService.resolution.value <= 767) {
       window.scrollTo({
         top: 1475,
         left: 0,
         behavior:'smooth'
       });
-    }
+    } */
 
   }
 

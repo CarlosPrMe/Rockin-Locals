@@ -36,9 +36,9 @@ export class MyLocalsComponent implements OnInit {
 
     this.loginService.user.subscribe((res) => this.user = res);
 
-debugger
+
     this.reservationsService.getReservationByLocal(this.user._id).then((data: Array<any>) => {
-      debugger
+
       this.reservations = data;
       this.separateReservations.call(this, data);
     })
@@ -68,13 +68,13 @@ debugger
   }
 
   async onUpdateLocal(local) {
-    debugger
+
     if (local._id) {
-      debugger
+
       let localToEdit: any = await this.localsService.editLocal(local)
-      debugger
+
       if (!localToEdit) {
-        debugger
+
         this.router.navigate(['/index']);
         return swal.fire({
           title: '¡Error al hacer los cambios!',
@@ -82,7 +82,7 @@ debugger
           showConfirmButton: false,
         })
       } else {
-        debugger
+
         this.router.navigateByUrl('/index');
         this.local = null //No entiendo por que
         return swal.fire({
@@ -92,11 +92,11 @@ debugger
         });
       }
     } else {
-      debugger
+
       let newLocal: any = await this.localsService.createLocal(local);
-      debugger
+
       if (!newLocal) {
-        debugger
+
         this.router.navigateByUrl('/index');
         return swal.fire({
           title: '¡Error al añadir el local!',
@@ -104,7 +104,7 @@ debugger
           showConfirmButton: false,
         })
       } if (newLocal._id) {
-        debugger
+
         this.local = null
         this.router.navigateByUrl('/index');
         return swal.fire({
@@ -128,9 +128,9 @@ debugger
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-        debugger
+
         this.localsService.deleteLocal(id).catch(err=>{
-          debugger
+
           if(err){
             this.router.navigate(['/index']);
             return swal.fire({
@@ -140,7 +140,7 @@ debugger
             })
           }
         }).then((res: any) => {
-          debugger
+
           if (res.ok === 1) {
             swal.fire({
               title: '¡Eliminado!',

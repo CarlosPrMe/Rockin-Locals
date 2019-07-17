@@ -50,11 +50,13 @@ export class PaymentComponent implements OnInit {
 
     if (this.reservationService.emptyDay.value) {
       //Crear una disponibiliad
-      this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+     // this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+      this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.companyId, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
 
     } else {
       //Modificamos la disponibiliadad
-      this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+      //this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
+      this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.companyId, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
 
     }
     this.reservationService.emptyDay.next(false);

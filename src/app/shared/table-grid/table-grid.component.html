@@ -14,9 +14,9 @@
     <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.companyName}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="local">
-    <th class="table__heading" mat-header-cell *matHeaderCellDef> Nombre del local </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
+  <ng-container matColumnDef="local" class="tablet">
+    <th class="table__heading tablet" mat-header-cell *matHeaderCellDef> Nombre del local </th>
+    <td class="table__data tablet" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="hourIn" class="desktop">
@@ -24,9 +24,14 @@
     <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.hours[0]}} </td>
   </ng-container>
 
-  <ng-container matColumnDef="hours">
-    <th class="table__heading" mat-header-cell *matHeaderCellDef> NºHoras </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.numHours}} </td>
+  <ng-container matColumnDef="hours" class="tablet">
+    <th class="table__heading tablet" mat-header-cell *matHeaderCellDef> NºHoras </th>
+    <td class="table__data tablet" mat-cell *matCellDef="let reservation"> {{reservation?.numHours}} </td>
+  </ng-container>
+  <ng-container matColumnDef="boton">
+
+    <th class="table__heading" mat-header-cell *matHeaderCellDef> </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> <button type="button" class="btn btn-cancel" (click)="cancel(reservation._id)">Cancelar</button> </td>
   </ng-container>
 
 </table>

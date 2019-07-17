@@ -17,12 +17,16 @@
   }
 }
 
+.dark{
+  background-color: rgba(0,0,0,0.5);
+}
 .header {
   &--local {
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
     color: var(--white);
+    background-color: rgba(0,0,0,0.5);
   }
 
   &--local {

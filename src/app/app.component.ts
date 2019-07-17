@@ -112,7 +112,18 @@ export class AppComponent implements OnInit, OnChanges {
   }
 
   scrollToTop(element) {
+
     this.scrollService.scrollTo(element);
+
+/*     if(this.screenService.resolution.value>768){
+    }else{
+      window.scrollTo({
+        top: 1475,
+        left: 0,
+
+        behavior:'smooth'
+      });
+    } */
   }
 
 }

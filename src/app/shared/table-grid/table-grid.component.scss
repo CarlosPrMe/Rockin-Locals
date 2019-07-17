@@ -61,7 +61,7 @@
       width: 25%;
     }
     @media (min-width: 1024px) {
-      width: 20%;
+      width: 16.6%;
       font-size: var(--font-size-base);
     }
     &:first-child {
@@ -89,16 +89,16 @@
 
     @media (max-width: 767px) {
       font-size: var(--font-size-sm);
-      width: 25%;
+      width: 20%;
     }
 
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: var(--font-size-sm);
-      width: 25%;
+      width: 20%;
     }
     @media (min-width: 1024px) {
       font-size: var(--font-size-base);
-      width: 20%;
+      width:16.6%;
     }
   }
   &__link {
@@ -130,6 +130,11 @@ th.mat-header-cell:last-of-type{
 
 .desktop{
   @media(max-width:1023px){
+    display: none;
+  }
+}
+.tablet{
+  @media(max-width:767px){
     display: none;
   }
 }

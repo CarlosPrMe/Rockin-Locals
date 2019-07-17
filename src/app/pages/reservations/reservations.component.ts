@@ -22,6 +22,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
   reservationsNext: Array<any> = [];
   //date = Date.now();
   today: NgbDate;
+  todayJs: Number = Date.now();
 
   constructor(private loginService: LoginService,
     private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
@@ -40,11 +41,11 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
     this.reservations = [];
 
-/*     this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
-      this.reservations = data;
-      console.log(this.reservations);
-      this.separateReservations.call(this, data);
-    }) */
+    /*     this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
+          this.reservations = data;
+          console.log(this.reservations);
+          this.separateReservations.call(this, data);
+        }) */
     debugger
     this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
       debugger
@@ -66,12 +67,24 @@ export class ReservationsComponent implements OnInit, OnChanges {
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
       if (this.today.before(reserva.date) || this.today.equals(reserva.date)) {
+        debugger
         this.reservationsNext.push(reserva)
       } else if (this.today.after(reserva.date)) {
+        debugger
         this.reservationsPast.push(reserva)
       }
     });
   }
+
+  /*   separateReservations(arrayReser) {
+      arrayReser.forEach(reserva => {
+        if (this.todayJs < reserva.moment) {
+          this.reservationsNext.push(reserva)
+        } else {
+          this.reservationsPast.push(reserva)
+        }
+      });
+    } */
 
   async onNavigateTolocal(id) {
 
@@ -95,12 +108,82 @@ export class ReservationsComponent implements OnInit, OnChanges {
           showConfirmButton: false,
         })
       }
-    }).then((res:any) => {
+    }).then((res: any) => {
       debugger
-      if(res.data){
+      if (res.data) {
         this.loginService.user.next(res.data)
       }
     });
+
+  }
+
+  async onCancelReservation(idReserToDelete) {
+    let reservation: Array<any> = this.reservationsNext.filter(res => res._id === idReserToDelete);
+
+    console.log(reservation[0]);
+
+    let response = await swal.fire({
+      title: '¿Está seguro de cancelar la reserva?',
+      type: "warning",
+      showCancelButton: true,
+      confirmButtonColor: '#119e32',
+      cancelButtonColor: '#be1e1e',
+      confirmButtonText: 'Confirmar cancelación',
+      cancelButtonText: 'Atrás'
+    })
+
+    if (response.value) {
+      debugger
+      console.log(reservation[0]);
+      let cancelation: any = await this.reservationsService.deleteAvailability(reservation[0]);
+      debugger
+      if (cancelation.ok === 1) {
+        debugger
+        this.reservationsService.deleteReservation(idReserToDelete).catch((err) => {
+          debugger
+          if (err) {
+            this.router.navigate(['/index']);
+            return swal.fire({
+              title: '¡Error al cancelar la reserva!',
+              text: 'Intentelo de nuevo más tarde',
+              type: "error",
+              showConfirmButton: false,
+            })
+          }
+        }).then((res:any) => {
+          debugger
+          if(res.ok === 1){
+            this.router.navigate(['/index']);
+            return swal.fire({
+              title: '¡Reserva Cancelada con éxito!',
+              text: 'El dinero será abonado mediante el mismo metódo de pago con el que se hizo la reserva',
+              type: 'success',
+              showConfirmButton: false,
+            })
+          }
+        })
+
+      } else {
+        debugger
+        this.router.navigate(['/index']);
+        return swal.fire({
+          title: '¡Error al cancelar la reserva!',
+          text: 'Intentelo de nuevo más tarde',
+          type: "error",
+          showConfirmButton: false,
+        })
+      }
+
+    } else {
+      debugger
+      this.router.navigate(['/index']);
+      return swal.fire({
+        title: '¡Error al editar favoritos!',
+        type: "error",
+        showConfirmButton: false,
+      })
+
+    }
 
   }
 

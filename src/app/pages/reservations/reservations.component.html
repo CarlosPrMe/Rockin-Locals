@@ -1,9 +1,9 @@
 <app-header-user [user]="user"></app-header-user>
 <div class="container">
   <div class="grid">
-    <h2 *ngIf="reservationsNext.length === 0" class="heading">Aquí aparecerán todas tus reservas (pasadas y futuras)</h2>
+    <h2 *ngIf="reservationsNext.length === 0 && reservationsPast.length === 0" class="heading">Aquí aparecerán todas tus reservas (pasadas y futuras)</h2>
     <h2 *ngIf="reservationsNext.length > 0" class="heading">Reserva/s futura/s</h2>
-    <app-table-grid *ngIf="reservationsNext.length > 0" [reservations]="reservationsNext"></app-table-grid>
+    <app-table-grid *ngIf="reservationsNext.length > 0" [reservations]="reservationsNext" (cancelReservation)="onCancelReservation($event)"></app-table-grid>
     <app-favourites [user]="user" (navigateTolocal)="onNavigateTolocal($event, user.favourites)"
       (delete)="onDeleteFavourite($event)"></app-favourites>
     <h2 *ngIf="reservationsPast.length > 0" class="heading">Reservas pasadas</h2>
