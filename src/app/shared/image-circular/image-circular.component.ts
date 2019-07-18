@@ -63,8 +63,6 @@ export class ImageCircularComponent implements AfterContentInit {
         is_autopan_off: false,
         is_yaw_only: false,
       });
-      console.log('hola', `${this.image360}`);
-
     }
   }
 

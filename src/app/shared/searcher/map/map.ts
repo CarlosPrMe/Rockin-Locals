@@ -26,7 +26,6 @@ export class MapComponent implements OnChanges {
 
 /*       change.localsFound.currentValue.forEach(local => {
         this.labelOptions.text = `${local.companyName}`;
-        console.log(local);
       });
       this.labelOptions = {
         text: 'hola',

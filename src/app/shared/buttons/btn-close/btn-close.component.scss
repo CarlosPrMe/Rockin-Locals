@@ -4,8 +4,8 @@
   position: absolute;
   background-color: transparent;
   @media (max-width: 767px) {
-    right: 0;
-    top: 0;
+    right: 10px;
+    top: 10px;
     transform: scale(0.6) translate(1rem, -0.5rem);
   }
   @media (min-width: 768px) {

@@ -14,11 +14,6 @@ export class UploadImageService {
 
     const formData = new FormData();
     formData.append('multer.route', image, image.name);
-
-    console.log('enviando');
-    console.log(formData);
-
-
     return this.httpClient.post(`${environment.apiUrl}/uploads`, image);
   }
 

@@ -44,16 +44,17 @@
 .scroll-container {
   position: relative;
   height: auto;
-}
-.scroll-container::after {
-  content: "";
-  display: block;
-  width: 100%;
-  height: 25px;
-  background-color: var(--gray-200);
-  position: absolute;
-  bottom: 0;
-  z-index: 5;
+
+  &::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 25px;
+    background-color: var(--gray-200);
+    position: absolute;
+    bottom: 0;
+    z-index: 5;
+  }
 }
 
 .scroll-img {
@@ -75,12 +76,12 @@
   @media (max-width: 767px) {
     top: 7.5rem;
   }
-  @media (min-width: 768px) and (max-width:1023px) {
+  @media (min-width: 768px) and (max-width: 1023px) {
     padding: 1rem 2rem;
     top: 19.5rem;
   }
   @media (min-width: 1024px) {
-    padding: 1rem 2rem;
+    padding: 1rem 0;
     top: 15.5rem;
   }
 }
@@ -96,15 +97,55 @@
 
   &--left {
     transform: rotate(180deg);
+    @media (min-width: 1024px) {
+      transform: translateX(-12px) rotate(180deg);
+    }
   }
+  &--rigth {
+    @media (min-width: 1024px) {
+      transform: translateX(12px);
+    }
+  }
+
   @media (max-width: 1023px) {
     opacity: 1;
   }
   @media (min-width: 1024px) {
-    opacity: 0.5;
+    //opacity: 0.5;
     &:hover {
       color: var(--secondary);
       opacity: 1;
+    }
+  }
+}
+
+.wrapper {
+  @media (min-width:1024px){
+    &::before {
+      content: "";
+      display: block;
+      position: absolute;
+      left: -1rem;
+      bottom: 57px;
+      width: 3rem;
+      height: 283px;
+      background-color: var(--aux);
+      border-top-left-radius: 5px;
+      border-bottom-left-radius: 5px;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    }
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      right: -1rem;
+      bottom: 57px;
+      width: 3rem;
+      height: 283px;
+      background-color: var(--aux);
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+      box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
     }
   }
 }

@@ -1,8 +1,8 @@
-<div class="modal" [ngClass]="{'show':showModal}">
+<div class="modal" [ngClass]="{'show':showModal}" *ngIf="showModal" >
   <div class="modal__body">
     <app-btn-close (closeModal)="close($event)"></app-btn-close>
     <h2 class="modal__heading">Registro de usuario</h2>
-    <form class="form flex--between" [formGroup]="myForm">
+    <form class="form flex--between" [formGroup]="myForm" (change)="formValues(myForm)">
       <div class="modal__block">
         <div class="form__group">
           <label class="form__label">Elige tu perfil</label>
@@ -23,7 +23,7 @@
                              s-0.5,0-0.8,0c-3.8,0-7-3.1-7-7v-124.7v-106.8v-31.3l151.8-135.6l153.1,136.9L395.508,287.156L395.508,287.156z" />
               </svg>
             </label>
-            <input formControlName="type" type="radio" name="type" id="band" class="form__radio" value="band">
+            <input formControlName="type" type="radio" name="type" id="band" class="form__radio" value="band" required>
             <label for="band" class="form__label form__label--radio">Banda
               <svg class="icon-label" height="40pt" viewBox="-62 0 512 512.001" width="40pt"
                 xmlns="http://www.w3.org/2000/svg">
@@ -85,7 +85,7 @@
           <label for="address" class="form__label">Dirección</label>
           <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid: myForm.controls.address.dirty && myForm.controls.errors?.required ||
             myForm.controls.address.dirty && myForm.controls.address.errors?.minlength}"
-            formControlName="address" type="text" class="form__control" id="address" [required]="myForm.controls.type.value === 'local'">
+            formControlName="address" type="text" class="form__control" id="address">
         </div>
         <div class="error" *ngIf="myForm.controls.address.dirty && myForm.controls.address.errors?.required">Campo
           Obligatorio</div>
@@ -133,8 +133,7 @@
           <label for="bandName" class="form__label">Nombre del grupo</label>
           <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
             myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}" formControlName="bandName"
-            type="text" class="form__control" id="bandName" minlength="2"
-            [required]="myForm.controls.type.value === 'band'">
+            type="text" class="form__control" id="bandName" minlength="2">
         </div>
         <div class="warning" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">Mínimo 2
           caracteres</div>
@@ -157,17 +156,15 @@
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="city" class="form__label">Ciudad</label>
           <input (keyup.enter)="submit($event, myForm)" [ngClass]="{invalid:myForm.controls.city.dirty && myForm.controls.city.errors?.required}"
-            formControlName="city" type="text" class="form__control" id="city"
-            [required]="myForm.controls.type.value === 'local'">
+            formControlName="city" type="text" class="form__control" id="city">
         </div>
-        <div class="error" *ngIf="myForm.controls.city.dirty && myForm.controls.city.errors?.required">Campo
+        <div class="error" *ngIf="myForm.controls.type.value === 'local' && myForm.controls.city.errors?.required">Campo
           Obligatorio</div>
         <div class="form__group" *ngIf="myForm.controls.type.value === 'local'">
           <label for="postal-code" class="form__label">Código Postal</label>
-          <input (keyup.enter)="submit($event, myForm)" formControlName="postalCode" type="text" class="form__control" id="postal-code"
-            [required]="myForm.controls.type.value === 'local'">
+          <input (keyup.enter)="submit($event, myForm)" formControlName="postalCode" type="text" class="form__control" id="postal-code">
         </div>
-        <div class="error" *ngIf="myForm.controls.postalCode.dirty && myForm.controls.postalCode.errors?.required">Campo
+        <div class="error" *ngIf="myForm.controls.type.value === 'local' && myForm.controls.postalCode.errors?.required">Campo
           Obligatorio</div>
       </div>
       <div class="modal__block--lg">

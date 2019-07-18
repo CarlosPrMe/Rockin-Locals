@@ -31,14 +31,12 @@ export class LoginService {
         });
       }
     }).then((res: any) => {
-      console.log(res)
       if (res.token) {
         this.token = res.token;
         localStorage.setItem('access_token', this.token)
         this.httpClient.get(`${environment.apiUrl}/auth/me`).toPromise().then((data: any) => {
           this.user.next(data)
           this.isLoged.next(true);
-          console.log(this.user.value);
         })
       }
     });
@@ -53,7 +51,6 @@ export class LoginService {
 
     return this.httpClient.get(`${environment.apiUrl}/auth/logout`).toPromise()
       .then((res) => {
-        console.log(res);
         this.token = null;
         this.user.next(false);
         this.isLoged.next(false);

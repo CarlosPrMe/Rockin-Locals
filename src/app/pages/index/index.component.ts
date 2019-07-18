@@ -25,13 +25,3 @@ export class IndexComponent implements OnInit {
 
 }
 
-
-/*
-this.httpClient.get(`${environment.apiUrl}/auth/me`).toPromise().then((data:any) => {
-
-          this.user.next(data)
-          this.isLoged.next(true);
-          console.log(this.user.value);
-
-        })
-*/

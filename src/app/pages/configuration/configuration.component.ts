@@ -54,7 +54,32 @@ export class ConfigurationComponent implements OnInit {
           })
         } else {
           newData.location = res.results[0].geometry.location
+          let data: any = await this.localService.getLocalsByLocal(currentLocal._id)
           debugger
+          if (!data) {
+            this.loginService.user.next(currentLocal);
+            debugger
+            return swal.fire({
+              title: '¡Error al hacer los cambios!',
+              type: "error",
+              showConfirmButton: false,
+            })
+          } else {
+            debugger
+            if(data.length === 1){
+              const local = {...data[0],...newData };
+              debugger
+              let localEdited: any = await this.localService.editLocal(local)
+              debugger
+              if (!localEdited) {
+                return swal.fire({
+                  title: '¡Error al hacer los cambios!',
+                  type: "error",
+                  showConfirmButton: false,
+                })
+              }
+            }
+          }
         }
       }
       if (user.description !== newData.description) {
@@ -71,16 +96,19 @@ export class ConfigurationComponent implements OnInit {
             showConfirmButton: false,
           })
         } else {
-          const local = Object.assign(res[0]);
-          local.description = newData.description;
-          let localEdited: any = await this.localService.editLocal(local)
           debugger
-          if (!localEdited) {
-            return swal.fire({
-              title: '¡Error al hacer los cambios!',
-              type: "error",
-              showConfirmButton: false,
-            })
+          if(res.length === 1){
+            const local = res[0];
+            local.description = newData.description;
+            let localEdited: any = await this.localService.editLocal(local)
+            debugger
+            if (!localEdited) {
+              return swal.fire({
+                title: '¡Error al hacer los cambios!',
+                type: "error",
+                showConfirmButton: false,
+              })
+            }
           }
         }
       }
@@ -105,8 +133,8 @@ export class ConfigurationComponent implements OnInit {
 
         }
       }
-      let userNew = await { ...user, ...newData }
       debugger
+      let userNew = await { ...user, ...newData }
       let change: any = await this.userService.editUser(userNew)
       debugger
       if (!change) {

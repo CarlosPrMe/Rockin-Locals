@@ -21,3 +21,23 @@ export function customValidatorUrl(control: AbstractControl): { [key: string]: a
     }
   }
 }
+
+
+export function localSelected(control: AbstractControl): { [key: string]: any } {
+  if (control.value === 'local') {
+    return null;
+  } else {
+    return {
+      urlCustom: true,
+    }
+  }
+}
+export function bandSelected(control: AbstractControl): { [key: string]: any } {
+  if (control.value === 'band') {
+    return null;
+  } else {
+    return {
+      urlCustom: true,
+    }
+  }
+}

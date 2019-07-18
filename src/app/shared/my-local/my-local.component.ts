@@ -20,7 +20,6 @@ export class MyLocalComponent implements OnInit, OnChanges {
   show: boolean = true;
   @Output() updateLocal = new EventEmitter();
   @Output() deleteLocal = new EventEmitter();
-
   constructor(private fb: FormBuilder, private localservice: LocalsService,
     private router: Router) {
 
@@ -126,17 +125,19 @@ export class MyLocalComponent implements OnInit, OnChanges {
     }
   }
 
-  // showLocal($event) {
-  //   this.show = !this.show;
-  // }
+   scroll($event) {
+    window.scrollTo({
+      top: 0,
+      left: 0,
+      behavior:'smooth'
+    })
+   }
 
 
   submit(event, form, currentUser) {
 
-
     let UpdatedLocal = {}
 
-    console.log(form.value, currentUser);
     let local = new LocalClass();
     let equipment = {
       drum: form.value.drum,

@@ -27,8 +27,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   reservation = new Reservation();
   hoursAvailable = [];
   reservObj: any = {}; //Objeto que paso para hacer un put o post de las horas de reserva
-  today: NgbDate;
-  justToday: NgbDate//Para sacar el actual y desactivar las horas pasadas en este dia
+  today: NgbDate; //Para sacar el dia actual y desactivar las horas pasadas en este dia
   now: Number;//Para sacar la hora actual y desactivar las horas pasadas en este dia
   //allHours: object = { hour11: 11, hour12: 12, hour13: 13, hour14: 14, hour15: 15, hour16: 16, hour17: 17, hour18: 18, hour19: 19, hour20: 20, hour21: 21, hour22: 22 }
   allHours: Array<number> = [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22];
@@ -71,7 +70,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.today = this.ngCalendar.getToday()
     this.getDay(this.today);
     //this.disabledHours = null;
-    debugger;
+    ;
   }
 
   ngOnChanges(simpleChange: SimpleChanges) {
@@ -119,7 +118,6 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     }).then((res: any) => {
 
       if (res.data) {
-        console.log(res.data);
         this.loginService.user.next(res.data);
         this.added = true;
         return swal.fire({
@@ -148,8 +146,6 @@ export class LocalInfoComponent implements OnInit, OnChanges {
         })
       }
     }).then((res: any) => {
-      console.log(res)
-
       if (res.data) {
         this.loginService.user.next(res.data);
         this.added = false;
@@ -163,22 +159,24 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     this.resetHours();
     this.disabledHours = {};
     this.now = new Date().getHours();
-    debugger
+
     if (this.today.equals(date)) {
-      debugger
+
       this.disableHoursByHour(this.now, this.allHours)
 
     }
     this.reservObj = {}
-
+    debugger
     //this.reservationsService.askHoursAvailable(date, this.localSelected.companyName).then((res: Array<any>) => {
     this.reservationsService.askHoursAvailable(date, this.localSelected.companyId).then((res: Array<any>) => {
       //console.log(res);
+      debugger
 
       if (res.length > 0) {
         this.reservationsService.hoursAvailable.next(res[0].hours);
         this.reservObj.id = res[0]._id;
         this.hoursAvailable = res;
+
         for (const hour in this.hoursAvailable[0].hours) {
           if (this.hoursAvailable[0].hours[hour] === true) {
             this.myForm.controls[`${hour}`].disable()
@@ -186,11 +184,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
           }
         }
-
         this.reservationsService.emptyDay.next(false);
-
-        console.log('this.disabledHours', this.disabledHours);
-
       } else {
         this.reservationsService.emptyDay.next(true);
 
@@ -306,7 +300,7 @@ export class LocalInfoComponent implements OnInit, OnChanges {
 
   disableHoursByHour(now, hours) {
     for (let i = 0; i < hours.length; i++) {
-      debugger;
+      ;
       if (hours[i] <= now) {
         this.disabledHours[`hour${hours[i]}`] = true;
       }
@@ -314,6 +308,12 @@ export class LocalInfoComponent implements OnInit, OnChanges {
         break;
       }
     }
+
+    for (const hour in this.disabledHours) {
+      this.myForm.controls[`${hour}`].disable()
+    }
+
+    debugger
 
 
   }

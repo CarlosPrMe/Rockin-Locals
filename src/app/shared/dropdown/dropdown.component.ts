@@ -65,8 +65,6 @@ export class DropdownComponent implements OnInit, OnChanges {
   }
 
   prueba(event){
-    console.log(event);
-
   }
 
   scroll(event){

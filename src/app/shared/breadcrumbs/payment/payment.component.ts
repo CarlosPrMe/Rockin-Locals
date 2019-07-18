@@ -45,7 +45,6 @@ export class PaymentComponent implements OnInit {
     //console.log(this.reservation);
 
     this.reservationService.makeReservation(this.reservation).then((res) => {
-      console.log(res)
     })
 
     if (this.reservationService.emptyDay.value) {

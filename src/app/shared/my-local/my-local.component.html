@@ -4,7 +4,7 @@
       <span class="info__heading col-sm-4">{{local?.name}}</span>
       <div class="flex--end col-sm-8">
           <!-- <button *ngIf="!local" type="button" class="btn" (click)="showLocal($event)">Añadir local</button> -->
-        <button type="button" class="btn" (click)="showLocal($event)">Editar</button>
+        <button *ngIf="false" type="button" class="btn" (click)="showLocal($event)">Editar</button>
         <button type="button" class="btn" (click)="delete(local._id)">Eliminar</button>
       </div>
     </div>
@@ -124,8 +124,7 @@
 
                 </svg>
               </label> -->
-              <input formControlName="image" type="text" class="form__control form__file" placeholder="Introduce URL"
-              [ngClass]="{invalid:myForm.controls.image.errors?.required}" required>
+              <input formControlName="image" type="text" class="form__control form__file" placeholder="Introduce URL" required>
               <div class="error error--inline" *ngIf="myForm.controls.image.errors?.required">Campo Obligatorio</div>
               <div class="warning" *ngIf="myForm.controls.image.dirty && myForm.controls.image.errors?.urlCustom">Formato incorrecto</div>
             </div>
@@ -356,7 +355,7 @@
       </div>
     </div>
     <div class=" flex--end" *ngIf="show">
-      <button type="reset" class="btn" (click)="showLocal($event)">Cancelar</button>
+      <button type="reset" class="btn" (click)="scroll($event)">Cancelar</button>
       <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm, user)">Aceptar</button>
     </div>
   </form>

@@ -46,15 +46,12 @@ export class ReservationsComponent implements OnInit, OnChanges {
           console.log(this.reservations);
           this.separateReservations.call(this, data);
         }) */
-    debugger
+
     this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
-      debugger
+
       this.reservations = data;
-      console.log(this.reservations);
       this.separateReservations.call(this, data);
     })
-
-    console.log(this.reservationsNext);
 
   }
 
@@ -67,10 +64,10 @@ export class ReservationsComponent implements OnInit, OnChanges {
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
       if (this.today.before(reserva.date) || this.today.equals(reserva.date)) {
-        debugger
+
         this.reservationsNext.push(reserva)
       } else if (this.today.after(reserva.date)) {
-        debugger
+
         this.reservationsPast.push(reserva)
       }
     });
@@ -96,9 +93,9 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   onDeleteFavourite(id) {
     let currentUser = { ...this.user };
-    debugger
+
     this.favourites.deleteFavourite(this.user, id).catch((err) => {
-      debugger
+
       if (err) {
         this.loginService.user.next(currentUser);
         this.router.navigate(['/index']);
@@ -109,7 +106,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
         })
       }
     }).then((res: any) => {
-      debugger
+
       if (res.data) {
         this.loginService.user.next(res.data)
       }
@@ -119,8 +116,6 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   async onCancelReservation(idReserToDelete) {
     let reservation: Array<any> = this.reservationsNext.filter(res => res._id === idReserToDelete);
-
-    console.log(reservation[0]);
 
     let response = await swal.fire({
       title: '¿Está seguro de cancelar la reserva?',
@@ -133,14 +128,13 @@ export class ReservationsComponent implements OnInit, OnChanges {
     })
 
     if (response.value) {
-      debugger
-      console.log(reservation[0]);
+
       let cancelation: any = await this.reservationsService.deleteAvailability(reservation[0]);
-      debugger
+
       if (cancelation.ok === 1) {
-        debugger
+
         this.reservationsService.deleteReservation(idReserToDelete).catch((err) => {
-          debugger
+
           if (err) {
             this.router.navigate(['/index']);
             return swal.fire({
@@ -151,7 +145,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
             })
           }
         }).then((res:any) => {
-          debugger
+
           if(res.ok === 1){
             this.router.navigate(['/index']);
             return swal.fire({
@@ -164,7 +158,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
         })
 
       } else {
-        debugger
+
         this.router.navigate(['/index']);
         return swal.fire({
           title: '¡Error al cancelar la reserva!',
@@ -175,13 +169,6 @@ export class ReservationsComponent implements OnInit, OnChanges {
       }
 
     } else {
-      debugger
-      this.router.navigate(['/index']);
-      return swal.fire({
-        title: '¡Error al editar favoritos!',
-        type: "error",
-        showConfirmButton: false,
-      })
 
     }
 

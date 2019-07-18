@@ -1,33 +1,40 @@
-
 <div class="bgc--grey">
   <div class="container">
     <div class="carousel">
       <div class="media">
         <h2 class="media__title">Algunos de nuestros colaboradores</h2>
       </div>
-      <drag-scroll class="scroll-container" #nav [scrollbar-hidden]="hidden"
-      (indexChanged)="onIndexChanged($event)"
-      (reachesLeftBound)="[leftBoundStat($event),autoMovement($event)]"
-      (reachesRightBound)="[rightBoundStat($event),autoMovement($event)]"
-      [snap-duration]="500" >
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_01.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_02.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_03.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_04.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_05.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_06.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_07.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_08.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_09.jpg" />
-        <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_10.jpg" />
+      <div class="wrapper">
+        <drag-scroll class="scroll-container" #nav [scrollbar-hidden]="hidden" (indexChanged)="onIndexChanged($event)"
+          (reachesLeftBound)="[leftBoundStat($event),autoMovement($event)]"
+          (reachesRightBound)="[rightBoundStat($event),autoMovement($event)]" [snap-duration]="500">
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_01.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_02.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_03.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_04.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_05.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_06.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_07.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_08.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_09.jpg" />
+          <img class="scroll-img" drag-scroll-item src="../../../assets/img/locals/local_10.jpg" />
 
-      </drag-scroll>
+        </drag-scroll>
+      </div>
       <div class="container-btns">
 
-          <svg (click)="moveLeft()" class="arrow arrow--left" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg (click)="moveLeft()" class="arrow arrow--left" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
 
 
-          <svg (click)="moveRight()" class="arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"></polyline></svg>
+        <svg (click)="moveRight()" class="arrow arrow--rigth" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+          stroke-linejoin="round">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
 
         <!-- <button class="btn" (click)="moveTo(2)">Last</button> -->
       </div>

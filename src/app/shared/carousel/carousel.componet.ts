@@ -25,9 +25,6 @@ export class CarouselComponent  {
   width;
   constructor(private screenService: ScreenService) {
 
-    console.log(this.screenService.resolution.value * .8);
-
-    /* this.width = this.screenService.resolution.value * .5; */
       if(this.screenService.resolution.value > 1024){
         this.width = '900'
       }

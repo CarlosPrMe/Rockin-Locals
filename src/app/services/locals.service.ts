@@ -32,6 +32,7 @@ export class LocalsService {
   } */
   getLocalsByLocal(id) {
     let params = new HttpParams().set('companyId', id);
+    debugger
     return this.httpClient.get(`${environment.apiUrl}/locals`,{params}).toPromise();
   }
 

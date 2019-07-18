@@ -1,14 +1,14 @@
-<div class="dark" *ngIf="user">
+<div *ngIf="user">
   <header class="header--local">
     <div class="container">
       <h1 class="header__heading">{{user?.companyName}}</h1>
-      <p *ngIf="user?.description" class="header__text">
+      <p *ngIf="user && user.description !== null && user.description !== undefined" class="header__text">
         {{user?.description}}
       </p>
     </div>
   </header>
 </div>
-<div class="dark" *ngIf="localSelected">
+<div *ngIf="localSelected">
   <header class="header--local">
       <div class="container">
         <h1 class="header__heading">{{localSelected?.companyName}}</h1>

@@ -41,7 +41,5 @@ export class LocalComponent implements OnInit, OnDestroy {
 
   onAskReservation(reser){
     this.reservationsService.currentReservation.next(reser)
-    console.log(reser);
-
   }
 }
