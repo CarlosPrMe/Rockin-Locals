@@ -20,27 +20,14 @@ export class ModalComponent implements OnInit {
 
   close($event) {
     this.closeModal.emit($event);
-    this.myForm = this.fb.group({
-
-      type: ["", Validators.required],
-      userName: ["", Validators.compose([Validators.required, Validators.minLength(5)])],
-      bandName: ["",],
-      companyName: ["",],
-      email: ["", Validators.compose([Validators.required, customValidatorEmail])],
-      password: ["", Validators.compose([Validators.required, Validators.minLength(8)])],
-      avatar: ["", Validators.compose([customValidatorUrl])],
-      city: ["",],
-      postalCode: ["",],
-      address: ["",],
-      terms: ["", Validators.required]
-    })
+    this.reset();
   }
 
   ngOnInit() {
 
     this.myForm = this.fb.group({
 
-      type: ["", Validators.required],
+      type: ["band", Validators.required],
       userName: ["", Validators.compose([Validators.required, Validators.minLength(5)])],
       bandName: ["",],
       companyName: ["",],
@@ -52,6 +39,7 @@ export class ModalComponent implements OnInit {
       address: ["",],
       terms: ["", Validators.required]
     })
+
 
   }
 
@@ -67,34 +55,16 @@ export class ModalComponent implements OnInit {
       this.showModal = false;
     }
 
-    this.myForm = this.fb.group({
-
-      type: ["", Validators.required],
-      userName: ["", Validators.compose([Validators.required, Validators.minLength(5)])],
-      bandName: ["",],
-      companyName: ["",],
-      email: ["", Validators.compose([Validators.required, customValidatorEmail])],
-      password: ["", Validators.compose([Validators.required, Validators.minLength(8)])],
-      avatar: ["", Validators.compose([customValidatorUrl])],
-      city: ["",],
-      postalCode: ["",],
-      address: ["",],
-      terms: ["", Validators.required]
-    })
+    this.reset()
   }
 
   formValues(form) {
-/*
-
     if (form.value.type === 'local') {
-
-      console.log('holis');
-
       this.myForm = this.fb.group({
         type: [form.value.type, Validators.required],
         userName: [form.value.userName, Validators.compose([Validators.required, Validators.minLength(5)])],
-        bandName: [,],
-        companyName: [, Validators.compose([Validators.required, Validators.minLength(5)])],
+        bandName: ['',],
+        companyName: [form.value.companyName, Validators.compose([Validators.required, Validators.minLength(5)])],
         email: [form.value.email, Validators.compose([Validators.required, customValidatorEmail])],
         password: [form.value.password, Validators.compose([Validators.required, Validators.minLength(8)])],
         avatar: [form.value.avatar, Validators.compose([customValidatorUrl])],
@@ -105,8 +75,6 @@ export class ModalComponent implements OnInit {
       })
     }
     if (form.value.type === 'band') {
-
-      console.log('banda');
 
       this.myForm = this.fb.group({
         type: [form.value.type, Validators.required],
@@ -122,7 +90,24 @@ export class ModalComponent implements OnInit {
         terms: [form.value.terms, Validators.required]
       })
     }
-    console.log(form); */
+    console.log(form);
+  }
+
+
+  reset() {
+    this.myForm = this.fb.group({
+      type: ["", Validators.required],
+      userName: ["", Validators.compose([Validators.required, Validators.minLength(5)])],
+      bandName: ["",],
+      companyName: ["",],
+      email: ["", Validators.compose([Validators.required, customValidatorEmail])],
+      password: ["", Validators.compose([Validators.required, Validators.minLength(8)])],
+      avatar: ["", Validators.compose([customValidatorUrl])],
+      city: ["",],
+      postalCode: ["",],
+      address: ["",],
+      terms: ["", Validators.required]
+    })
   }
 
 }
