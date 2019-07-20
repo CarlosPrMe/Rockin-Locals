@@ -281,6 +281,9 @@ svg {
   }
 }
 
+.invalid-warning {
+  border: 1px solid var(--warning) !important;
+}
 .invalid {
   border: 1px solid red !important;
 }

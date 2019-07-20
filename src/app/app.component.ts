@@ -77,6 +77,7 @@ export class AppComponent implements OnInit, OnChanges {
         })
       }
       user.location = location.results[0].geometry.location;
+      user.city = this.getCleanedString(user.city);
     }
 
     this.userService.addUser(user).catch((err:any) => {
@@ -124,6 +125,22 @@ export class AppComponent implements OnInit, OnChanges {
         behavior:'smooth'
       });
     } */
+  }
+
+  getCleanedString(address) {
+    let specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+
+    for (var i = 0; i < specialChars.length; i++) {
+      address = address.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+    }
+    address = address.toLowerCase();
+    address = address.replace(/á/gi, "a");
+    address = address.replace(/é/gi, "e");
+    address = address.replace(/í/gi, "i");
+    address = address.replace(/ó/gi, "o");
+    address = address.replace(/ú/gi, "u");
+    address = address.replace(/ñ/gi, "n");
+    return address;
   }
 
 }

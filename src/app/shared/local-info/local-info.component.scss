@@ -26,6 +26,7 @@
   transition: all 150ms linear;
 }
 
+
 .btn--clean {
   background-color: rgba(255, 255, 255, 0.3);
   @media (min-width: 1024px) {
@@ -40,6 +41,7 @@
 .media__container {
   position: relative;
   @media (min-width: 1024px) {
+    cursor: pointer;
     &:hover {
       .zoom {
         opacity: 1;
@@ -277,6 +279,7 @@
     padding: 0.2rem 0.5rem;
     width: 100%;
     color: var(--secondary);
+    margin-bottom: 1rem;
     &--sm {
       display: inline-block;
       width: auto;
@@ -298,7 +301,7 @@
       padding: 1rem 0.5rem;
       border: 1px solid var(--gray-300);
       border-radius: 4px;
-      font-size: var(--font-size-sm);
+      font-size: var(--font-size-base);
       cursor: pointer;
       box-shadow: inset 0 0 0.5rem rgba(0, 0, 0, 0.05);
       &:hover {
@@ -352,7 +355,7 @@
     flex-wrap: wrap;
     justify-content: space-between;
     margin-bottom: 1.5rem;
-    padding: 1.5rem 3rem;
+
     border: 1px solid var(--gray-600);
     border-radius: 4px;
     background-color: var(--white);
@@ -361,9 +364,11 @@
 
     @media (max-width: 767px) {
       max-width: 737px;
+      padding: 1.5rem 1rem;
     }
     @media (min-width: 768px) {
       max-width: 950px;
+      padding: 1.5rem 3rem;
     }
   }
 
@@ -451,3 +456,8 @@ svg {
   font-family: var(--font-family);
   //align-self: flex-start;
 }
+
+.pd-sides-0{
+  padding: 0;
+}
+

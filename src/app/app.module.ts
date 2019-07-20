@@ -86,7 +86,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
 import { SpanishPaginatorComponent } from './shared/spanish-paginator/spanish-paginator.component';
-
+import {MatDialogModule} from '@angular/material/dialog';
 
 //import {CdkStepperModule} from '@angular/cdk/stepper';
 //import {CdkTableModule} from '@angular/cdk/table';
@@ -119,6 +119,9 @@ import { LoadingInterceptor } from './interceptors/loading.interceptor';
 import { DragCarouselComponent } from './shared/drag-carousel/drag-carousel.component';
 import { HeaderParallaxComponent } from './shared/header/header-parallax/header-parallax.component';
 import { ParallaxDirective } from './shared/directives/parallax.directive';
+import { ModalDetailComponent } from './shared/modal-detail/modal-detail.component';
+import { ModalRegComponent } from './shared/modal-reg/modal-reg.component';
+import { OpenMenuService } from './services/openMenu.service';
 const httpInterceptorProviders = [
   { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
   //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
@@ -181,7 +184,9 @@ const httpInterceptorProviders = [
     PageNotFoundComponent,
     DragCarouselComponent,
     HeaderParallaxComponent,
-    ParallaxDirective
+    ParallaxDirective,
+    ModalDetailComponent,
+    ModalRegComponent
 
 
 
@@ -203,7 +208,8 @@ const httpInterceptorProviders = [
     ScrollToModule.forRoot(),
     SweetAlert2Module.forRoot(),
     Ng2CarouselamosModule,
-    DragScrollModule
+    DragScrollModule,
+    MatDialogModule
   ],
   providers: [
     TestService,
@@ -218,8 +224,10 @@ const httpInterceptorProviders = [
     httpInterceptorProviders,
     LoadingService,
     UploadImageService,
+    OpenMenuService,
     { provide: MatPaginatorIntl, useClass: SpanishPaginatorComponent}
   ],
+  entryComponents: [ModalDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

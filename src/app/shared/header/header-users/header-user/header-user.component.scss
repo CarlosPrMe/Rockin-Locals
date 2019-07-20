@@ -18,8 +18,7 @@
 }
 
 .header {
-  &--user,
-  &--local {
+  &--user {
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
@@ -39,7 +38,6 @@
 
 @media (max-width: 767px) {
   .header {
-    padding: 4rem 0 2rem;
     &__heading {
       padding-bottom: 1rem;
       font-size: calc(var(--font-size-md) * 1.8);
@@ -47,13 +45,9 @@
     }
 
     &--user {
-      padding: 2rem 0 2rem;
+      padding: 5.5rem 0 2rem;
       box-shadow: 0 0 1rem rgba(0, 0, 0, 0.25);
       border-bottom: 1px solid var(--gray-200);
-    }
-
-    &--local {
-      padding: 5.5rem 0 3rem;
     }
     &__text {
       color: var(--white);
@@ -79,7 +73,6 @@
 
 @media (min-width: 1024px) {
   .header {
-
     &__heading {
       //padding-bottom: 2rem;
       text-align: left;
@@ -87,8 +80,7 @@
       font-size: calc(var(--font-size-xl)*0.8);
     }
 
-    &--user,
-    &--local {
+    &--user {
       position: relative;
       padding: 4rem 0 6rem;
       background-position: 0 -10rem;

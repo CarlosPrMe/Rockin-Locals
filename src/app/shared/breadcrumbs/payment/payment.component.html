@@ -52,7 +52,7 @@
           datos de pago para próximas reservas</label>
       </div> -->
       <div class="container--flex">
-        <a href="#" class="btn--link" [routerLink]="['/local',localSelected?.id]"  >Atrás</a><!-- [routerLink]="['/local',localSelected.id]" -->
+        <button type="" class="btn" [routerLink]="['/local',localSelected?.id]">Atrás</button><!-- [routerLink]="['/local',localSelected.id]" -->
         <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm)">Aceptar</button>
       </div>
     </form>

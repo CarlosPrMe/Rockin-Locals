@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChange
 import { FormBuilder, Validators } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
 import { LoginService } from '../../services/login.service';
-
+import swal from 'sweetalert2';
 
 
 @Component({
@@ -44,11 +44,38 @@ export class DropdownComponent implements OnInit, OnChanges {
   }
 
   submit($event, form) {
+    debugger
     if (form.valid) {
       this.openSession.emit(form.value);
       form.reset();
-    } else {
-      alert('Formulario Incorrecto')
+    } else if (form.controls.email.errors && form.controls.email.errors.emailCustom) {
+      return swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Formato de email incorrecto',
+        showConfirmButton: false,
+      })
+    } else if (form.controls.email.errors && form.controls.email.errors.required) {
+      return swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Necesario ingreso de email',
+        showConfirmButton: false,
+      })
+    } else if (form.controls.password.errors && form.controls.password.value.length < 8) {
+      return swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Longitud de contraseña incorrecta (min. 8 caracteres)',
+        showConfirmButton: false,
+      })
+    } else if (form.controls.password.errors && form.controls.password.errors.required) {
+      return swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Necesario ingreso de contraseña',
+        showConfirmButton: false,
+      })
     }
   }
 
@@ -64,11 +91,30 @@ export class DropdownComponent implements OnInit, OnChanges {
     this.closeSession.emit($event);
   }
 
-  prueba(event){
+  prueba(event) {
   }
 
-  scroll(event){
+  scroll(event) {
     this.doScroll.emit(event)
   }
 
 }
+
+/*     if (form.valid) {
+      this.openSession.emit(form.value);
+      form.reset();
+    } else if (form.controls.email.errors) {
+      swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Formato de email incorrecto',
+        showConfirmButton: false,
+      })
+    } else if (form.controls.password.errors) {
+      swal.fire({
+        title: '¡Error en el login!',
+        type: "error",
+        text: 'Logitud de contraseña incorrecta (Min 8 caracteres)',
+        showConfirmButton: false,
+      })
+    } */

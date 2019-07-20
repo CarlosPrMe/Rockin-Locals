@@ -12,11 +12,11 @@
   border-radius: 100%;
   transition: all 400ms linear;
   &:hover {
-    fill: var(--primary);
+    fill: var(--secondary);
   }
 
   @media (max-width: 767px) {
-    bottom: 4rem;
+    bottom: 1rem;
     right: 1rem;
   }
   @media (min-width: 768px) {
@@ -27,7 +27,7 @@
 
 svg {
   transition: fill 150ms linear;
-  fill: var(--secondary);
+  fill: var(--primary);
 }
 
 .show {

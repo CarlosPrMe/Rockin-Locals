@@ -5,23 +5,23 @@
 
   <ng-container matColumnDef="band">
     <th class="table__heading" *matHeaderCellDef> Día </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.date.day}} /
       {{reservation?.date.month}} / {{reservation?.date.year}}</td>
   </ng-container>
 
   <ng-container matColumnDef="company">
-    <th class="table__heading" mat-header-cell *matHeaderCellDef> Instalación </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.companyName}} </td>
+    <th class="table__heading" *matHeaderCellDef> Instalación </th>
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.companyName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="local">
-    <th class="table__heading" mat-header-cell *matHeaderCellDef> Nombre del local </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
+    <th class="table__heading" *matHeaderCellDef> Nombre del local </th>
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.localName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="hours">
-    <th class="table__heading" mat-header-cell *matHeaderCellDef> NºHoras </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.numHours}} </td>
+    <th class="table__heading" *matHeaderCellDef> NºHoras </th>
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.numHours}} </td>
   </ng-container>
 
 </table>

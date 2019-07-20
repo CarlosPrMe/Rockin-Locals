@@ -26,7 +26,6 @@ export class MyLocalComponent implements OnInit, OnChanges {
   }
 
   ngOnInit() {
-
     this.myForm = this.fb.group({
       checkDrum: [''],
       checkAmpGuit1: [''],
@@ -36,7 +35,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
       checkOthers: [''],
       name: [""],
       price: [""],
-      imageType: [""],
+      imageType: ["panoramic", Validators.required],
       image: ["", Validators.compose([customValidatorUrl])],
       drum: [""],
       ampGuit1: [""],
@@ -45,10 +44,12 @@ export class MyLocalComponent implements OnInit, OnChanges {
       keyboard: [""],
       others: [""]
     })
+
+    debugger
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-
+    debugger
     if (this.local) {
       // this.show = false;
       if (!this.local.equipment.keyboard) {
@@ -65,9 +66,8 @@ export class MyLocalComponent implements OnInit, OnChanges {
         if (this.local.imageType === "panoramic") {
           this.checkedPano = true;
         }
-
       } else {
-        this.local.imageType = '';
+        this.local.imageType = 'panoramic';
       }
 
       if (this.local.equipment.drum) {
@@ -125,13 +125,13 @@ export class MyLocalComponent implements OnInit, OnChanges {
     }
   }
 
-   scroll($event) {
+  scroll($event) {
     window.scrollTo({
       top: 0,
       left: 0,
-      behavior:'smooth'
+      behavior: 'smooth'
     })
-   }
+  }
 
 
   submit(event, form, currentUser) {

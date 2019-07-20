@@ -6,6 +6,9 @@ import { LocalsService } from '../../services/locals.service';
 import { Router } from '@angular/router';
 import { FavouritesService } from '../../services/favourites.service';
 import swal from 'sweetalert2';
+import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
+import { ModalDetailComponent } from '../../shared/modal-detail/modal-detail.component';
+import { ScreenService } from '../../services/screen.service';
 
 
 @Component({
@@ -20,14 +23,18 @@ export class ReservationsComponent implements OnInit, OnChanges {
   reservations: Array<any> = [];
   reservationsPast: Array<any> = [];
   reservationsNext: Array<any> = [];
+  reservationDetail: Array<any> = [];
   //date = Date.now();
   today: NgbDate;
   todayJs: Number = Date.now();
 
+
+
   constructor(private loginService: LoginService,
     private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
     private localsService: LocalsService, private router: Router,
-    private favourites: FavouritesService) {
+    private favourites: FavouritesService, public dialog: MatDialog,
+    private screen : ScreenService) {
     window.scrollTo({
       top: 0,
       left: 0,
@@ -144,9 +151,9 @@ export class ReservationsComponent implements OnInit, OnChanges {
               showConfirmButton: false,
             })
           }
-        }).then((res:any) => {
+        }).then((res: any) => {
 
-          if(res.ok === 1){
+          if (res.ok === 1) {
             this.router.navigate(['/index']);
             return swal.fire({
               title: '¡Reserva Cancelada con éxito!',
@@ -174,4 +181,18 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   }
 
+  onDetailReservation(id) {
+
+    if(this.screen.resolution.value > 1023){
+      this.reservationDetail = this.reservations.filter(res => res._id === id)
+      console.log(this.reservationDetail);
+      this.dialog.open(ModalDetailComponent, {
+        data: this.reservationDetail
+      });
+
+    }
+
+  }
+
 }
+

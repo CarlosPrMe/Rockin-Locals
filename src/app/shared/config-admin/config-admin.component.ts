@@ -30,7 +30,7 @@ export class ConfigAdminComponent implements OnInit {
 
     this.myForm = this.fb.group({
       userName: [``, Validators.compose([Validators.required, Validators.minLength(5)])],
-      companyName: [``, Validators.required],
+      companyName: [``,Validators.compose([Validators.required,Validators.minLength(2)]) ],
       description: ["",Validators.maxLength(300)],
       //email: [``, Validators.compose([Validators.required, customValidatorEmail])],
       //password: [``,],

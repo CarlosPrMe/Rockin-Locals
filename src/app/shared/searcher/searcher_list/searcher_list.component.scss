@@ -3,6 +3,7 @@
   max-height: 280px;
   cursor: pointer;
   overflow: auto;
+  text-transform: capitalize;
   @media (max-width: 767px) {
     border-bottom: 1px solid var(--gray-500);
     border-top: 1px solid var(--gray-500);

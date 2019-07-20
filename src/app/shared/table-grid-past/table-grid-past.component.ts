@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
 import { TableGridComponent } from '../table-grid/table-grid.component';
 
@@ -14,6 +14,7 @@ export class TableGridPastComponent extends TableGridComponent implements OnChan
   @Input() reservations:Array<any>;
   dataSource;
   @ViewChild(MatPaginator) paginator: MatPaginator;
+  @Output()detailReservation = new EventEmitter();
   displayedColumns: string[] = ['band', 'company', 'local', 'hours'];
 
 
@@ -29,6 +30,9 @@ export class TableGridPastComponent extends TableGridComponent implements OnChan
     }
 
   }
+  detail(id){
+    this.detailReservation.emit(id);
 
+  }
 
 }

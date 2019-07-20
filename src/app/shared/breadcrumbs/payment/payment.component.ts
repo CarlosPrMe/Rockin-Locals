@@ -68,7 +68,8 @@ export class PaymentComponent implements OnInit {
       showConfirmButton: false,
     });
 
-    this.router.navigateByUrl('/index');
+    //this.router.navigateByUrl('/index');
+    this.router.navigateByUrl('/reservations');
   }
 
   activateMethod($event) {

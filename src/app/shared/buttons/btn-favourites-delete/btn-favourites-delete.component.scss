@@ -15,6 +15,9 @@
       fill: var(--primary);
     }
   }
+  svg {
+    fill: var(--white);
+  }
 
   &:active {
     background-color: var(--danger);

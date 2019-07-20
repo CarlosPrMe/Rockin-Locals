@@ -314,8 +314,13 @@ export class LocalInfoComponent implements OnInit, OnChanges {
     }
 
     debugger
+  }
 
-
+  scroll($event){
+    window.scrollTo({
+      top:0,
+      behavior: 'smooth'
+    })
   }
 
 }

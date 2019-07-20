@@ -20,8 +20,10 @@
         </svg>
         <div id="prueba" class="info__edit">
           <div class="form__group form__group--file">
-            <input formControlName="avatar" type="text" class="form__control form__file" placeholder="Introduce URL">
-            <div class="warning" *ngIf="myForm.controls.avatar.touched && myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom">Formato incorrecto</div>
+            <input formControlName="avatar" type="text" class="form__control form__file" placeholder="Introduce URL" [ngClass]="{'invalid':myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.required,
+            'invalid-warning':myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom}">
+            <div class="warning" *ngIf="myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom">
+              Formato incorrecto</div>
             <!--            <input type="file" name="image" id="file-upload" class=" form__label form__file">
             <label for="file-upload" class="form__label form__label--sm form__label--file">Subir imagen
               <svg class="icon-label upload" xmlns="http://www.w3.org/2000/svg"
@@ -49,15 +51,15 @@
         <span class="info__heading col-sm-12 col-md-5 col-lg-4">Nombre de usuario</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.userName.dirty && myForm.controls.userName.errors?.required ||
-              myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName"
+            <input [ngClass]="{'invalid':myForm.controls.userName.dirty && myForm.controls.userName.errors?.required,
+            'invalid-warning':myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName"
               class="form__control" type="text" id="userName" required>
-          </div>
-          <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">Mínimo
-            5
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo
-            Obligatorio
+              <div class="warning" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">
+                Mínimo 5
+                caracteres</div>
+              <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo
+                Obligatorio
+              </div>
           </div>
         </div>
       </div>
@@ -96,16 +98,16 @@
         <span class="info__heading col-sm-12 col-md-4 col-lg-4">Nombre del grupo</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
-                myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}"
+            <input [ngClass]="{'invalid':myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required,
+            'invalid-warning':myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}"
               formControlName="bandName" class="form__control" type="text" id="bandName" required minlength="2" required>
-          </div>
-          <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">
-            Mínimo 2
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">
-            Campo
-            Obligatorio
+              <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">
+                Mínimo 2
+                caracteres</div>
+              <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">
+                Campo
+                Obligatorio
+              </div>
           </div>
         </div>
       </div>
@@ -125,7 +127,7 @@
       </div>
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-9 col-lg"></span>
-        <button type="button" class="btn btn--danger col-sm col-md-3 col-lg-2" (click)="delete($event)">Eliminar</button>
+        <button type="button" class="btn btn--danger col-sm col-md-3 col-lg-2" (click)="delete($event)">Eliminar cuenta</button>
       </div>
     </form>
   </main>

@@ -12,31 +12,21 @@ ESTILOS GENERALES DROPDOWN
 
 .dropdown {
   position: fixed;
+  top: 3.2rem;
+  right: 0;
   z-index: map-get($z-index, "layer3");
   padding: 1.5rem 1rem 3rem;
   display: flex;
   flex-direction: column;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  border: 1px solid var(--gray-500);
+  //border: 1px solid var(--gray-500);
+  border: 1px solid transparent;
   width: 17rem;
   background-color: var(--white);
-  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 2rem rgba(0, 0, 0, 1);
   transform: translateX(110%);
   transition: transform 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
-
-  @media (max-width: 767px) {
-    //bottom: 3rem;
-    bottom: 3.2rem;
-    right: 0;
-    border: 0;
-    transform: translateY(110%);
-    transition: transform 0.6s cubic-bezier(0.075, 0.82, 0.165, 1);
-  }
-  @media (min-width: 768px) {
-    top: 3.2rem;
-    right: 0;
-  }
 
   &__list {
     padding-bottom: 1rem;
@@ -77,20 +67,10 @@ ESTILOS GENERALES DROPDOWN
 }
 
 .dropdown-show {
-  @media (max-width: 767px) {
-    transform: translateY(0);
-  }
-  @media (min-width: 768px) {
-    transform: translateX(0);
-  }
+  transform: translateX(0);
 }
 .dropdown-hide {
-  @media (max-width: 767px) {
-    transform: translateY(110%);
-  }
-  @media (min-width: 768px) {
-    transform: translateX(110%);
-  }
+  transform: translateX(110%);
 }
 
 /*--------------------------

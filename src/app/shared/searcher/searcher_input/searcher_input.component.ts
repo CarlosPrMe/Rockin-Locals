@@ -28,7 +28,7 @@ export class SearcherInputComponent implements OnInit {
   submit($event, form) {
 
     if (form.value.place.length < 2) {
-       ;
+      ;
       swal.fire({
         title: 'Introduce una ciudad o C.P. válido',
         type: "warning",
@@ -36,10 +36,27 @@ export class SearcherInputComponent implements OnInit {
       });
 
     } else {
-      this.searchData.emit(form.value.place);
+      this.searchData.emit(this.getCleanedString(form.value.place));
+      //this.searchData.emit(form.value.place);
     }
     form.reset();
   }
 
+
+  getCleanedString(city) {
+    let specialChars = "!@#$^&%*()+=-[]\/{}|:<>?,.";
+
+    for (var i = 0; i < specialChars.length; i++) {
+      city = city.replace(new RegExp("\\" + specialChars[i], 'gi'), '');
+    }
+    city = city.toLowerCase();
+    city = city.replace(/á/gi, "a");
+    city = city.replace(/é/gi, "e");
+    city = city.replace(/í/gi, "i");
+    city = city.replace(/ó/gi, "o");
+    city = city.replace(/ú/gi, "u");
+    city = city.replace(/ñ/gi, "n");
+    return city;
+  }
 
 }

@@ -13,6 +13,7 @@ export class TableGridComponent implements OnInit, OnChanges {
   @ViewChild(MatPaginator) paginator: MatPaginator;
   displayedColumns: string[] = ['band', 'company', 'local', 'hours', 'hourIn', 'boton'];
   @Output()cancelReservation = new EventEmitter();
+  @Output()detailReservation = new EventEmitter();
   constructor() { }
 
   ngOnChanges(simpleChange: SimpleChanges) {
@@ -31,5 +32,10 @@ export class TableGridComponent implements OnInit, OnChanges {
 
   cancel(id) {
     this.cancelReservation.emit(id);
+  }
+
+  detail(id){
+    this.detailReservation.emit(id);
+
   }
 }
