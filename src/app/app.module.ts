@@ -197,7 +197,7 @@ const httpInterceptorProviders = [
     AppRoutingModule,
     ReactiveFormsModule,
     AgmCoreModule.forRoot({
-      apiKey: 'Your apiKey'
+      apiKey: 'YourapiKey'
     }),
     HttpClientModule,
     NgbDatepickerModule,

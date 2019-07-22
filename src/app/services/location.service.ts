@@ -10,7 +10,7 @@ export class  LocationService {
 
  async getLocation(city,address,postalCode){
 
-   return this.httpClient.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}${address}${postalCode}&key=Your apiKey`).toPromise();
+   return this.httpClient.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${city}${address}${postalCode}&key=YourapiKey`).toPromise();
   }
 
 }
