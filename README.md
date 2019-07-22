@@ -13,7 +13,7 @@ Maquetación HTML5, estilos con Sass y custom properties. Diseño responsive (mo
 
 Introduce tu ApiKey en los lugares requeridos para que la aplicación funcione. 
 
-##Detalles de las pantallas
+## Detalles de las pantallas
 
 ![Screenshot](captura.jpg) 
 
