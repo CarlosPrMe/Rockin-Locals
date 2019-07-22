@@ -11,7 +11,7 @@ Maquetación HTML5, estilos con Sass y custom properties. Diseño responsive (mo
 
 ## Detalles
 
-Introduce tu ApiKey en los lugares requeridos para que la aplicación funcione. 
+Haz npm install. Introduce tu ApiKey en los lugares requeridos para que la aplicación funcione. 
 
 ## Detalles de las pantallas
 
