@@ -37,7 +37,6 @@ export class SearcherInputComponent implements OnInit {
 
     } else {
       this.searchData.emit(this.getCleanedString(form.value.place));
-      //this.searchData.emit(form.value.place);
     }
     form.reset();
   }

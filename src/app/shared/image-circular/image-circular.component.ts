@@ -1,17 +1,15 @@
-import { Component, ElementRef, AfterContentInit, ViewEncapsulation, Input } from '@angular/core';
+import { Component, ElementRef, AfterContentInit, ViewEncapsulation, Input, OnDestroy } from '@angular/core';
 import { VrViewerModule } from 'angular-vrview'
 import { ScreenService } from '../../services/screen.service';
 
 declare let VRView;
-//declare let Player;
-
 
 @Component({
   selector: 'app-image-circular',
   templateUrl: './image-circular.component.html',
   styleUrls: ['./image-circular.component.scss']
 })
-export class ImageCircularComponent implements AfterContentInit {
+export class ImageCircularComponent implements AfterContentInit, OnDestroy {
 
   elem: HTMLElement;
   private _v: any;
@@ -27,13 +25,8 @@ export class ImageCircularComponent implements AfterContentInit {
   heightResponsive
   @Input() image360;
 
-  //video : string = null;
-  //isSterio : boolean = true;
-  //blah : string;
-
   constructor(ref: ElementRef, private screenService: ScreenService) {
     this.elem = ref.nativeElement;
-    //this.blah = "blah";
     this.screenService.resolution.subscribe(res => {
 
       if (res > 1024) {
@@ -50,11 +43,13 @@ export class ImageCircularComponent implements AfterContentInit {
 
   }
 
+  ngOnDestroy(){
+
+  }
+
   ngAfterContentInit() {
     if (this.image != null) {
       this._v = new VRView.Player('.vrview' + this.elem.id, {
-        //image: 'https://i0.wp.com/tiempodenegocios.com/wp-content/uploads/2017/01/videos-en-360-grados4_lg-1-1-750x406.jpg',
-        //image: 'https://st3.depositphotos.com/4634759/14090/i/1600/depositphotos_140904916-stock-photo-venice-360-degrees.jpg',
         image: `${this.image360}`,
         is_stereo: false,
         width: `${this.widthResponsive}`,

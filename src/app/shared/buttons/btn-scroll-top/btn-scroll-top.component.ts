@@ -1,4 +1,4 @@
-import { Component, OnChanges, Output, EventEmitter, SimpleChange } from '@angular/core';
+import { Component, OnChanges, Output, EventEmitter, SimpleChange, OnDestroy } from '@angular/core';
 import { ScreenService } from '../../../services/screen.service';
 
 
@@ -8,7 +8,7 @@ import { ScreenService } from '../../../services/screen.service';
   styleUrls: ['./btn-scroll-top.component.scss']
 })
 
-export class BtnScrollTopComponent  {
+export class BtnScrollTopComponent implements OnDestroy {
 
   heigth;
   show:boolean;
@@ -27,16 +27,13 @@ export class BtnScrollTopComponent  {
 
   }
 
+ngOnDestroy(){
 
-
-
+}
 
   scrollTop(event) {
     this.doScroll.emit(event)
-
   }
-
-
 
 }
 

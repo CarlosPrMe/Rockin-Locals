@@ -6,28 +6,28 @@
 
     <ng-container matColumnDef="day">
       <th class="table__heading" *matHeaderCellDef> Día </th>
-      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
+      <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.date.day}} /
         {{reservation?.date.month}} / {{reservation?.date.year}}</td>
     </ng-container>
 
     <ng-container matColumnDef="band">
       <th class="table__heading" mat-header-cell *matHeaderCellDef> Grupo </th>
-      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.bandName}} </td>
+      <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.bandName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="local">
       <th class="table__heading" mat-header-cell *matHeaderCellDef> NºLocal </th>
-      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
+      <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.localName}} </td>
     </ng-container>
 
     <ng-container matColumnDef="hourIn" class="desktop">
       <th class="table__heading" mat-header-cell *matHeaderCellDef> Hora de entrada </th>
-      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.hours[0]}} </td>
+      <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.hours[0]}} </td>
     </ng-container>
 
     <ng-container matColumnDef="hours">
       <th class="table__heading tablet" mat-header-cell *matHeaderCellDef> Número de horas </th>
-      <td class="table__data tablet" mat-cell *matCellDef="let reservation"> {{reservation?.numHours}} </td>
+      <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.numHours}} </td>
     </ng-container>
 
   </table>

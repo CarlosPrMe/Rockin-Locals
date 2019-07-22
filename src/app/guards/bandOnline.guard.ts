@@ -18,8 +18,7 @@ export class BandOnLine implements CanActivate {
   }
 
   userType(url: string): boolean {
-    if (this.loginservice.user.value.type === 'band') { return true; }
-    //this.router.navigate(['/index']);
+    if (this.loginservice.user && this.loginservice.user.value && this.loginservice.user.value.type && this.loginservice.user.value.type === 'band') { return true; }
     return false;
   }
 }

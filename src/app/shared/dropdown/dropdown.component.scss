@@ -20,7 +20,6 @@ ESTILOS GENERALES DROPDOWN
   flex-direction: column;
   border-bottom-left-radius: 5px;
   border-bottom-right-radius: 5px;
-  //border: 1px solid var(--gray-500);
   border: 1px solid transparent;
   width: 17rem;
   background-color: var(--white);
@@ -57,7 +56,6 @@ ESTILOS GENERALES DROPDOWN
   }
 
   &__text {
-    //border-top: 1px solid var(--gray-500);
     display: block;
     padding: 1rem;
     text-align: center;
@@ -77,19 +75,6 @@ ESTILOS GENERALES DROPDOWN
 ESTILOS FORM
 ------------------------------*/
 
-/* @keyframes inputsAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-  }
-} */
-
-/*----------------------------*/
 
 .form {
   &__group {
@@ -155,7 +140,3 @@ ESTILOS FORM
   border: 1px solid red !important;
 }
 
-/* [disabled]{
-  pointer-events: none;
-  opacity: 0.5;
-} */

@@ -1,6 +1,5 @@
 <div class="container">
   <main class="info">
-    <!-- *ngIf="user.type==='band'" -->
     <form action="#" class="form susy" [formGroup]="myForm">
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-6 col-lg-5">Cambiar foto del perfil</span>
@@ -63,37 +62,6 @@
           </div>
         </div>
       </div>
-<!--       <div class="info__item row">
-        <span class="info__heading col-sm-12 col-md-4 col-lg-4">Email</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required ||
-                myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom}" formControlName="email"
-              class="form__control" type="email" id="email" required>
-          </div>
-          <span class="error"
-            *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value">
-            Email incorrecto</span>
-          <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
-            Obligatorio </span>
-        </div>
-      </div>
-      <div class="info__item row">
-        <span class="info__heading col-sm-12 col-md-4 col-lg-4">Contraseña</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
-                myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}"
-              formControlName="password" type="password" class="form__control" id="password-register" required
-              minlength="8">
-          </div>
-          <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo
-            8
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
-            Obligatorio</div>
-        </div>
-      </div> -->
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-4 col-lg-4">Nombre del grupo</span>
         <div class="info__edit ">
@@ -111,16 +79,6 @@
           </div>
         </div>
       </div>
-      <!--       <div class="info__item row">
-        <span class="info__heading col-md-12 col-lg-4">Información de pago</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <label class="form__label" for="payment-mode">Información de pago</label>
-            <input class="form__control" type="text" id="payment-mode">
-          </div>
-        </div>
-      </div>-->
-
       <div class="info__item row flex--end">
         <button type="button" class="btn btn--success col-sm col-md col-lg-2"
           (click)="submit($event,myForm)">Guardar</button>

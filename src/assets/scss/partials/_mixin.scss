@@ -2,7 +2,6 @@
   transition: $props;
 }
 
-//$third : var(--third);
 @mixin button($color: var(--white), $background-color: $third, $padding: 0.5rem 1rem, $border-color: var(--primary)) {
   display: inline-block;
   padding: $padding;
@@ -53,7 +52,6 @@ PLACEHOLDER
     transition: all 250ms linear;
     border: 0;
     border-bottom: 1px solid var(--gray-400);
-    //animation: inputsAnimation 250ms ease-out 1;
     box-shadow: inset 0 0 1rem var(--gray-100);
   }
 

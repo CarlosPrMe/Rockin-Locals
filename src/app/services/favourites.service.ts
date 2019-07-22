@@ -10,25 +10,16 @@ export class FavouritesService {
 
 
   modifyFavourite(user) {
-
     return this.httpClient.put(`${environment.apiUrl}/users/${user._id}`,user).toPromise();
-
   }
 
   deleteFavourite(user, idFavouriteToDelete) {
-
     let favourites = user.favourites.filter(f => f.idLocal !== idFavouriteToDelete);
     user.favourites=[]
     user.favourites=favourites;
-
-    //user = Object.assign(user, favourites);
-    // hay que hacer la lógica para que busque en el objeto donde eestán los favoritos y que elimine el que tenga este id
     return this.httpClient.put(`${environment.apiUrl}/users/${user._id}`, user).toPromise()
 
   }
-
-
-
 
 }
 

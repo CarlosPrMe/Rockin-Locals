@@ -3,7 +3,6 @@
     <div class="info__item row">
       <span class="info__heading col-sm-4">{{local?.name}}</span>
       <div class="flex--end col-sm-8">
-          <!-- <button *ngIf="!local" type="button" class="btn" (click)="showLocal($event)">Añadir local</button> -->
         <button *ngIf="false" type="button" class="btn" (click)="showLocal($event)">Editar</button>
         <button type="button" class="btn" (click)="delete(local._id)">Eliminar</button>
       </div>
@@ -74,7 +73,6 @@
             <div class="form__group">
               <label for="photo-normal" class="form__label form__label--radio">Clásica
                 <input formControlName="imageType" type="radio" name="imageType" id="photo-normal" class="form__radio" value="panoramic">
-                <!-- <input formControlName="imageType" type="radio" name="imageType" id="photo-normal" class="form__radio" value="panoramic" [checked]="checkedPano"> -->
                 <svg class="icon-label icon-label--sm icon-label--left" width="40pt" height="30pt"
                   xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
                   viewBox="0 0 58 58">
@@ -135,7 +133,6 @@
     </div>
     <div class="info__edit row" *ngIf="show">
       <div class="form__group col-sm-12 col-md-8">
-        <!-- Revisar este from__group -->
         <span class="form__label">Indica el equipo disponible en tu local</span>
 
         <div class="grid--sm">
@@ -317,7 +314,7 @@
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input formControlName="checkOthers" type="checkbox" name="equipment" id="speakers" class="form__check--custom" value="true">
+              <input formControlName="checkSpeakers" type="checkbox" name="equipment" id="speakers" class="form__check--custom" value="true">
               <label for="speakers" class="form__label form__label--radio form__label--sm">Equipo
                 de
                 voz
@@ -328,12 +325,12 @@
                     d="m202.851562 269.644531-19.691406 19.6875c-11.234375 11.234375-11.242187 29.539063 0 40.8125 5.429688 5.433594 12.671875 8.425781 20.394532 8.425781 7.71875 0 14.960937-2.992187 20.394531-8.425781l19.691406-19.6875c11.25-11.25 11.25-29.558593 0-40.808593v-.003907c-11.246094-11.242187-29.546875-11.238281-40.789063 0zm30.050782 30.078125-19.691406 19.6875c-2.5625 2.5625-5.992188 3.976563-9.65625 3.976563-3.664063 0-7.09375-1.410157-9.648438-3.964844-5.328125-5.347656-5.335938-14.027344-.007812-19.351563l19.6875-19.6875c2.664062-2.664062 6.160156-3.996093 9.660156-3.996093 3.496094 0 6.992187 1.332031 9.65625 3.996093 5.332031 5.332032 5.332031 14.007813 0 19.339844zm0 0" />
                 </svg>
               </label>
-              <input formControlName="others" type="text" id="speakers-model" class="form__input" placeholder="Indica el modelo">
+              <input formControlName="speakers" type="text" id="speakers-model" class="form__input" placeholder="Indica el modelo">
             </span>
           </div>
           <div class="form__block-checkbox">
             <span class="checkbox__container">
-              <input type="checkbox" name="equipment" id="various" class="form__check--custom">
+              <input formControlName="checkOthers" type="checkbox" name="equipment" id="various" class="form__check--custom">
               <label for="various" class="form__label form__label--radio form__label--sm">Otros
                 <svg class="svg svg--custom" height="25pt" width="25pt" viewBox="0 0 60 60">
 
@@ -348,7 +345,7 @@
 
                 </svg>
               </label>
-              <input type="text" id="various-model" class="form__input" placeholder="Indica el modelo">
+              <input formControlName="others" type="text" id="various-model" class="form__input" placeholder="Indica el modelo">
             </span>
           </div>
         </div>

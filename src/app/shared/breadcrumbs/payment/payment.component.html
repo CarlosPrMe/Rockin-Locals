@@ -45,14 +45,8 @@
           </div>
         </div>
       </fieldset>
-<!--       <div class="form__group">
-        <label for="save-method-payment" class="form__label form__label--sm">
-          <input type="checkbox" name="" id="save-method-payment" class="form__check">
-          Guardar
-          datos de pago para próximas reservas</label>
-      </div> -->
       <div class="container--flex">
-        <button type="" class="btn" [routerLink]="['/local',localSelected?.id]">Atrás</button><!-- [routerLink]="['/local',localSelected.id]" -->
+        <button type="" class="btn" [routerLink]="['/local',localSelected?.id]">Atrás</button>
         <button type="button" class="btn" [disabled]="!myForm.valid" (click)="submit($event,myForm)">Aceptar</button>
       </div>
     </form>

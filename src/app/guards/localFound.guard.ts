@@ -19,7 +19,6 @@ export class LocalFound implements CanActivate {
 
   localFound(url: string): boolean {
     if (this.localService.localSelected) { return true; }
-    //this.router.navigate(['/index']);
     return false;
   }
 }

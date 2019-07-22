@@ -77,13 +77,13 @@
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
-    color: var(--white);
   }
 
   &__heading {
     font-family: var(--font-family-head);
     font-weight: 700;
     text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    color: var(gray--900);
   }
 
   &__description {
@@ -162,7 +162,6 @@
     }
 
     &__heading {
-      //padding-bottom: 2rem;
       text-align: left;
       margin-left: 4rem;
       font-size: var(--font-size-xl);
@@ -181,14 +180,12 @@
       background-position: 0 -10rem;
       background-size: cover;
       background-repeat: no-repeat;
-      color: var(--white);
 
       &::after {
         content: "";
         position: absolute;
         z-index: 5;
         top: 18rem;
-        //right: 0;
         left: .35rem;
         display: block;
         width: 100%;
@@ -201,7 +198,6 @@
         position: absolute;
         z-index: 5;
         top: 18rem;
-        //right: rem;
         left: -3rem;
         display: block;
         width: 100%;

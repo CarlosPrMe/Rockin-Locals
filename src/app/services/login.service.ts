@@ -48,19 +48,15 @@ export class LoginService {
 
 
   logOut() {
-
     return this.httpClient.get(`${environment.apiUrl}/auth/logout`).toPromise()
       .then((res) => {
         this.token = null;
         this.user.next(false);
         this.isLoged.next(false);
         localStorage.removeItem('access_token');
-        //this.localService.localSelected.next(null)
         this.router.navigateByUrl('/index');
-
       })
   }
-
 
   async  checkUserLocalStorage(token) {
     return this.httpClient.get(`${environment.apiUrl}/auth/me`).toPromise();

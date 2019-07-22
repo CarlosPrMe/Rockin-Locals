@@ -1,22 +1,11 @@
-/* import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.componet.html',
-  styleUrls: ['./carousel.componet.scss']
-})
-export class CarouselComponent { } */
-
 
 import {Component} from '@angular/core';
-//import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
 import { ScreenService } from '../../services/screen.service';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.componet.html',
   styleUrls: ['./carousel.componet.scss'],
- // providers: [NgbCarouselConfig]
 })
 
 export class CarouselComponent  {

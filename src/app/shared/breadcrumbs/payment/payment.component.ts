@@ -24,9 +24,6 @@ export class PaymentComponent implements OnInit {
     private reservationService: ReservationsService,
     private router: Router) {
     this.localSelected = this.localservice.localSelected
-    //console.log(this.reservationService.hoursAvailable.value);
-    //console.log(this.reservation)
-
   }
 
   ngOnInit() {
@@ -40,21 +37,14 @@ export class PaymentComponent implements OnInit {
   }
 
   submit($event, form) {
-    //console.log(form.value);
     this.reservation.methodPayment = form.value;
-    //console.log(this.reservation);
-
     this.reservationService.makeReservation(this.reservation).then((res) => {
     })
 
     if (this.reservationService.emptyDay.value) {
-      //Crear una disponibiliad
-     // this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
       this.reservationService.startAvailability(this.reservation.date, this.reservation.companyName, this.reservation.companyId, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
 
     } else {
-      //Modificamos la disponibiliadad
-      //this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
       this.reservationService.modifyAvailability(this.reservation.date, this.reservation.companyName, this.reservation.companyId, this.reservation.localName, this.reservationService.hoursAvailable.value).then((res) => { })
 
     }
@@ -67,14 +57,10 @@ export class PaymentComponent implements OnInit {
       type: "success",
       showConfirmButton: false,
     });
-
-    //this.router.navigateByUrl('/index');
     this.router.navigateByUrl('/reservations');
   }
 
   activateMethod($event) {
     this.methodActive = true;
-    //console.log(this.methodActive);
-
   }
 }

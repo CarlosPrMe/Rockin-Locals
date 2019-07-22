@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, SimpleChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, SimpleChanges, OnInit, OnDestroy, HostListener, ElementRef } from '@angular/core';
 import { map, switchMap, mergeMap } from 'rxjs/operators';
 import { LoginService } from './services/login.service';
 import { UserService } from './services/users.services';
@@ -7,6 +7,7 @@ import { ScrollToService } from 'ng2-scroll-to-el';
 import { LocationService } from './services/location.service';
 import swal from 'sweetalert2';
 import { Router } from '@angular/router';
+import { OpenMenuService } from './services/openMenu.service';
 
 
 @Component({
@@ -14,17 +15,30 @@ import { Router } from '@angular/router';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent implements OnInit, OnChanges {
+export class AppComponent implements OnInit, OnChanges, OnDestroy {
   title = 'Rockin Locals';
   user;
   showMenu: boolean; // Variable para mostral el menu
   showModal: boolean; // Variable para mostral la modal de registro
   userOnline;
 
+  @HostListener('document:click', ['$event'])
+
+  clickout(event) {
+    if(this.showMenu && event.target.className === "btn btn--access ng-star-inserted"){
+    }
+    else if (this.showMenu && event.target.className !== "btn btn--access" && event.target.className !== "dropdown dropdown-show"
+      && event.target.classList[0] !== "form__control" && event.target.className !== "btn login"  && event.target.className !== "hamburguer__menu") {
+     return this.openMenuService.changeMenuStatus();
+
+    }
+
+  }
 
   constructor(private userService: UserService, private loginService: LoginService,
     private screenService: ScreenService, private scrollService: ScrollToService,
-    private locationService: LocationService, private router: Router) {
+    private locationService: LocationService, private router: Router,
+    private openMenuService: OpenMenuService, private eRef: ElementRef) {
 
     if (localStorage.access_token) {
 
@@ -35,6 +49,8 @@ export class AppComponent implements OnInit, OnChanges {
       })
     }
 
+
+
     this.loginService.user.subscribe(data => {
       this.user = data;
     })
@@ -42,6 +58,9 @@ export class AppComponent implements OnInit, OnChanges {
     this.userOnline = this.loginService.isLoged.subscribe(res => {
     })
 
+    this.openMenuService.showMenuBehavior.subscribe(data => {
+      this.showMenu = data
+    })
   }
 
   ngOnInit() {
@@ -51,8 +70,11 @@ export class AppComponent implements OnInit, OnChanges {
 
   }
 
+  ngOnDestroy() {
+  }
+
   onShowMenu($event) {
-    this.showMenu = !this.showMenu;
+    this.showMenu = this.openMenuService.changeMenuStatus()
   }
 
   toggleModal($event) {
@@ -80,10 +102,8 @@ export class AppComponent implements OnInit, OnChanges {
       user.city = this.getCleanedString(user.city);
     }
 
-    this.userService.addUser(user).catch((err:any) => {
-      debugger
+    this.userService.addUser(user).catch((err: any) => {
       if (err) {
-        debugger
         this.toggleModal(true);
         return swal.fire({
           title: 'Error en el registro',
@@ -93,9 +113,7 @@ export class AppComponent implements OnInit, OnChanges {
         });
       }
     }).then((res: any) => {
-      debugger
       if (res.status === 200) {
-        debugger
         swal.fire({
           title: 'Bienvenido a Rockin Locals',
           text: 'Registro con éxito',
@@ -115,16 +133,6 @@ export class AppComponent implements OnInit, OnChanges {
   scrollToTop(element) {
 
     this.scrollService.scrollTo(element);
-
-/*     if(this.screenService.resolution.value>768){
-    }else{
-      window.scrollTo({
-        top: 1475,
-        left: 0,
-
-        behavior:'smooth'
-      });
-    } */
   }
 
   getCleanedString(address) {

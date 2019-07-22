@@ -16,7 +16,7 @@ import { ScreenService } from '../../services/screen.service';
   templateUrl: './reservations.component.html',
   styleUrls: ['./reservations.component.scss']
 })
-export class ReservationsComponent implements OnInit, OnChanges {
+export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
 
 
   user;
@@ -24,7 +24,6 @@ export class ReservationsComponent implements OnInit, OnChanges {
   reservationsPast: Array<any> = [];
   reservationsNext: Array<any> = [];
   reservationDetail: Array<any> = [];
-  //date = Date.now();
   today: NgbDate;
   todayJs: Number = Date.now();
 
@@ -34,7 +33,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
     private reservationsService: ReservationsService, private ngbCalendar: NgbCalendar,
     private localsService: LocalsService, private router: Router,
     private favourites: FavouritesService, public dialog: MatDialog,
-    private screen : ScreenService) {
+    private screen: ScreenService) {
     window.scrollTo({
       top: 0,
       left: 0,
@@ -47,12 +46,6 @@ export class ReservationsComponent implements OnInit, OnChanges {
     this.today = this.ngbCalendar.getToday();
 
     this.reservations = [];
-
-    /*     this.reservationsService.getReservationByBand(this.user.bandName).then((data: Array<any>) => {
-          this.reservations = data;
-          console.log(this.reservations);
-          this.separateReservations.call(this, data);
-        }) */
 
     this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
 
@@ -67,7 +60,8 @@ export class ReservationsComponent implements OnInit, OnChanges {
 
   ngOnChanges() { }
 
-
+  ngOnDestroy() {
+  }
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
       if (this.today.before(reserva.date) || this.today.equals(reserva.date)) {
@@ -80,19 +74,7 @@ export class ReservationsComponent implements OnInit, OnChanges {
     });
   }
 
-  /*   separateReservations(arrayReser) {
-      arrayReser.forEach(reserva => {
-        if (this.todayJs < reserva.moment) {
-          this.reservationsNext.push(reserva)
-        } else {
-          this.reservationsPast.push(reserva)
-        }
-      });
-    } */
-
   async onNavigateTolocal(id) {
-
-    //console.log(id);
     this.localsService.localSelected = await this.localsService.getLocalsById(id)
     this.router.navigateByUrl(`/local/${id}`)
 
@@ -135,13 +117,9 @@ export class ReservationsComponent implements OnInit, OnChanges {
     })
 
     if (response.value) {
-
       let cancelation: any = await this.reservationsService.deleteAvailability(reservation[0]);
-
       if (cancelation.ok === 1) {
-
         this.reservationsService.deleteReservation(idReserToDelete).catch((err) => {
-
           if (err) {
             this.router.navigate(['/index']);
             return swal.fire({
@@ -152,9 +130,8 @@ export class ReservationsComponent implements OnInit, OnChanges {
             })
           }
         }).then((res: any) => {
-
           if (res.ok === 1) {
-            this.router.navigate(['/index']);
+            this.repaint()
             return swal.fire({
               title: '¡Reserva Cancelada con éxito!',
               text: 'El dinero será abonado mediante el mismo metódo de pago con el que se hizo la reserva',
@@ -178,20 +155,28 @@ export class ReservationsComponent implements OnInit, OnChanges {
     } else {
 
     }
-
   }
 
   onDetailReservation(id) {
 
-    if(this.screen.resolution.value > 1023){
+    if (this.screen.resolution.value > 1023) {
       this.reservationDetail = this.reservations.filter(res => res._id === id)
-      console.log(this.reservationDetail);
       this.dialog.open(ModalDetailComponent, {
         data: this.reservationDetail
       });
 
     }
 
+  }
+
+  repaint() {
+    this.reservations = [];
+    this.reservationsPast = [];
+    this.reservationsNext = [];
+    this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
+      this.reservations = data;
+      this.separateReservations.call(this, data);
+    })
   }
 
 }

@@ -1,6 +1,6 @@
 <div class="general" [ngClass]="{'filter-body':showModal}" #navbar>
   <app-navbar (showMenu)="onShowMenu($event)" [user]="user" [userOnline]="userOnline"></app-navbar>
-  <app-dropdown [showMenu]="showMenu" (showModal)="toggleModal($event)" (navigate)="onShowMenu($event)"
+  <app-dropdown [showMenu]="showMenu" (showModal)="toggleModal($event)"
     (closeSession)="onCloseSesion($event)" [login]="user" (openSession)="onOpenSession($event, user)"
     (doScroll)="scrollToTop(navbar)">
   </app-dropdown>
@@ -10,6 +10,5 @@
   <app-footer></app-footer>
   <app-btn-scroll-top class="prueba" (doScroll)="scrollToTop(navbar)"></app-btn-scroll-top>
 </div>
-
 <app-modal [showModal]="showModal" (closeModal)="toggleModal($event)" (register)="onRegister($event, user)"></app-modal>
-<!-- <app-upload-files></app-upload-files> -->
+

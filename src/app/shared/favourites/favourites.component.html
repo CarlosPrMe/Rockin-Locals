@@ -37,12 +37,8 @@
   <ul class="list" [ngClass]="{show: showList, hide: !showList}">
         <li  class="aside__item" *ngFor="let fav of user.favourites">
           <a (click)="goToLocal($event, fav.idLocal)" class="aside__link">{{fav.companyName}}
-          <!-- <a (click)="goToLocal($event, fav.idLocal)" class="aside__link">{{fav.companyName}} <span class="hide">- {{fav.localName}}</span> -->
             <app-btn-favourites-delete (deleteFavourite)="deleteFavourite($event, fav.idLocal)"></app-btn-favourites-delete>
           </a>
         </li>
-
-<!-- [routerLink]="['/local',fav.idLocal]" -->
-
   </ul>
 </aside>

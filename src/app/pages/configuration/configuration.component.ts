@@ -12,7 +12,7 @@ import { BehaviorSubject } from 'rxjs';
   templateUrl: './configuration.component.html',
   styleUrls: ['./configuration.component.scss']
 })
-export class ConfigurationComponent implements OnInit {
+export class ConfigurationComponent implements OnInit, OnDestroy {
 
   user;
   company = new BehaviorSubject(null);
@@ -32,18 +32,16 @@ export class ConfigurationComponent implements OnInit {
     })
   }
 
+  ngOnDestroy(){
+  }
 
   async onEditUser(newData, user) {
     const currentUser = user;
     const currentLocal = { ...user };
-    debugger
     if (user.type === 'local') {
       this.company.next(user.companyName);
-      debugger
       if (user.address !== newData.address || user.city !== newData.city || user.postalCode !== newData.postalCode) {
-        debugger
         let res: any = await this.locationService.getLocation(newData.city, newData.address, newData.postalCode)
-        debugger
         if (res.results.length === 0 || !res) {
           this.loginService.user.next(currentLocal);
           this.router.navigate(['/index']);
@@ -56,22 +54,17 @@ export class ConfigurationComponent implements OnInit {
           newData.location = res.results[0].geometry.location
           newData.city = this.getCleanedString(newData.city)
           let data: any = await this.localService.getLocalsByLocal(currentLocal._id)
-          debugger
           if (!data) {
             this.loginService.user.next(currentLocal);
-            debugger
             return swal.fire({
               title: '¡Error al hacer los cambios!',
               type: "error",
               showConfirmButton: false,
             })
           } else {
-            debugger
             if(data.length === 1){
               const local = {...data[0],...newData };
-              debugger
               let localEdited: any = await this.localService.editLocal(local)
-              debugger
               if (!localEdited) {
                 return swal.fire({
                   title: '¡Error al hacer los cambios!',
@@ -84,25 +77,19 @@ export class ConfigurationComponent implements OnInit {
         }
       }
       if (user.description !== newData.description) {
-        debugger
-        //let res: any = await this.localService.getLocalsByLocal(currentLocal.companyName)
         let res: any = await this.localService.getLocalsByLocal(currentLocal._id)
-        debugger
         if (!res) {
           this.loginService.user.next(currentLocal);
-          debugger
           return swal.fire({
             title: '¡Error al hacer los cambios!',
             type: "error",
             showConfirmButton: false,
           })
         } else {
-          debugger
           if(res.length === 1){
             const local = res[0];
             local.description = newData.description;
             let localEdited: any = await this.localService.editLocal(local)
-            debugger
             if (!localEdited) {
               return swal.fire({
                 title: '¡Error al hacer los cambios!',
@@ -114,10 +101,7 @@ export class ConfigurationComponent implements OnInit {
         }
       }
       if (this.company.value !== newData.companyName) {
-        debugger
-        //let local: any = await this.localService.getLocalsByLocal(this.company.value)
         let local: any = await this.localService.getLocalsByLocal(this.user._id)
-        debugger
         if (!local) {
           this.loginService.user.next(currentLocal);
           this.router.navigate(['/index']);
@@ -127,19 +111,14 @@ export class ConfigurationComponent implements OnInit {
             showConfirmButton: false,
           })
         } else {
-          debugger
-          //const newLocal = Object.assign(local[0], newData.companyName);
           const newLocal = { ...local[0], ...newData };
           this.localService.editLocal(newLocal).catch().then();
 
         }
       }
-      debugger
       let userNew = await { ...user, ...newData }
       let change: any = await this.userService.editUser(userNew)
-      debugger
       if (!change) {
-        debugger
         this.loginService.user.next(currentLocal);
         this.router.navigate(['/index']);
         return swal.fire({
@@ -148,7 +127,6 @@ export class ConfigurationComponent implements OnInit {
           showConfirmButton: false,
         })
       } else {
-        debugger
         this.loginService.user.next(change.data);
         this.router.navigate(['/index']);
         return swal.fire({
@@ -159,14 +137,10 @@ export class ConfigurationComponent implements OnInit {
       }
 
     }
-    //Aqui empieza la edicion del usuario banda
     else {
       let userNew = { ...user, ...newData }
-      debugger
       await this.userService.editUser(userNew).catch((err) => {
-        debugger
         if (err) {
-          debugger
           this.loginService.user.next(currentUser);
           this.router.navigate(['/index']);
           return swal.fire({
@@ -194,7 +168,6 @@ export class ConfigurationComponent implements OnInit {
   }
 
   onDeleteUser(id) {
-    debugger
     swal.fire({
       title: '¿Estás seguro de eliminar tu cuenta?',
       text: 'Se perderá toda la información',
@@ -205,12 +178,8 @@ export class ConfigurationComponent implements OnInit {
       confirmButtonText: 'Confirmar'
     }).then((result) => {
       if (result.value) {
-        debugger
         if (this.user.type === 'local') {
-          debugger
-          //this.localService.deleteLocalByCompany(this.user.companyName).catch(err => {
           this.localService.deleteLocalByCompany(id).catch(err => {
-            debugger
             if (err) {
               this.router.navigate(['/index']);
               return swal.fire({
@@ -221,9 +190,7 @@ export class ConfigurationComponent implements OnInit {
             }
           })
         }
-        debugger
         this.userService.deleteUser(id).catch(err => {
-          debugger
           if (err) {
             this.router.navigate(['/index']);
             return swal.fire({
@@ -233,7 +200,6 @@ export class ConfigurationComponent implements OnInit {
             })
           }
         }).then((res: any) => {
-          debugger
           if (res.ok === 1) {
             swal.fire({
               title: '¡Eliminada!',

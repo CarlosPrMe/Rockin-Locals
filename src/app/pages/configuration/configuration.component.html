@@ -1,6 +1,6 @@
-<app-header-user *ngIf="user.type==='band'" [user]="user"></app-header-user>
-<app-config-user *ngIf="user.type==='band'" [user]="user"
-(editUser)="onEditUser($event,user)" (deleteUser)="onDeleteUser($event)"></app-config-user>
-<app-header-local *ngIf="user.type==='local'" [user]="user"></app-header-local>
-<app-config-admin *ngIf="user.type==='local'" [user]="user"
-(editUser)="onEditUser($event,user)" (deleteUser)="onDeleteUser($event)"></app-config-admin>
+<app-header-user *ngIf=" user && user.type && user.type ==='band'" [user]="user"></app-header-user>
+<app-config-user *ngIf=" user && user.type &&user.type==='band'" [user]="user" (editUser)="onEditUser($event,user)"
+  (deleteUser)="onDeleteUser($event)"></app-config-user>
+<app-header-local *ngIf="  user && user.type && user.type==='local'" [user]="user"></app-header-local>
+<app-config-admin *ngIf=" user && user.type && user.type==='local'" [user]="user" (editUser)="onEditUser($event,user)"
+  (deleteUser)="onDeleteUser($event)"></app-config-admin>

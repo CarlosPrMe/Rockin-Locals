@@ -29,8 +29,6 @@
     font-weight: 700;
     border: 1px solid var(--gray-500);
     border-bottom: 1px solid var(--primary);
-    //border-left: 1px solid var(--var-gray-400);
-    //border-right: 1px solid var(--var-gray-400);
     background-color: var(--gray-200);
     text-align: center;
     width: 10%;
@@ -38,11 +36,9 @@
     vertical-align: middle;
     &:first-child {
       border-top-left-radius: 5px;
-     // border-left: 1px solid transparent;
     }
     &:last-child {
       border-top-right-radius: 5px;
-     // border-right: 1px solid transparent;
     }
   }
 

@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { LoginService } from '../../services/login.service';
 import { ReservationsService } from '../../services/reservations.service';
 import { NgbDate, NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
 import { LocalsService } from '../../services/locals.service';
 import { Router } from '@angular/router';
 import swal from 'sweetalert2';
+import { ScreenService } from '../../services/screen.service';
+import { MatDialog } from '@angular/material';
+import { ModalDetailComponent } from '../../shared/modal-detail/modal-detail.component';
+
 
 
 @Component({
@@ -12,7 +16,7 @@ import swal from 'sweetalert2';
   templateUrl: './my-locals.component.html',
   styleUrls: ['./my-locals.component.scss']
 })
-export class MyLocalsComponent implements OnInit {
+export class MyLocalsComponent implements OnInit, OnDestroy {
 
   user;
   reservations: Array<any> = [];
@@ -21,20 +25,22 @@ export class MyLocalsComponent implements OnInit {
   today: NgbDate;
   local;
   showTableReservations: boolean = true;
+  reservationDetail: Array<any> = [];
   constructor(private loginService: LoginService,
     private reservationsService: ReservationsService,
     private localsService: LocalsService,
-    private ngbCalendar: NgbCalendar,
-    private router: Router) {
+    private ngbCalendar: NgbCalendar, public dialog: MatDialog,
+    private router: Router, private screen: ScreenService) {
 
     window.scrollTo({
       top: 0,
       left: 0,
     });
 
-    this.today = this.ngbCalendar.getToday();
-
     this.loginService.user.subscribe((res) => this.user = res);
+    this.today = this.ngbCalendar.getToday();
+    this.reservations = [];
+
 
 
     this.reservationsService.getReservationByLocal(this.user._id).then((data: Array<any>) => {
@@ -43,9 +49,6 @@ export class MyLocalsComponent implements OnInit {
       this.separateReservations.call(this, data);
     })
 
-/*     this.localsService.getLocalsByLocal(this.user.companyName).then(data => {
-      this.local = data[0];
-    }) */
     this.localsService.getLocalsByLocal(this.user._id).then(data => {
       this.local = data[0];
     })
@@ -57,9 +60,12 @@ export class MyLocalsComponent implements OnInit {
 
   }
 
+  ngOnDestroy() {
+  }
+
   separateReservations(arrayReser) {
     arrayReser.forEach(reserva => {
-      if (this.today.before(reserva.date)) {
+      if (this.today.before(reserva.date) || this.today.equals(reserva.date)) {
         this.reservationsNext.push(reserva)
       } else if (this.today.after(reserva.date)) {
         this.reservationsPast.push(reserva)
@@ -70,11 +76,8 @@ export class MyLocalsComponent implements OnInit {
   async onUpdateLocal(local) {
 
     if (local._id) {
-
       let localToEdit: any = await this.localsService.editLocal(local)
-
       if (!localToEdit) {
-
         this.router.navigate(['/index']);
         return swal.fire({
           title: '¡Error al hacer los cambios!',
@@ -84,7 +87,7 @@ export class MyLocalsComponent implements OnInit {
       } else {
 
         this.router.navigateByUrl('/index');
-        this.local = null //No entiendo por que
+        this.local = null
         return swal.fire({
           title: 'Local Editado',
           type: "success",
@@ -129,9 +132,9 @@ export class MyLocalsComponent implements OnInit {
     }).then((result) => {
       if (result.value) {
 
-        this.localsService.deleteLocal(id).catch(err=>{
+        this.localsService.deleteLocal(id).catch(err => {
 
-          if(err){
+          if (err) {
             this.router.navigate(['/index']);
             return swal.fire({
               title: '¡Error al editar el local!',
@@ -155,5 +158,17 @@ export class MyLocalsComponent implements OnInit {
         })
       }
     })
+  }
+
+  onDetailReservation(id) {
+
+    if (this.screen.resolution.value > 1023) {
+      this.reservationDetail = this.reservations.filter(res => res._id === id)
+      this.dialog.open(ModalDetailComponent, {
+        data: this.reservationDetail
+      });
+
+    }
+
   }
 }

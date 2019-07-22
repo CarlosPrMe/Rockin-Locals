@@ -40,7 +40,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: "", redirectTo: "/index", pathMatch: "full" // el patchMatch solo se utiliza en el de redirigir
+    path: "", redirectTo: "/index", pathMatch: "full"
   },
   {
     path:"**", component:PageNotFoundComponent,

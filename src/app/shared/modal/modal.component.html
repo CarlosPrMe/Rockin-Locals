@@ -176,11 +176,10 @@
           <input formControlName="terms" type="checkbox" id="terms" class="form__check" value="true" required>
           <label for="terms" class="form__label form__label--sm">Aceptar terminos</label>
           <span class="error" *ngIf="myForm.controls.terms.errors?.required">Campo Obligatorio</span>
-          <!-- <span  class="error" *ngIf="myForm.controls.terms.errors?.required">Acepta los términos para continuar</span> -->
         </div>
         <a href="#" class="modal__link">Terminos y condiciones</a>
         <button  id="submit-register" type="button" class="btn m-a"
-          (click)="submit($event,myForm)" [disabled]="!myForm.valid">Registrarse</button> <!-- (click)="close($event) Para cerrar Modal--> <!-- [ngClass]="{disable:!myForm.valid}" -->
+          (click)="submit($event,myForm)" [disabled]="!myForm.valid">Registrarse</button>
       </div>
     </form>
   </div>

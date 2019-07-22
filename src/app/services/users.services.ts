@@ -9,7 +9,6 @@ export class UserService {
   constructor(private httpClient: HttpClient) { }
 
   addUser(user) {
-    //console.log(user);
     return this.httpClient.post(`${environment.apiUrl}/auth/sign-up`, user).toPromise();
   }
 

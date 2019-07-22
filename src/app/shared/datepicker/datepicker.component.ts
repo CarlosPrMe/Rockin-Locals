@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter, OnChanges } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnChanges, OnDestroy } from '@angular/core';
 import { NgbCalendar, NgbDate, NgbPeriod } from '@ng-bootstrap/ng-bootstrap';
 import { ScreenService } from '../../services/screen.service';
 
@@ -9,7 +9,7 @@ import { ScreenService } from '../../services/screen.service';
   styleUrls: ['./datepicker.component.scss'],
 
 })
-export class DatepickerComponent implements OnInit, OnChanges {
+export class DatepickerComponent implements OnInit, OnChanges, OnDestroy {
 
   resolution;
   displayMonths;
@@ -26,12 +26,11 @@ export class DatepickerComponent implements OnInit, OnChanges {
   }
 
 
-
   ngOnInit() { }
 
-  ngOnChanges() {
+  ngOnChanges() { }
 
-  }
+ngOnDestroy(){}
 
   @Output() date = new EventEmitter();
 
@@ -45,7 +44,6 @@ export class DatepickerComponent implements OnInit, OnChanges {
 
 
   onDateSelect(day) {
-    //console.log(day);
     this.date.emit(day);
     this.moveScreen();
   }
@@ -53,7 +51,6 @@ export class DatepickerComponent implements OnInit, OnChanges {
 
   moveScreen() {
     if (this.screenService.resolution.value > 1024) {
-
       window.scrollTo({
         top: 690,
         left: 0,
@@ -67,14 +64,6 @@ export class DatepickerComponent implements OnInit, OnChanges {
         behavior:'smooth'
       });
     }
-/*     else if (this.screenService.resolution.value <= 767) {
-      window.scrollTo({
-        top: 1475,
-        left: 0,
-        behavior:'smooth'
-      });
-    } */
-
   }
 
 

@@ -9,7 +9,7 @@ GRID
   z-index: 5;
   width: 100%;
   display: grid;
-  grid-gap: 1rem; //2rem
+  grid-gap: 1rem;
   grid-template-columns: repeat(12, 1fr);
   grid-template-rows: repeat(auto-fit, auto);
 

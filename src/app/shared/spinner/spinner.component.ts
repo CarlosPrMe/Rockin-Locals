@@ -24,11 +24,3 @@ export class SpinnerComponent implements OnInit, OnChanges {
 
 }
 
-
-
-/* <mat-progress-spinner
-class="example-margin"
-[color]="color"
-[mode]="mode"
-[value]="value">
-</mat-progress-spinner> */

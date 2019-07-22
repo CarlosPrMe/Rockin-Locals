@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
 import { LoginService } from '../../services/login.service';
@@ -10,12 +10,11 @@ import swal from 'sweetalert2';
   templateUrl: './dropdown.component.html',
   styleUrls: ['./dropdown.component.scss']
 })
-export class DropdownComponent implements OnInit, OnChanges {
+export class DropdownComponent implements OnInit, OnChanges, OnDestroy {
 
   myForm;
   user;
   @Input() showMenu: boolean;
-  // @Input() user;
   @Input() login;
   @Output() showModal = new EventEmitter();
   @Output() navigate = new EventEmitter();
@@ -43,8 +42,10 @@ export class DropdownComponent implements OnInit, OnChanges {
     })
   }
 
+  ngOnDestroy() {
+  }
+
   submit($event, form) {
-    debugger
     if (form.valid) {
       this.openSession.emit(form.value);
       form.reset();
@@ -77,6 +78,7 @@ export class DropdownComponent implements OnInit, OnChanges {
         showConfirmButton: false,
       })
     }
+
   }
 
   modal($event) {
@@ -98,23 +100,6 @@ export class DropdownComponent implements OnInit, OnChanges {
     this.doScroll.emit(event)
   }
 
+
 }
 
-/*     if (form.valid) {
-      this.openSession.emit(form.value);
-      form.reset();
-    } else if (form.controls.email.errors) {
-      swal.fire({
-        title: '¡Error en el login!',
-        type: "error",
-        text: 'Formato de email incorrecto',
-        showConfirmButton: false,
-      })
-    } else if (form.controls.password.errors) {
-      swal.fire({
-        title: '¡Error en el login!',
-        type: "error",
-        text: 'Logitud de contraseña incorrecta (Min 8 caracteres)',
-        showConfirmButton: false,
-      })
-    } */

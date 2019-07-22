@@ -1,11 +1,6 @@
 @import "../../../../assets/scss/partials/mixin";
 @import "../../../../assets/scss/partials/variables";
 
-/* @keyframes inputsAnimation{
-  0%{ transform: scale(1)};
-  50%{transform: scale(1.08)};
-  100%{transform: scale(1)};
-} */
 
 .btn {
   @include button;

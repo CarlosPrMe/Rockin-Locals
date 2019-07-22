@@ -5,8 +5,9 @@
 export const environment = {
   production: false,
   //apiUrl: "https://5cff86eed691540014b0dd73.mockapi.io"
-  apiUrl: "http://localhost:3000/rockinLocals"
+  //apiUrl: "http://localhost:3000/rockinLocals"
   //apiUrl: "http://192.168.1.37:3000/rockinLocals"
+  apiUrl: "http://192.168.1.42:3000/rockinLocals"
 };
 
 /*

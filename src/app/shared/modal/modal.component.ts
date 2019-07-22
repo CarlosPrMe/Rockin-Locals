@@ -46,15 +46,10 @@ export class ModalComponent implements OnInit {
 
 
   submit($event, form) {
-
-    debugger
     if (form.valid) {
-
       this.register.emit(form.value);
-      form.reset();
       this.showModal = false;
     }
-
     this.reset()
   }
 
@@ -90,7 +85,6 @@ export class ModalComponent implements OnInit {
         terms: [form.value.terms, Validators.required]
       })
     }
-    console.log(form);
   }
 
 

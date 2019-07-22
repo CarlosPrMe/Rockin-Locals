@@ -1,7 +1,6 @@
 <app-header-local [user]="user"></app-header-local>
 <app-my-local [user]="user" [local]="local" (updateLocal)="onUpdateLocal($event)" (deleteLocal)="onDeleteLocal(local._id)"></app-my-local>
-<!-- <app-add-local></app-add-local> -->
-<div *ngIf="reservations.length > 0" class="container container--flex-end ">
+<div *ngIf="reservations && reservations.length > 0" class="container container--flex-end ">
   <button *ngIf='!showTableReservations' (click)="showTableReservations = !showTableReservations" class="btn ml-a">Mostrar Listado de reservas</button>
   <button *ngIf='showTableReservations' (click)="showTableReservations = !showTableReservations" class="btn ml-a">Ocultar Listado de reservas</button>
 </div>
@@ -14,13 +13,13 @@
       <h2 class="table__title col-sm-12 col-md-12 col-lg-12">Próximas reservas</h2>
     </div>
     <div *ngIf="reservationsNext.length > 0" class="row">
-        <app-table [reservations]="reservationsNext"></app-table>
+        <app-table [reservations]="reservationsNext" (detailReservation)="onDetailReservation($event)"></app-table>
     </div>
     <div *ngIf="reservationsPast.length > 0" class="row">
       <h2 class="table__title col-sm-12 col-md-12 col-lg-12">Reservas Pasadas</h2>
     </div>
     <div *ngIf="reservationsPast.length > 0" class="row">
-        <app-table [reservations]="reservationsPast"></app-table>
+        <app-table [reservations]="reservationsPast" (detailReservation)="onDetailReservation($event)"></app-table>
     </div>
   </div>
 </div>

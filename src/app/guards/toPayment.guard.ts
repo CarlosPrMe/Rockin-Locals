@@ -19,7 +19,6 @@ export class GoToPayment implements CanActivate {
 
   reservationOn(): boolean {
     if (this.reservation.currentReservation.value) { return true; }
-    //this.router.navigate(['/index']);
     return false;
   }
 }

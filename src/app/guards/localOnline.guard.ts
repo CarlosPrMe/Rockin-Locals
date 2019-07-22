@@ -18,8 +18,7 @@ export class LocalOnLine implements CanActivate {
   }
 
   userType(url: string): boolean {
-    if (this.loginservice.user.value.type === 'local') { return true; }
-    //this.router.navigate(['/index']);
+    if (this.loginservice.user && this.loginservice.user.value && this.loginservice.user.value.type && this.loginservice.user.value.type === 'local') { return true; }
     return false;
   }
 }

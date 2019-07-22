@@ -33,6 +33,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
       checkAmpBass: [''],
       checkKeyboard: [''],
       checkOthers: [''],
+      checkSpeakers: [''],
       name: [""],
       price: [""],
       imageType: ["panoramic", Validators.required],
@@ -42,21 +43,21 @@ export class MyLocalComponent implements OnInit, OnChanges {
       ampGuit2: [""],
       ampBass: [""],
       keyboard: [""],
+      speakers: [""],
       others: [""]
     })
-
-    debugger
   }
 
   ngOnChanges(simpleChanges: SimpleChanges) {
-    debugger
     if (this.local) {
-      // this.show = false;
       if (!this.local.equipment.keyboard) {
         this.local.equipment.keyboard = '';
       }
       if (!this.local.equipment.others) {
         this.local.equipment.others = '';
+      }
+      if (!this.local.equipment.speakers) {
+        this.local.equipment.speakers = '';
       }
 
       if (this.local.imageType) {
@@ -100,6 +101,11 @@ export class MyLocalComponent implements OnInit, OnChanges {
       } else {
         this.local.equipment.checkOthers = false;
       }
+      if (this.local.equipment.speakers) {
+        this.local.equipment.checkSpeakers = true;
+      } else {
+        this.local.equipment.checkSpeakers = false;
+      }
 
       this.myForm.setValue({
         checkDrum: this.local.equipment.checkDrum,
@@ -108,6 +114,7 @@ export class MyLocalComponent implements OnInit, OnChanges {
         checkAmpBass: this.local.equipment.checkAmpBass,
         checkKeyboard: this.local.equipment.checkKeyboard,
         checkOthers: this.local.equipment.checkOthers,
+        checkSpeakers: this.local.equipment.checkSpeakers,
         name: this.local.name,
         price: this.local.price,
         imageType: this.local.imageType,
@@ -117,11 +124,9 @@ export class MyLocalComponent implements OnInit, OnChanges {
         ampGuit2: this.local.equipment.ampGuit2,
         ampBass: this.local.equipment.ampBass,
         keyboard: this.local.equipment.keyboard,
+        speakers: this.local.equipment.speakers,
         others: this.local.equipment.others
       })
-    }
-    else {
-      //this.show = true;
     }
   }
 
@@ -145,7 +150,8 @@ export class MyLocalComponent implements OnInit, OnChanges {
       ampGuit2: form.value.ampGuit2,
       ampBass: form.value.ampBass,
       keyboard: form.value.keyboard,
-      others: form.value.others
+      others: form.value.others,
+      speakers: form.value.speakers
     }
 
     local.city = currentUser.city;

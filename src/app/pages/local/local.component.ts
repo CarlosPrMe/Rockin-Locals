@@ -34,8 +34,6 @@ export class LocalComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.isUser.unsubscribe();
-    this.isUserData.unsubscribe();
   }
 
 

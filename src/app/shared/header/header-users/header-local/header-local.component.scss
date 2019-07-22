@@ -10,7 +10,7 @@
   }
   @media (min-width: 768px) and (max-width: 1023px) {
     padding: 1.5rem;
-    padding: 1.5rem;
+
   }
   @media (min-width: 1024px) {
     padding: 1rem 1rem 3rem 1rem;
@@ -18,25 +18,36 @@
 }
 
 .dark{
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.3);
+
+  @media (max-width: 767px){
+    padding: 4.5rem 0 2rem;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    padding: 7rem 0 2rem;
+  }
+  @media(min-width: 1024px) {
+    padding: 4rem 0 6rem;
+  }
 }
 .header {
   &--local {
     position: relative;
     background-size: cover;
     background-repeat: no-repeat;
-    color: var(--white);
-    background-color: rgba(0,0,0,0.5);
-  }
-
-  &--local {
-    background-image: url("../../../../../assets/img/grupo_02.jpg");
+    background-position: center;
+    background-image: url("../../../../../assets/img/Artwork/agua.jpg");
+    background-color: var(--white);
   }
 
   &__heading {
     font-family: var(--font-family-head);
     font-weight: 700;
     text-shadow: 0 0 1rem rgba(0, 0, 0, 0.5);
+    color: var(--white);
+  }
+  &__text {
+    color: var(--white);
   }
 }
 
@@ -47,9 +58,6 @@
       font-size: calc(var(--font-size-md) * 1.8);
       text-align: center;
     }
-    &--local {
-      padding: 5.5rem 0 2rem;
-    }
     &__text {
       color: var(--white);
     }
@@ -58,24 +66,20 @@
 
 @media (min-width: 768px) and (max-width: 1023px) {
   .header {
-    padding: 6rem 0;
     padding-bottom: 4rem;
-    &--local {
-      padding: 7rem 0 2rem;
-    }
     &__heading {
       padding-bottom: 1rem;
-      margin-left: 4rem;
       text-align: left;
       font-size: calc(var(--font-size-xl) * 0.8);
+      text-align: center;
     }
   }
 }
 
+
 @media (min-width: 1024px) {
   .header {
     &__heading {
-      //padding-bottom: 2rem;
       text-align: left;
       margin-left: 4rem;
       font-size: calc(var(--font-size-xl) * 0.8);
@@ -83,18 +87,15 @@
 
     &--local {
       position: relative;
-      padding: 4rem 0 6rem;
       background-position: 0 -10rem;
       background-size: cover;
       background-repeat: no-repeat;
-      color: var(--white);
 
       &::after {
         content: "";
         position: absolute;
         z-index: 5;
         top: 21rem;
-        //right: 0;
         left: 0.35rem;
         display: block;
         width: 100%;
@@ -107,7 +108,6 @@
         position: absolute;
         z-index: 5;
         top: 21rem;
-        //right: rem;
         left: -3rem;
         display: block;
         width: 100%;

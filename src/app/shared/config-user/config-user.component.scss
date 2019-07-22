@@ -90,9 +90,6 @@ GENERAL
     text-align: center;
     padding: 1rem 0;
   }
-  @media (min-width: 767px) and (max-width: 1023px) {
-    //padding: 1rem 0;
-  }
   @media (min-width: 1024px) {
     margin-bottom: 1rem;
   }
@@ -109,7 +106,6 @@ GENERAL
     justify-content: center;
   }
   @media (min-width: 767px) and (max-width: 1023px) {
-    //padding: 1rem 0;
     margin-bottom: 1rem;
   }
   @media (min-width: 1024px) {
@@ -140,6 +136,7 @@ GENERAL
 
 .info__media {
   width: 3rem;
+  height: 3rem;
   border-radius: 100%;
 }
 .info__media--noUser {
@@ -157,19 +154,6 @@ GENERAL
 FORMULARIO
 -----------------------*/
 
-/* @keyframes inputsAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
- */
-/*----------------------------*/
 
 .form {
   &__group {
@@ -195,7 +179,6 @@ FORMULARIO
     }
     &--file {
       position: absolute;
-      //top: 0;
       bottom: 0;
       left: 0;
       z-index: 5;
@@ -237,7 +220,6 @@ FORMULARIO
     border-radius: 4px;
     background-color: transparent;
     @media (max-width: 767px) {
-      //margin-top: 0.2rem;
       width: 100%;
       display: block;
     }

@@ -13,7 +13,7 @@ export class Reservation{
   methodPayment:any;
   companyId:String;
   bandId:String;
-  moment:Number;//Se puede quitar
+  moment:Number;
 
 
   constructor(){}

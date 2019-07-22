@@ -8,8 +8,7 @@
 
     <ng-container matColumnDef="band">
       <th class="table__heading" mat-header-cell *matHeaderCellDef> Día </th>
-      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
-        {{reservation?.date.month}} / {{reservation?.date.year}}</td>
+      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.bandName}}</td>
     </ng-container>
 
     <ng-container matColumnDef="company">
@@ -22,16 +21,17 @@
       <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
     </ng-container>
 
+    <ng-container matColumnDef="date">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Horas </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
+        {{reservation?.date.month}} / {{reservation?.date.year}} </td>
+    </ng-container>
+
     <ng-container matColumnDef="detailHours">
       <th class="table__heading" mat-header-cell *matHeaderCellDef> Detalle de horas </th>
       <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.hours}} </td>
     </ng-container>
 
-    <ng-container matColumnDef="date">
-      <th class="table__heading " mat-header-cell *matHeaderCellDef> Fecha </th>
-      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
-        {{reservation?.date.month}} / {{reservation?.date.year}} </td>
-    </ng-container>
 
     <ng-container matColumnDef="equipment">
       <th class="table__heading " mat-header-cell *matHeaderCellDef> Equipamiento </th>
@@ -53,53 +53,6 @@
       <th class="table__heading " mat-header-cell *matHeaderCellDef> Método de pago </th>
       <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.methodPayment.method}} </td>
     </ng-container>
-
-
-
   </table>
 </div>
-<!--  reservation = {
-  bandId: "5d1614acd3479b32e47594d2",
-  bandName: "Kitsune Art",
-  companyName: "Pika Studios",
-  date:
-  {
-    day: 31,
-    month: 7,
-    year: 2019
-  },
 
-  equipment: [
-    "Batería Tama SuperStar",
-    "Amplificador de guitarra Mesa Booggie",
-    "Amplificador de guitarra Line6"
-  ],
-  hours: [
-    "11:00",
-    "12:00",
-    "13:00"],
-  localName: "Local 1",
-
-  methodPayment:
-  {
-    creditNumber: "",
-    cvvCode: "",
-    expireDate: "",
-    method: "paypal"
-  },
-
-  moment: 1563399406799,
-  numHours: 3,
-  price: 9
-}
-
- <div>{{reservation?.bandName}}</div>
- <div>{{reservation?.methodPayment.method}}</div>
-  <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div>
- <div>{{reservation?}}</div> -->

@@ -23,12 +23,9 @@ export class ConfigUserComponent implements OnInit {
 
   ngOnInit() {
 
-
     this.myForm = this.fb.group({
       userName: [``, Validators.compose([Validators.required, Validators.minLength(5)])],
       bandName: [``,Validators.required],
-      //email: [``, Validators.compose([Validators.required, customValidatorEmail])],
-      //password: [``, Validators.compose([Validators.required, Validators.minLength(8)])],
       avatar: ["",Validators.compose([customValidatorUrl])]
     })
 
@@ -40,21 +37,16 @@ export class ConfigUserComponent implements OnInit {
     this.myForm.setValue({
       userName: this.user.userName,
       bandName: this.user.bandName,
-      //email: this.user.email,
-      //password: this.user.password,
       avatar: this.user.avatar,
-
     })
 
   }
 
   submit($event, form) {
-
     this.editUser.emit(form.value);
   }
 
   delete($event) {
-
     this.deleteUser.emit(this.user._id);
   }
 

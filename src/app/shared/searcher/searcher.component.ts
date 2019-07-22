@@ -1,4 +1,4 @@
-import { Component, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, OnInit, OnChanges, SimpleChanges, OnDestroy } from '@angular/core';
 import { LocalsService } from '../../services/locals.service';
 import swal from 'sweetalert2';
 import { LoadingService } from 'src/app/services/loading.service';
@@ -11,7 +11,7 @@ import { LoadingService } from 'src/app/services/loading.service';
   styleUrls: ['./searcher.component.scss']
 })
 
-export class SearcherComponent implements OnInit, OnChanges {
+export class SearcherComponent implements OnInit, OnChanges, OnDestroy {
 
   constructor(private localsService: LocalsService,
     private loadingService: LoadingService) { }
@@ -30,22 +30,14 @@ export class SearcherComponent implements OnInit, OnChanges {
 
       this.loading = res
     })
-    console.log(simpleChange);
-    console.log(this.loading);
+  }
 
+  ngOnDestroy(){
 
   }
 
   showData(local) {
-
-/*     if (!isNaN(+local)) {
-      local = +local
-    } else {
-      local = local;
-    } */
-
     this.localsService.getLocalsByCity(local).catch((err)=> {
-      console.log(err);
       if(err){
         this.localsFound = null;
         this.showInfo = false

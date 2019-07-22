@@ -16,7 +16,7 @@
 
   <ng-container matColumnDef="local" class="tablet">
     <th class="table__heading tablet" *matHeaderCellDef> Nombre del local </th>
-    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.localName}} </td>
+    <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.localName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="hourIn" class="desktop">
