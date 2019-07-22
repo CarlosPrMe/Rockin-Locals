@@ -1,7 +1,6 @@
 @import '../buttons.component.scss';
 
 .btn--favourites-delete {
-  //border-radius: 100%;
   display: inline-block;
   margin: 0 0.5rem;
   background-color: transparent;
@@ -15,4 +14,15 @@
       fill: var(--primary);
     }
   }
+  svg {
+    fill: var(--white);
+  }
+
+  &:active {
+    background-color: var(--danger);
+    svg{
+      fill: var(--white);
+    }
+  }
+
 }

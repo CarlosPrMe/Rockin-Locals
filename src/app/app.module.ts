@@ -3,9 +3,11 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AppRoutingModule } from './app-routing.module';
 
-//import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import {NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
 
+//CALENDARIO----------------
+import { NgbDatepickerModule } from '@ng-bootstrap/ng-bootstrap';
+import { DatepickerComponent } from './shared/datepicker/datepicker.component';
+//----------------------------------
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './shared/navbar/navbar.component';
@@ -22,7 +24,6 @@ import { BtnAccessComponent } from './shared/buttons/btn-access/btn-access.compo
 import { BtnCloseComponent } from './shared/buttons/btn-close/btn-close.component';
 import { BtnSuccessComponent } from './shared/buttons/btn-success/btn-success.component';
 import { BtnDangerComponent } from './shared/buttons/btn-danger/btn-danger.component';
-import { BtnScrollTopComponent } from './shared/buttons/btn-scroll-top/btn-scroll-top.component';
 import { BtnFavouritesDeleteComponent } from './shared/buttons/btn-favourites-delete/btn-favourites-delete.component';
 import { CarouselComponent } from './shared/carousel/carousel.componet';
 import { ModalComponent } from './shared/modal/modal.component';
@@ -53,30 +54,83 @@ import { MyLocalsComponent } from './pages/my-locals/my-locals.component';
 import { ReservationsComponent } from './pages/reservations/reservations.component';
 import { ConfigurationComponent } from './pages/configuration/configuration.component';
 import { ReservationSummaryComponent } from './pages/reservation-summary/reservation-summary.component';
-import { TableGridPastComponent} from './shared/table-grid-past/table-grid-past.component';
-import { ReactiveFormsModule ,FormsModule } from '@angular/forms';
-import { GoToPaymentGuard } from './services/go-to-payment.service';
+import { TableGridPastComponent } from './shared/table-grid-past/table-grid-past.component';
+import { ReactiveFormsModule } from '@angular/forms';
+//import { GoToPaymentGuard } from './services/go-to-payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
+<<<<<<< HEAD
 import { DatepickerComponent } from './shared/datepicker/datepicker.component';
 //import {MatTableModule} from '@angular/material/table';
+=======
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { DragScrollModule } from 'ngx-drag-scroll';
+
+>>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
 
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
-// SERVICIOS
+// SERVICIOS------------------
 import { TestService } from './services/test.service';
-import { LogginFakeInterceptor } from './interceptors/logginFake.interceptor';
-import { LoggingService } from './services/logging.service';
-import { GetLocalsService } from './services/getLocals.service';
+import { LoginFakeInterceptor } from './interceptors/loginFake.interceptor';
+import { LoginService } from './services/login.service';
+import { LocalsService } from './services/locals.service';
+import { LocationService } from './services/location.service';
 import { UserService } from './services/users.services';
-import { GetReservationsService } from './services/getReservations.service';
-import { AddtoFavouritesService } from './services/add-favourites.service';
+import { ReservationsService } from './services/reservations.service';
+import { FavouritesService } from './services/favourites.service';
+import { ScreenService } from './services/screen.service';
+//------------------------------------
 
 
- const httpInterceptorProviders = [
-  { provide: HTTP_INTERCEPTORS, useClass: LogginFakeInterceptor, multi: true },
+//MATERIAL-------------------------------
+import 'hammerjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatTableModule } from '@angular/material/table';
+import { MatPaginatorModule, MatPaginatorIntl } from '@angular/material/paginator';
+import { SpanishPaginatorComponent } from './shared/spanish-paginator/spanish-paginator.component';
+import {MatDialogModule} from '@angular/material/dialog';
+
+//import {CdkStepperModule} from '@angular/cdk/stepper';
+//import {CdkTableModule} from '@angular/cdk/table';
+//import {CdkTreeModule} from '@angular/cdk/tree';
+
+
+
+
+//----------------------------------------
+
+//FX------------------
+import { ScrollToModule } from 'ng2-scroll-to-el';
+import { BtnScrollTopComponent } from './shared/buttons/btn-scroll-top/btn-scroll-top.component';
+import { SpinnerComponent } from './shared/spinner/spinner.component';
+import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
+
+
+//---------------------------
+
+import { AuthorizationInterceptor } from './interceptors/authorization.interceptor';
+
+//PRUEBA PARA SUBIR IMAGEN--------
+import { UploadFilesComponent } from './shared/upload-files/upload-files.component';
+import { UploadImageService } from './services/upload.service';
+import { PageNotFoundComponent } from './shared/page-not-found/page-not-found.component';
+import { LoadingService } from './services/loading.service';
+//--------------------------------
+
+import { LoadingInterceptor } from './interceptors/loading.interceptor';
+import { DragCarouselComponent } from './shared/drag-carousel/drag-carousel.component';
+import { HeaderParallaxComponent } from './shared/header/header-parallax/header-parallax.component';
+import { ParallaxDirective } from './shared/directives/parallax.directive';
+import { ModalDetailComponent } from './shared/modal-detail/modal-detail.component';
+import { ModalRegComponent } from './shared/modal-reg/modal-reg.component';
+import { OpenMenuService } from './services/openMenu.service';
+const httpInterceptorProviders = [
+  { provide: HTTP_INTERCEPTORS, useClass: LoadingInterceptor, multi: true },
+  //{ provide: HTTP_INTERCEPTORS, useClass: LoginFakeInterceptor, multi: true },
+   { provide: HTTP_INTERCEPTORS, useClass: AuthorizationInterceptor, multi: true },
 ];
 
 
@@ -126,11 +180,19 @@ import { AddtoFavouritesService } from './services/add-favourites.service';
     PaymentSummaryComponent,
     MyLocalsComponent,
     ReservationsComponent,
-    //ConfigLocalComponent,
     ConfigurationComponent,
     ReservationSummaryComponent,
     TableGridPastComponent,
     DatepickerComponent,
+    SpinnerComponent,
+    UploadFilesComponent,
+    PageNotFoundComponent,
+    DragCarouselComponent,
+    HeaderParallaxComponent,
+    ParallaxDirective,
+    ModalDetailComponent,
+    ModalRegComponent
+
 
 
   ],
@@ -138,25 +200,48 @@ import { AddtoFavouritesService } from './services/add-favourites.service';
     BrowserModule,
     CommonModule,
     AppRoutingModule,
-    FormsModule,
     ReactiveFormsModule,
+<<<<<<< HEAD
     //AgmCoreModule.forRoot({
     //  apiKey: ''
     //}),
     HttpClientModule,
     //NgbModule,
     NgbDatepickerModule,
+=======
+    AgmCoreModule.forRoot({
+      apiKey: 'YourapiKey'
+    }),
+    HttpClientModule,
+    NgbDatepickerModule,
+    BrowserAnimationsModule,
+    MatTableModule,
+    MatPaginatorModule,
+    MatPaginatorModule,
+    ScrollToModule.forRoot(),
+    SweetAlert2Module.forRoot(),
+    Ng2CarouselamosModule,
+    DragScrollModule,
+    MatDialogModule
+>>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
   ],
   providers: [
     TestService,
-    LoggingService,
+    LoginService,
     UserService,
-    GetLocalsService,
-    GetReservationsService,
-    AddtoFavouritesService,
-    GoToPaymentGuard,
-    httpInterceptorProviders
+    LocalsService,
+    LocationService,
+    ReservationsService,
+    FavouritesService,
+    ScreenService,
+    //GoToPaymentGuard,
+    httpInterceptorProviders,
+    LoadingService,
+    UploadImageService,
+    OpenMenuService,
+    { provide: MatPaginatorIntl, useClass: SpanishPaginatorComponent}
   ],
+  entryComponents: [ModalDetailComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,31 +1,43 @@
-/* import { Component } from '@angular/core';
-
-@Component({
-  selector: 'app-carousel',
-  templateUrl: './carousel.componet.html',
-  styleUrls: ['./carousel.componet.scss']
-})
-export class CarouselComponent { } */
-
 
 import {Component} from '@angular/core';
-import {NgbCarouselConfig} from '@ng-bootstrap/ng-bootstrap';
+import { ScreenService } from '../../services/screen.service';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.componet.html',
   styleUrls: ['./carousel.componet.scss'],
-  providers: [NgbCarouselConfig]
 })
 
 export class CarouselComponent  {
-  images = [1, 2, 3, 4].map(() => `https://picsum.photos/900/500?random&t=${Math.random()}`);
 
-  constructor(config: NgbCarouselConfig) {
-    // customize default values of carousels used by this component tree
-    config.interval = 10000;
-    config.wrap = false;
-    config.keyboard = false;
-    config.pauseOnHover = false;
+  items: Array<any> = []
+  width;
+  constructor(private screenService: ScreenService) {
+
+      if(this.screenService.resolution.value > 1024){
+        this.width = '900'
+      }
+      else if(this.screenService.resolution.value > 768 && this.screenService.resolution.value < 1024 ){
+        this.width = '500'
+      }
+      else if(this.screenService.resolution.value < 768 ){
+        this.width = '250'
+      }
+
+    this.items = [
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+      { name: '../../../assets/img/carrousel.jpg' },
+
+
+    ]
   }
 }

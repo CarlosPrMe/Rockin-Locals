@@ -27,7 +27,7 @@
   padding: 1rem;
   transition: all 150ms linear;
   &:hover {
-    color: var(--aux);
+    text-decoration: underline;
   }
 }
 
@@ -45,14 +45,13 @@
   height: auto;
   display: flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: center
 }
 
 .copy {
   display: inline-block;
-  padding: 0.2rem;
-  font-size: var(--font-size-sm);
   color: var(--white);
+  font-weight: 100
 }
 
 .svg {
@@ -60,21 +59,21 @@
 }
 
 .svg--twiter {
-  fill: #1da1f2;
+  fill: var(--white);
   &:hover {
     fill: darken(#1da1f2, 10%);
   }
 }
 
 .svg--facebook {
-  fill: #3b5998;
+  fill: var(--white);
   &:hover {
     fill: darken(#3b5998, 10%);
   }
 }
 
 .svg--instagram {
-  fill: #e4405f;
+  fill: var(--white);
   &:hover {
     fill: darken(#e4405f, 10%);
   }

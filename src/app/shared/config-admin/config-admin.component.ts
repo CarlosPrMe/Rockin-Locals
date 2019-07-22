@@ -1,6 +1,7 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { customValidatorEmail } from '../modal/validators-custom';
+import { customValidatorUrl } from '../modal/validators-custom';
 
 
 @Component({
@@ -18,36 +19,35 @@ export class ConfigAdminComponent implements OnInit {
   @Output() deleteUser = new EventEmitter();
 
   ngOnInit() {
-    this.myForm = this.fb.group({
-      userName: [``, Validators.compose([Validators.required, Validators.minLength(5)])],
-      companyName: [``, Validators.required],
-      description: [""],
-      email: [``, Validators.compose([Validators.required, customValidatorEmail])],
-      password: [``, Validators.compose([Validators.required, Validators.minLength(8)])],
-      avatar: ["",],
-      address: [""],
-      postalCode: [""],
-      city: [""],
-    });
 
     if (!this.user.avatar) {
       this.user.avatar = null;
     }
 
+    if(!this.user.description){
+      this.user.description=' ';
+    }
+
+    this.myForm = this.fb.group({
+      userName: [``, Validators.compose([Validators.required, Validators.minLength(5)])],
+      companyName: [``,Validators.compose([Validators.required,Validators.minLength(2)]) ],
+      description: ["",Validators.maxLength(300)],
+      avatar: ["",Validators.compose([customValidatorUrl])],
+      address: [""],
+      postalCode: [""],
+      city: [""],
+    });
+
+
     this.myForm.setValue({
       userName: this.user.userName,
       companyName: this.user.companyName,
       description: this.user.description,
-      email: this.user.email,
-      password: this.user.password,
       avatar: this.user.avatar,
       address: this.user.address,
       postalCode: this.user.postalCode,
       city: this.user.city,
-
-
     })
-
 
 
   }
@@ -57,6 +57,6 @@ export class ConfigAdminComponent implements OnInit {
   }
 
   delete($event) {
-    this.deleteUser.emit(this.user.id);
+    this.deleteUser.emit(this.user._id);
   }
 }

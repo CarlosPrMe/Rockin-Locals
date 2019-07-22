@@ -1,0 +1,58 @@
+<div mat-dialog-content>
+
+  <h2 mat-dialog-title class="table__title">Detalle de la reserva</h2>
+  <table class="table" mat-table [dataSource]="dataSource">
+
+    <tr class="table__row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+    <ng-container matColumnDef="band">
+      <th class="table__heading" mat-header-cell *matHeaderCellDef> Día </th>
+      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.bandName}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="company">
+      <th class="table__heading" mat-header-cell *matHeaderCellDef> Instalación </th>
+      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.companyName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="local">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Nombre del local </th>
+      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.localName}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Horas </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.date.day}} /
+        {{reservation?.date.month}} / {{reservation?.date.year}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="detailHours">
+      <th class="table__heading" mat-header-cell *matHeaderCellDef> Detalle de horas </th>
+      <td class="table__data" mat-cell *matCellDef="let reservation"> {{reservation?.hours}} </td>
+    </ng-container>
+
+
+    <ng-container matColumnDef="equipment">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Equipamiento </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.equipment}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="moment">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Se realizó </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.moment | date:'medium'}} </td>
+    </ng-container>
+
+    <ng-container matColumnDef="cost">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Importe </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation">
+        {{reservation?.price * reservation?.hours.length}} €</td>
+    </ng-container>
+
+    <ng-container matColumnDef="payment">
+      <th class="table__heading " mat-header-cell *matHeaderCellDef> Método de pago </th>
+      <td class="table__data " mat-cell *matCellDef="let reservation"> {{reservation?.methodPayment.method}} </td>
+    </ng-container>
+  </table>
+</div>
+

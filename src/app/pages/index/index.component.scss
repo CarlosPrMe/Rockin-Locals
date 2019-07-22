@@ -13,18 +13,16 @@
   }
 }
 
-.dacorationBar::before {
-  @media (min-width: 1023px) {
-    content: "";
-    display: block;
-    position: fixed;
-    left: 0;
-    top: 0;
-    z-index: map-get($z-index, "layer2");
-    height: 100vh;
-    width: 10%;
-    background-image: linear-gradient(to bottom, var(--aux), var(--gray-100));
-    animation: decorationBar 1.2s ease backwards 1;
-    opacity: 0.98;
+.shadow-carousel{
+  box-shadow: 0 0 1rem rgba(0,0,0,0.3);
+}
+
+.farol{
+  position: fixed;
+  top: 40rem;
+
+
+  &__media{
+    left: 2rem;
   }
 }

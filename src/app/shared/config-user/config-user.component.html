@@ -1,6 +1,5 @@
 <div class="container">
   <main class="info">
-    <!-- *ngIf="user.type==='band'" -->
     <form action="#" class="form susy" [formGroup]="myForm">
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-6 col-lg-5">Cambiar foto del perfil</span>
@@ -20,8 +19,10 @@
         </svg>
         <div id="prueba" class="info__edit">
           <div class="form__group form__group--file">
-            <input formControlName="avatar" type="text" class="form__control form__file" placeholder="Introduce URL">
-
+            <input formControlName="avatar" type="text" class="form__control form__file" placeholder="Introduce URL" [ngClass]="{'invalid':myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.required,
+            'invalid-warning':myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom}">
+            <div class="warning" *ngIf="myForm.controls.avatar.dirty && myForm.controls.avatar.errors?.urlCustom">
+              Formato incorrecto</div>
             <!--            <input type="file" name="image" id="file-upload" class=" form__label form__file">
             <label for="file-upload" class="form__label form__label--sm form__label--file">Subir imagen
               <svg class="icon-label upload" xmlns="http://www.w3.org/2000/svg"
@@ -49,85 +50,42 @@
         <span class="info__heading col-sm-12 col-md-5 col-lg-4">Nombre de usuario</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.userName.dirty && myForm.controls.userName.errors?.required ||
-              myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName"
+            <input [ngClass]="{'invalid':myForm.controls.userName.dirty && myForm.controls.userName.errors?.required,
+            'invalid-warning':myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength}" formControlName="userName"
               class="form__control" type="text" id="userName" required>
+              <div class="warning" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">
+                Mínimo 5
+                caracteres</div>
+              <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo
+                Obligatorio
+              </div>
           </div>
-          <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.minlength">Mínimo
-            5
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.userName.dirty && myForm.controls.userName.errors?.required">Campo
-            Obligatorio
-          </div>
-        </div>
-      </div>
-      <div class="info__item row">
-        <span class="info__heading col-sm-12 col-md-4 col-lg-4">Email</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <!-- <label class="form__label" for="email">Email</label> -->
-            <input [ngClass]="{invalid:myForm.controls.email.dirty && myForm.controls.email.errors?.required ||
-                myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom}" formControlName="email"
-              class="form__control" type="email" id="email" required>
-          </div>
-          <span class="error"
-            *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.emailCustom && myForm.controls.email.value">
-            Email incorrecto</span>
-          <span class="error" *ngIf="myForm.controls.email.dirty && myForm.controls.email.errors?.required">Campo
-            Obligatorio </span>
-        </div>
-      </div>
-      <div class="info__item row">
-        <span class="info__heading col-sm-12 col-md-4 col-lg-4">Contraseña</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <!-- <label class="form__label" for="email">Contraseña</label> -->
-            <input [ngClass]="{invalid:myForm.controls.password.dirty && myForm.controls.password.errors?.required ||
-                myForm.controls.password.dirty && myForm.controls.password.errors?.minlength}"
-              formControlName="password" type="password" class="form__control" id="password-register" required
-              minlength="8">
-          </div>
-          <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.minlength">Mínimo
-            8
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.password.dirty && myForm.controls.password.errors?.required">Campo
-            Obligatorio</div>
         </div>
       </div>
       <div class="info__item row">
         <span class="info__heading col-sm-12 col-md-4 col-lg-4">Nombre del grupo</span>
         <div class="info__edit ">
           <div class="form__group col-md-7">
-            <input [ngClass]="{invalid:myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required ||
-                myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}"
+            <input [ngClass]="{'invalid':myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required,
+            'invalid-warning':myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength}"
               formControlName="bandName" class="form__control" type="text" id="bandName" required minlength="2" required>
-          </div>
-          <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">
-            Mínimo 2
-            caracteres</div>
-          <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">
-            Campo
-            Obligatorio
+              <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.minlength">
+                Mínimo 2
+                caracteres</div>
+              <div class="error" *ngIf="myForm.controls.bandName.dirty && myForm.controls.bandName.errors?.required">
+                Campo
+                Obligatorio
+              </div>
           </div>
         </div>
       </div>
-      <!--       <div class="info__item row">
-        <span class="info__heading col-md-12 col-lg-4">Información de pago</span>
-        <div class="info__edit ">
-          <div class="form__group col-md-7">
-            <label class="form__label" for="payment-mode">Información de pago</label>
-            <input class="form__control" type="text" id="payment-mode">
-          </div>
-        </div>
-      </div>-->
-
       <div class="info__item row flex--end">
         <button type="button" class="btn btn--success col-sm col-md col-lg-2"
           (click)="submit($event,myForm)">Guardar</button>
       </div>
       <div class="info__item row">
-        <span class="info__heading col-sm-12 col-md-9 col-lg">Eliminar la cuenta</span>
-        <button type="button" class="btn btn--danger col-sm col-md-3 col-lg-2" (click)="delete($event)">Aceptar</button>
+        <span class="info__heading col-sm-12 col-md-9 col-lg"></span>
+        <button type="button" class="btn btn--danger col-sm col-md-3 col-lg-2" (click)="delete($event)">Eliminar cuenta</button>
       </div>
     </form>
   </main>

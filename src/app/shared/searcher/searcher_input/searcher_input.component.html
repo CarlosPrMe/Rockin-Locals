@@ -1,9 +1,9 @@
 <div class="container">
-  <!-- 2 container para poner colores de fondo  -->
-  <form action="#" class="form">
-      <div class="search" [formGroup]="myForm">
-          <input formControlName="place" type="search" placeholder="Ciudad o código postal" class="search__control">
-          <button type="button" class="btn btn--search" (click)="submit($event, myForm)">
+  <form action="#" class="form" [formGroup]="myForm">
+      <div class="search" >
+          <input  (keyup.enter)="submit($event, myForm)" formControlName="place" type="search" placeholder="Ciudad o código postal"
+          class="search__control">
+          <button type="button" class="btn btn--search"  (click)="submit($event, myForm)">
               <svg class="svg-btn" xmlns="http://www.w3.org/2000/svg"
                   xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56.966 56.966">
                   <path d="M55.146,51.887L41.588,37.786c3.486-4.144,5.396-9.358,5.396-14.786c0-12.682-10.318-23-23-23s-23,10.318-23,23

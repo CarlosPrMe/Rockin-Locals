@@ -32,16 +32,8 @@ export class BookingComponent implements OnInit {
   }
 
   submit(form) {
-    console.log(form.value, this.localSelected);
     this.bookin.emit(form.value);
     this.testService.bookin= form.value;
-
-    if(form.valid){
-      alert('Formulario OK');
-    }else {
-      alert('Formulario incorrecto');
-    }
-
   }
 
   cancel($event) {

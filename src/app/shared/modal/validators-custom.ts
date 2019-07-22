@@ -10,3 +10,34 @@ export function customValidatorEmail(control: AbstractControl): { [key: string]:
     }
   }
 }
+
+export function customValidatorUrl(control: AbstractControl): { [key: string]: any } {
+  let regUrl: any = /(https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|www\.[a-zA-Z0-9][a-zA-Z0-9-]+[a-zA-Z0-9]\.[^\s]{2,}|https?:\/\/(?:www\.|(?!www))[a-zA-Z0-9]+\.[^\s]{2,}|www\.[a-zA-Z0-9]+\.[^\s]{2,})/gi;
+  if (regUrl.test(control.value) || control.value === '' || control.value === undefined) {
+    return null;
+  } else {
+    return {
+      urlCustom: true,
+    }
+  }
+}
+
+
+export function localSelected(control: AbstractControl): { [key: string]: any } {
+  if (control.value === 'local') {
+    return null;
+  } else {
+    return {
+      urlCustom: true,
+    }
+  }
+}
+export function bandSelected(control: AbstractControl): { [key: string]: any } {
+  if (control.value === 'band') {
+    return null;
+  } else {
+    return {
+      urlCustom: true,
+    }
+  }
+}

@@ -31,40 +31,14 @@
       </svg>
       Ocultar</button>
   </h2>
-  <ul class="list" [ngClass]="{show: showList, hide: !showList}">
-    <li class="aside__item"><a href="#" class="aside__link">Local 8 Ritmo & Compas
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 1 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a></li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
-    <li class="aside__item"><a href="#" class="aside__link">Local 13 Pika Studios
-        <app-btn-favourites-delete></app-btn-favourites-delete>
-      </a>
-    </li>
+  <ul class="list list--clean" *ngIf="user?.favourites?.length === 0" [ngClass]="{show: showList, hide: !showList}">
+    <li class="aside__item aside__item--clean">Aquí estarán tus locales favoritos</li>
   </ul>
-  <!--                 <div class="flex--end">
-        <button type="button" class="btn">Editar</button>
-    </div> -->
+  <ul class="list" [ngClass]="{show: showList, hide: !showList}">
+        <li  class="aside__item" *ngFor="let fav of user.favourites">
+          <a (click)="goToLocal($event, fav.idLocal)" class="aside__link">{{fav.companyName}}
+            <app-btn-favourites-delete (deleteFavourite)="deleteFavourite($event, fav.idLocal)"></app-btn-favourites-delete>
+          </a>
+        </li>
+  </ul>
 </aside>

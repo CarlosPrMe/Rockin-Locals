@@ -1,16 +1,5 @@
 @import '../buttons/buttons.component.scss';
 
-@keyframes inputsAnimation {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.08);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
 
 :host{
     padding-bottom: 2rem;
@@ -155,6 +144,11 @@ svg {
   display: flex;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+.btn[disabled]{
+  opacity: .5;
+  pointer-events: none;
 }
 
 .error {

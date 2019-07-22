@@ -8,7 +8,6 @@
             <label for="day" class="form__label form__label--lg">Día de reserva</label>
             <input [ngClass]="{invalid: myForm.controls.errors?.required}"
             formControlName="date" type="text" id="day" class="form__input" placeholder="dd/mm/aa" required>
-            <!-- <span>Logo calendario</span> -->
           </div>
                 <div class="error" *ngIf="myForm.controls.date.errors?.required">Campo
                   Obligatorio</div>
@@ -16,14 +15,12 @@
             <label for="hour-in" class="form__label form__label--lg">Hora de entrada</label>
             <input formControlName="hourIn" type="time" id="hour-in" min="11:00" max="22:00" step="01:00"
             class="form__input form__input--hour" placeholder="17:00" required>
-            <!-- <span>Logo reloj</span> -->
           </div>
           <div class="error" *ngIf="myForm.controls.hourIn.errors?.required">Campo
               Obligatorio</div>
           <div class="form__group">
             <label for="hour-out" class="form__label">Número de horas</label>
             <input formControlName="hoursNumber" type="number" id="hour-out" class="form__input" placeholder="1" min="1" max="11" required>
-            <!-- <span>Logo reloj</span> -->
           </div>
           <div class="error" *ngIf="myForm.controls.hoursNumber.errors?.required">Campo
               Obligatorio</div>
@@ -199,7 +196,7 @@
       </div>
       <div class="flex--end">
         <button type="button" class="btn" (click)="cancel($event)">Cancelar</button>
-        <button type="button" class="btn" (click)="submit(myForm)" routerLink="/payment" >Aceptar</button> <!-- routerLink="/payment" -->
+        <button type="button" [disabled]="!myForm.valid" class="btn" (click)="submit(myForm)" routerLink="/payment" >Aceptar</button>
       </div>
     </form>
   </div>

@@ -183,25 +183,11 @@ export class TestService {
   ];
 
 
-  bookin; // Para Breadcrumb
-
-  //addUser(user) {
-  //  return this.httpClient.post(`${environment.apiUrl}/user`, user).toPromise();
-  //}
+  bookin;
 
 
   editUser(id: number, body) {
-
-    /*     this.users = this.users.map(user => {
-          if (user.id === id) {
-            body.id = id;
-            // return body;
-            this.userOnline = { ...user, ...body }
-            return { ...user, ...body }; //
-          }
-          return user;
-        }) */
-  }
+}
 
 
   deleteUser(id: number) {

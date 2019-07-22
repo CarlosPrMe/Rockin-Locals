@@ -1,25 +1,41 @@
-//@import '../buttons.component.scss';
-@import '../../../../assets/scss/partials/variables';
-.no-background{
+@import "../../../../assets/scss/partials/variables";
+
+.no-background {
   background-color: transparent;
   border: 0;
 }
 
 .btn--scroll-top {
-  //display: none;
   position: fixed;
-  z-index: map-get($z-index , 'top' );
-  bottom: 4.5rem;
-  right: 2.5rem;
+  z-index: map-get($z-index, "layer2");
   cursor: pointer;
   border-radius: 100%;
-  transition: all 150ms linear;
+  transition: all 400ms linear;
   &:hover {
-    fill: var(--primary);
+    fill: var(--secondary);
+  }
+
+  @media (max-width: 767px) {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  @media (min-width: 768px) {
+    bottom: 4.5rem;
+    right: 2.5rem;
   }
 }
 
 svg {
   transition: fill 150ms linear;
-  fill: var(--secondary);
+  fill: var(--primary);
+}
+
+.show {
+  transition: all 400ms linear;
+  opacity: 1;
+}
+
+.hide {
+  transition: all 400ms linear;
+  opacity: 0;
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { TestService } from '../../../services/test.service';
-import { GetLocalsService } from '../../../services/getLocals.service';
+import { LocalsService } from '../../../services/locals.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,11 +9,12 @@ import { GetLocalsService } from '../../../services/getLocals.service';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private testService: TestService, private getLocalsService : GetLocalsService) { }
+  constructor(private testService: TestService, private localsService : LocalsService) { }
 
+  @Input()reservation;
   ngOnInit() {
   }
 
-  @Input() bookin =  this.testService.bookin;
-  @Input() localSelected =  this.getLocalsService.localSelected;
+
+
 }

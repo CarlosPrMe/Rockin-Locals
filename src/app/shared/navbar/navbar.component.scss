@@ -1,9 +1,4 @@
 @import '../../../assets/scss/partials/variables';
-//@import '../../../assets/scss/partials/reset';
-//@import '../../../assets/scss/partials/fonts';
-//@import '../../../assets/scss/partials/mixin';
-
-//Animacion de entrada Navbar(Solo una vez)
 
 
 @keyframes navbar {
@@ -17,30 +12,26 @@
   }
 }
 
-//Animacion de entrada BloqueNav(Solo una vez)
 
 @keyframes userBlock {
   0% {
     transform: translateY(-400%);
+    opacity: 0;
   }
 
-  45% {
-    transform: translateY(50%);
-  }
-
-  75% {
-    transform: translateY(-15%);
+  85% {
+    opacity: 0;
   }
 
   100% {
     transform: translateY(0%);
+    opacity: 1;
   }
 }
 
 .navbar {
   position: fixed;
-  z-index: map-get($z-index, 'layer3');
-  height: 3.2rem;
+  z-index: map-get($z-index, 'top');
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -52,15 +43,18 @@
   @media (min-width: 1024px) {
     animation: navbar 0.5s linear;
   }
+  @media (min-width: 768px) {
+    height: 3.2rem;
+    top: 0;
+  }
 
   @media (max-width: 767px) {
-    height: 3rem;
+    height: 3.2rem;
     padding: 0 1rem;
   }
 }
 .navbar__menu {
   height: 100%;
-  //width: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -76,12 +70,11 @@
   }
 
   @media (min-width: 1024px) {
-    animation: userBlock 1.2s linear 1 forwards;
+    animation: userBlock .8s linear 1 forwards;
   }
 }
 
 .navbar__media {
-  //border: 1px solid var(--gray-400);
   border-radius: 100%;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15);
   fill: var(--black);
@@ -90,13 +83,13 @@
   @media (min-width: 1023px) {
     margin-right: 1rem;
     transform: translateY(-400%);
-    animation: userBlock 1.2s linear 0.5s 1 forwards;
+    animation: userBlock .8s linear 0.5s 1 forwards;
   }
 }
 
 .btn--access {
   transform: translateY(-400%);
-  animation: userBlock 1.2s linear 1s 1 forwards;
+  animation: userBlock .8s linear 1s 1 forwards;
 }
 
 .navbar__link {
@@ -112,6 +105,10 @@
   display: block;
   padding: 1rem 0.2rem 0.8rem 1.5rem;
   transform: translateY(-0.2rem);
+  outline: none;
+  &:active{
+    background-color: transparent;
+  }
 
   &__menu {
     position: relative;

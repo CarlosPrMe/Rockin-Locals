@@ -1,14 +1,31 @@
+<<<<<<< HEAD
 //@import "https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css";
 
 .container {
+=======
+.container{
+>>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
   margin: 0 auto;
-  //margin-left: 300px;
 }
 
+<<<<<<< HEAD
 :host{
 
   ngb-datepicker{
 
+=======
+
+:host{
+
+  box-shadow: 0px 15px 1rem rgba(0,0,0,0.2);
+  ngb-datepicker{
+
+    border: 1px solid #dfdfdf;
+    border-radius: 0;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+    display: inline-block;
+>>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
     .ngb-dp-header {
       background-color: var(--primary);
       color: var(--white);
@@ -30,4 +47,16 @@
   }
 }
 
+<<<<<<< HEAD
+=======
+.datepicker{
+  background-color: var(--gray-100);
+  color: var(--secondary);
+  font-family: var(--font-family);
+
+  @media(max-width:767){
+    width: 250px;
+  }
+}
+>>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 

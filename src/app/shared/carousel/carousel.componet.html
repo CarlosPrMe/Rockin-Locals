@@ -1,13 +1,33 @@
 <div class="bgc--grey">
   <div class="container">
-      <!-- 2 container para poner colores de fondo  -->
+    <div class="carousel">
       <div class="media">
-          <h2 class="media__title">Algunos de nuestros colaboradores</h2>
-          <div class="carousel">
-              <img class="carousel__media" src="../../../assets/img/carrousel.jpg" alt="">
-              <!-- <button class="btn btn--prev">Anterior</button>
-              <button class="btn btn--next">Siguiente</button> -->
-          </div>
+        <h2 class="media__title">Algunos de nuestros colaboradores</h2>
+        <div ng2-carouselamos class="slides-wrapper" [items]="items"  [$prev]="prev" [$next]="next"
+          [$item]="item">
+        </div>
       </div>
+      <ng-template #prev>
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 8 8 12 12 16"></polyline>
+          <line x1="16" y1="12" x2="8" y2="12"></line>
+        </svg>
+      </ng-template>
+      <ng-template #next>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon">
+          <circle cx="12" cy="12" r="10"></circle>
+          <polyline points="12 16 16 12 12 8"></polyline>
+          <line x1="8" y1="12" x2="16" y2="12"></line>
+        </svg>
+      </ng-template>
+      <ng-template #item let-item let-i="index">
+        <div class="items">
+          <img class="items__media" src="{{ item.name }}">
+        </div>
+      </ng-template>
+    </div>
   </div>
 </div>

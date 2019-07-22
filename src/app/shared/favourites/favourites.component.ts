@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { LocalsService } from '../../services/locals.service';
 
 @Component({
   selector: 'app-favourites',
@@ -7,16 +8,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FavouritesComponent implements OnInit {
 
-  constructor() { }
+  constructor(private localService: LocalsService) { }
 
   showList: boolean;
+  @Output() navigateTolocal = new EventEmitter();
+  @Output() delete = new EventEmitter();
+
+  @Input() user;
 
   ngOnInit() {
   }
 
   showFavourites($event) {
     this.showList = !this.showList;
-
   }
 
+  async  goToLocal($event, id) {
+
+    if($event.target.className === "aside__link"){
+      this.navigateTolocal.emit(id);
+    }
+  }
+
+  deleteFavourite($event, id){
+    this.delete.emit(id);
+  }
 }
