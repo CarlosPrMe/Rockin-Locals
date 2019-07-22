@@ -15,14 +15,6 @@ import { BehaviorSubject } from 'rxjs';
 export class ConfigurationComponent implements OnInit, OnDestroy {
 
   user;
-<<<<<<< HEAD
-
-  constructor( private loggingService: LoggingService, private userService: UserService,
-    private router: Router, private activatedRoute: ActivatedRoute) {
-
-      document.body.scrollTop = 0;
-     }
-=======
   company = new BehaviorSubject(null);
   constructor(private loginService: LoginService, private userService: UserService,
     private router: Router, private activatedRoute: ActivatedRoute, private localService: LocalsService,
@@ -32,7 +24,6 @@ export class ConfigurationComponent implements OnInit, OnDestroy {
       left: 0,
     });
   }
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
   ngOnInit() {

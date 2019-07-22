@@ -1,11 +1,4 @@
 import { Component, OnInit, OnDestroy, OnChanges } from '@angular/core';
-<<<<<<< HEAD
-import { LoggingService } from '../../services/logging.service';
-import { GetReservationsService } from '../../services/getReservations.service';
-import { browser } from 'protractor';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-import { window } from 'rxjs/operators';
-=======
 import { LoginService } from '../../services/login.service';
 import { ReservationsService } from '../../services/reservations.service';
 import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +9,6 @@ import swal from 'sweetalert2';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material';
 import { ModalDetailComponent } from '../../shared/modal-detail/modal-detail.component';
 import { ScreenService } from '../../services/screen.service';
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
 @Component({
@@ -31,19 +23,10 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
   reservations: Array<any> = [];
   reservationsPast: Array<any> = [];
   reservationsNext: Array<any> = [];
-<<<<<<< HEAD
-  today = this.ngCalendar.getToday();
-  //localSelected = this.getLocalsService.localSelected
-
-  constructor(private loggingService: LoggingService,
-    private getReservationsService: GetReservationsService,
-    private ngCalendar: NgbCalendar) {
-=======
   reservationDetail: Array<any> = [];
   today: NgbDate;
   todayJs: Number = Date.now();
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
   constructor(private loginService: LoginService,
@@ -60,10 +43,6 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
       this.user = res;
     })
 
-<<<<<<< HEAD
-    this.getReservationsService.getReservation(this.user.bandName).then((data: any) => {
-      this.reservations = data
-=======
     this.today = this.ngbCalendar.getToday();
 
     this.reservations = [];
@@ -71,7 +50,6 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
     this.reservationsService.getReservationByBand(this.user._id).then((data: Array<any>) => {
 
       this.reservations = data;
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
       this.separateReservations.call(this, data);
     })
 
@@ -80,17 +58,6 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
 
 
   ngOnInit() { }
-<<<<<<< HEAD
-
-  ngOnChanges() { }
-
-  separateReservations(arrayReser) {
-    arrayReser.forEach(res => {
-      if (this.today.before(res.date)) {
-        this.reservationsNext.push(res)
-      } else if (this.today.after(res.date)) {
-        this.reservationsPast.push(res)
-=======
 
   ngOnChanges() { }
 
@@ -132,13 +99,10 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
 
       if (res.data) {
         this.loginService.user.next(res.data)
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
       }
     });
   }
 
-<<<<<<< HEAD
-=======
   async onCancelReservation(idReserToDelete) {
     let reservation: Array<any> = this.reservationsNext.filter(res => res._id === idReserToDelete);
 
@@ -215,6 +179,5 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
     })
   }
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 }
 

@@ -1,8 +1,3 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { AddtoFavouritesService } from '../../services/add-favourites.service';
-import { NgbCalendar } from '@ng-bootstrap/ng-bootstrap';
-=======
 import { Component, OnInit, Input, Output, EventEmitter, OnChanges, SimpleChanges, ViewChild, ElementRef } from '@angular/core';
 import { FavouritesService } from '../../services/favourites.service';
 import { BehaviorSubject } from 'rxjs';
@@ -16,7 +11,6 @@ import { LoginService } from '../../services/login.service';
 import swal from 'sweetalert2';
 import { OpenMenuService } from '../../services/openMenu.service';
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 @Component({
   selector: 'app-local-info',
@@ -28,26 +22,6 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   @Input() localSelected;
   @Input() user;
   @Input() userData;
-<<<<<<< HEAD
-  daySelected;
-  //currentMonth;
-  monthList: Array<string> = []
-
-
-  constructor(private addtoFavouritesService: AddtoFavouritesService, private ngCalendar: NgbCalendar) {
-
-   // this.currentMonth = this.ngCalendar.getToday();
-   // console.log('this.currentMonth', this.currentMonth);
-
-  }
-
-  ngOnInit() {
-  }
-
-
-  booking($event) {
-    this.showBooking = !this.showBooking;
-=======
   @Output() askReservation = new EventEmitter();
   daySelected = new BehaviorSubject(false);
   myForm;
@@ -107,7 +81,6 @@ export class LocalInfoComponent implements OnInit, OnChanges {
   }
 
   checkFavourite(user, local) {
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
     if (user.favourites.length > 0) {
       for (let i = 0; i < user.favourites.length; i++) {

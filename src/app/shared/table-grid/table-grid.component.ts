@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Component, OnInit, Input } from '@angular/core';
-=======
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 @Component({
   selector: 'app-table-grid',
@@ -20,9 +16,6 @@ export class TableGridComponent implements OnInit, OnChanges {
   @Output()detailReservation = new EventEmitter();
   constructor() { }
 
-<<<<<<< HEAD
-  constructor() { }
-=======
   ngOnChanges(simpleChange: SimpleChanges) {
     if (simpleChange.reservations.currentValue.length > 0) {
       this.dataSource = new MatTableDataSource();
@@ -35,7 +28,6 @@ export class TableGridComponent implements OnInit, OnChanges {
 
 
   ngOnInit() { }
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
   cancel(id) {

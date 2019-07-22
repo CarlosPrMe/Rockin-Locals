@@ -59,14 +59,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 //import { GoToPaymentGuard } from './services/go-to-payment.service';
 import { AgmCoreModule } from '@agm/core';
 import { HttpClientModule } from '@angular/common/http';
-<<<<<<< HEAD
-import { DatepickerComponent } from './shared/datepicker/datepicker.component';
-//import {MatTableModule} from '@angular/material/table';
-=======
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { DragScrollModule } from 'ngx-drag-scroll';
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 
 
@@ -201,14 +196,6 @@ const httpInterceptorProviders = [
     CommonModule,
     AppRoutingModule,
     ReactiveFormsModule,
-<<<<<<< HEAD
-    //AgmCoreModule.forRoot({
-    //  apiKey: ''
-    //}),
-    HttpClientModule,
-    //NgbModule,
-    NgbDatepickerModule,
-=======
     AgmCoreModule.forRoot({
       apiKey: 'YourapiKey'
     }),
@@ -223,7 +210,6 @@ const httpInterceptorProviders = [
     Ng2CarouselamosModule,
     DragScrollModule,
     MatDialogModule
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
   ],
   providers: [
     TestService,

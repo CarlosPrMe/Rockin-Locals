@@ -1,15 +1,5 @@
 <div class="general" [ngClass]="{'filter-body':showModal}" #navbar>
   <app-navbar (showMenu)="onShowMenu($event)" [user]="user" [userOnline]="userOnline"></app-navbar>
-<<<<<<< HEAD
-
-  <app-dropdown [showMenu]="showMenu" (showModal)="toggleModal($event)" (navigate)="onShowMenu($event)"
-    (closeSession)="onCloseSesion($event)" [login]="user" (openSession)="onOpenSession($event, user)">
-
-  </app-dropdown>
-  <!-- <app-btn-scroll-top></app-btn-scroll-top> -->
-  <router-outlet></router-outlet>
-
-=======
   <app-dropdown [showMenu]="showMenu" (showModal)="toggleModal($event)"
     (closeSession)="onCloseSesion($event)" [login]="user" (openSession)="onOpenSession($event, user)"
     (doScroll)="scrollToTop(navbar)">
@@ -17,15 +7,8 @@
   <div [ngClass]="{'shadow':showMenu}">
     <router-outlet></router-outlet>
   </div>
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
   <app-footer></app-footer>
   <app-btn-scroll-top class="prueba" (doScroll)="scrollToTop(navbar)"></app-btn-scroll-top>
 </div>
-<<<<<<< HEAD
-<app-datepicker></app-datepicker>
-
-<app-modal [showModal]="showModal" (closeModal)="toggleModal($event)" (register)="onRegister($event, user)"></app-modal>
-=======
 <app-modal [showModal]="showModal" (closeModal)="toggleModal($event)" (register)="onRegister($event, user)"></app-modal>
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4

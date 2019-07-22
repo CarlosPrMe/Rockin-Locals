@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-import { Component, Input } from '@angular/core';
-=======
 import { Component, OnInit, Input, ViewChild, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
 import { MatTableDataSource, MatPaginator } from '@angular/material';
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 import { TableGridComponent } from '../table-grid/table-grid.component';
 
 @Component({
@@ -21,8 +17,6 @@ export class TableGridPastComponent extends TableGridComponent {
   @Output()detailReservation = new EventEmitter();
   displayedColumns: string[] = ['band', 'company', 'local', 'hours'];
 
-<<<<<<< HEAD
-=======
 
   ngOnChanges(simpleChange : SimpleChanges){
     if(simpleChange.reservations.currentValue.length > 0){
@@ -39,5 +33,4 @@ export class TableGridPastComponent extends TableGridComponent {
 
   }
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 }

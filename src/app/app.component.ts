@@ -2,9 +2,6 @@ import { Component, Input, OnChanges, SimpleChanges, OnInit, OnDestroy, HostList
 import { map, switchMap, mergeMap } from 'rxjs/operators';
 import { LoginService } from './services/login.service';
 import { UserService } from './services/users.services';
-<<<<<<< HEAD
-import { NgbCalendar, NgbDate } from '@ng-bootstrap/ng-bootstrap';
-=======
 import { ScreenService } from './services/screen.service';
 import { ScrollToService } from 'ng2-scroll-to-el';
 import { LocationService } from './services/location.service';
@@ -12,7 +9,6 @@ import swal from 'sweetalert2';
 import { Router } from '@angular/router';
 import { OpenMenuService } from './services/openMenu.service';
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
 @Component({
   selector: 'app-root',
@@ -28,13 +24,6 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy {
   //hoy: NgbDate = this.ngCalendar.getToday();
   //pasado = { year: 2020, month: 5, day: 25 };
 
-<<<<<<< HEAD
-  constructor(private userService: UserService, private loggingService: LoggingService,
-    private ngCalendar: NgbCalendar) {
-    this.loggingService.user.subscribe(data => {
-      this.user = data;
-    })
-=======
   @HostListener('document:click', ['$event'])
 
   clickout(event) {
@@ -63,20 +52,13 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy {
     }
 
 
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
     this.loginService.user.subscribe(data => {
       this.user = data;
     })
 
-<<<<<<< HEAD
-    //console.log(this.hoy.after(this.pasado));
-    //console.log(this.hoy.before(this.pasado));
-
-=======
     this.userOnline = this.loginService.isLoged.subscribe(res => {
     })
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
 
     this.openMenuService.showMenuBehavior.subscribe(data => {
       this.showMenu = data

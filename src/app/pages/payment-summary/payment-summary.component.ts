@@ -9,10 +9,6 @@ import { ReservationsService } from 'src/app/services/reservations.service';
 })
 export class PaymentSummaryComponent implements OnInit, OnChanges {
 
-<<<<<<< HEAD
-  constructor() {
-    document.body.scrollTop = 0;
-=======
   reservation;
 
   constructor(private reservationService : ReservationsService) {
@@ -20,7 +16,6 @@ export class PaymentSummaryComponent implements OnInit, OnChanges {
       top: 0,
       left: 0,
     });
->>>>>>> 11a671b5fa87856b770498d61a8c79ae823e5ff4
   }
 
   ngOnInit() {
