@@ -1,43 +1,60 @@
 <table class="table" mat-table [dataSource]="dataSource">
 
   <tr class="table__row" mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;" ></tr>
+  <tr class="table__row" mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
 
   <ng-container matColumnDef="band">
     <th class="table__heading" *matHeaderCellDef> Día </th>
-    <td class="table__data cursor" mat-cell *matCellDef="let reservation"(click)="detail(reservation._id)"> {{reservation?.date.day}} /
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)">
+      {{reservation?.date.day}} /
       {{reservation?.date.month}} / {{reservation?.date.year}}</td>
   </ng-container>
 
   <ng-container matColumnDef="company">
     <th class="table__heading" *matHeaderCellDef> Instalación </th>
-    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.companyName}} </td>
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)">
+      {{reservation?.companyName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="local" class="tablet">
     <th class="table__heading tablet" *matHeaderCellDef> Nombre del local </th>
-    <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.localName}} </td>
+    <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)">
+      {{reservation?.localName}} </td>
   </ng-container>
 
   <ng-container matColumnDef="hourIn" class="desktop">
     <th class="table__heading" *matHeaderCellDef> Hora de entrada </th>
-    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.hours[0]}} </td>
+    <td class="table__data cursor" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)">
+      {{reservation?.hours[0]}} </td>
   </ng-container>
 
   <ng-container matColumnDef="hours" class="tablet">
     <th class="table__heading tablet" *matHeaderCellDef> NºHoras </th>
-    <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)"> {{reservation?.numHours}} </td>
+    <td class="table__data cursor tablet" mat-cell *matCellDef="let reservation" (click)="detail(reservation._id)">
+      {{reservation?.numHours}} </td>
   </ng-container>
 
   <ng-container matColumnDef="boton">
 
-    <th class="table__heading" *matHeaderCellDef> </th>
-    <td class="table__data" mat-cell *matCellDef="let reservation"> <button type="button" class="btn btn-cancel" (click)="cancel(reservation._id)">Cancelar</button> </td>
+    <th class="table__heading" *matHeaderCellDef>Cancelar reserva </th>
+    <td class="table__data" mat-cell *matCellDef="let reservation"> <button type="button" class="btn btn-cancel"
+        (click)="cancel(reservation._id)">Cancelar</button>
+      <button type="button" class="btn btn--reserv-delete" (click)="delete($event)">
+        <svg height="8pt" width="8pt" viewBox="0 0 47.971 47.971">
+          <path d="M28.228,23.986L47.092,5.122c1.172-1.171,1.172-3.071,0-4.242c-1.172-1.172-3.07-1.172-4.242,0L23.986,19.744L5.121,0.88
+               c-1.172-1.172-3.07-1.172-4.242,0c-1.172,1.171-1.172,3.071,0,4.242l18.865,18.864L0.879,42.85c-1.172,1.171-1.172,3.071,0,4.242
+               C1.465,47.677,2.233,47.97,3,47.97s1.535-0.293,2.121-0.879l18.865-18.864L42.85,47.091c0.586,0.586,1.354,0.879,2.121,0.879
+               s1.535-0.293,2.121-0.879c1.172-1.171,1.172-3.071,0-4.242L28.228,23.986z" />
+        </svg>
+      </button>
+
+
+    </td>
   </ng-container>
 
 </table>
 
 <div class="container--flex col-sm-12 col-md-12">
   <mat-paginator class="detail" [length]="length" [pageSize]="2" [pageSizeOptions]="[2, 5]">
-    </mat-paginator>
+  </mat-paginator>
 </div>
