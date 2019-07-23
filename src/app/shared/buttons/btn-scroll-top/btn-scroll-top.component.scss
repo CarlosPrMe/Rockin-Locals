@@ -11,8 +11,10 @@
   cursor: pointer;
   border-radius: 100%;
   transition: all 400ms linear;
-  &:hover {
-    fill: var(--secondary);
+  @media (min-width: 1024px) {
+    &:hover {
+      fill: var(--secondary);
+    }
   }
 
   @media (max-width: 767px) {
