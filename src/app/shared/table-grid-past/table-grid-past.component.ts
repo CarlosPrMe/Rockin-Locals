@@ -8,7 +8,7 @@ import { TableGridComponent } from '../table-grid/table-grid.component';
   styleUrls: ['../table-grid/table-grid.component.scss']
 })
 
-export class TableGridPastComponent extends TableGridComponent implements OnChanges {
+export class TableGridPastComponent extends TableGridComponent {
 
 
   @Input() reservations:Array<any>;

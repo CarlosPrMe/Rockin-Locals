@@ -13,7 +13,7 @@
 
 .general {
   @media (max-width: 767px) {
-    padding-bottom: 2.5rem;
+    //padding-bottom: 2.5rem;
   }
 }
 .shadow {
@@ -23,3 +23,29 @@
     background-color: rgba($color: #000000, $alpha: 0.7)
   }
 }
+
+app-datepicker{
+
+  ngb-datepicker{
+
+    .ngb-dp-header {
+      background-color: var(--primary);
+      color: var(--white);
+      font-family: var(--font-family);
+    }
+
+    .ngb-dp-months {
+      display: -ms-flexbox;
+      display: flex;
+      color: var(--third);
+      background-color: var(--gray-100);
+    }
+
+
+    .btn-light {
+      background-color: var(--primary);
+      font-size: 50px;
+    }
+  }
+}
+

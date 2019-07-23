@@ -53,6 +53,7 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
       this.separateReservations.call(this, data);
     })
 
+    document.body.scrollTop = 0;
   }
 
 
@@ -100,7 +101,6 @@ export class ReservationsComponent implements OnInit, OnChanges, OnDestroy {
         this.loginService.user.next(res.data)
       }
     });
-
   }
 
   async onCancelReservation(idReserToDelete) {

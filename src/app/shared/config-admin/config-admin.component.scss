@@ -24,6 +24,14 @@
   }
 }
 
+.btn--danger,
+.btn--success{
+  @media (max-width:767px) {
+    font-size: 19px;
+  }
+
+}
+
 /*-----------------------------
 GENERAL
 -------------------------*/

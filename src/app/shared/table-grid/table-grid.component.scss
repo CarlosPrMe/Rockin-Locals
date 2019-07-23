@@ -3,13 +3,14 @@
 .btn-cancel {
   background: var(--danger);
   color: var(--white);
-  @media (max-width: 767px) {
-    margin-left: 0.5rem;
-    padding: 0.2rem 0.5rem;
-    font-size: var(--font-size-sm);
+  @media (max-width: 1023px) {
+    //margin-left: 0.5rem;
+    //padding: 0.2rem 0.5rem;
+    //font-size: var(--font-size-sm);
+    display: none;
   }
   @media (min-width: 768px) {
-    margin-left: 1rem;
+    //margin-left: 1rem;
   }
   @media (min-width: 1024px) {
     &:hover {
@@ -20,6 +21,22 @@
   }
 }
 
+
+
+.btn--reserv-delete {
+
+  @media (max-width: 1023px) {
+    background-color: var(--danger);
+    svg {
+      fill: var(--white);
+    }
+
+  }
+  @media (min-width: 1023px){
+    display: none;
+  }
+
+}
 
 :host {
   margin-bottom: 1rem;
@@ -57,7 +74,7 @@
 
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: var(--font-size-base);
-      width: 25%;
+      width: 16.6%;
     }
     @media (min-width: 1024px) {
       width: 16.6%;
@@ -92,7 +109,7 @@
 
     @media (min-width: 768px) and (max-width: 1023px) {
       font-size: var(--font-size-sm);
-      width: 20%;
+      width: 16.6%;
     }
     @media (min-width: 1024px) {
       font-size: var(--font-size-base);

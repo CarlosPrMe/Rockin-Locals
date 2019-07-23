@@ -63,13 +63,14 @@
   padding: 0.5rem 1rem;
   color: var(--white);
   font-size: var(--font-size-base);
-  transform: translateY(-400%);
 
-  @media (max-width: 1023px) {
+  @media (max-width: 767px) {
     display: none;
+    transform: translateY(0);
   }
 
   @media (min-width: 1024px) {
+    transform: translateY(-400%);
     animation: userBlock .8s linear 1 forwards;
   }
 }

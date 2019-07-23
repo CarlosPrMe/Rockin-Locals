@@ -21,6 +21,8 @@ export class AppComponent implements OnInit, OnChanges, OnDestroy {
   showMenu: boolean; // Variable para mostral el menu
   showModal: boolean; // Variable para mostral la modal de registro
   userOnline;
+  //hoy: NgbDate = this.ngCalendar.getToday();
+  //pasado = { year: 2020, month: 5, day: 25 };
 
   @HostListener('document:click', ['$event'])
 
